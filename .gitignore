@@ -1,0 +1,29 @@
+# Ignore everything by default in this top-level portfolio repo.
+*
+
+# Keep manager metadata.
+!.gitignore
+!README.md
+
+# Keep selected child repositories as gitlinks.
+!Aneumind and TC Structure/
+!App Builder/
+!App Builder/App Builder/
+!App Builder/Teach/
+!App Builder/Teach/home-learning-playbook/
+!App Builder/Teach/zahmeir-learning-system/
+!GitHub/
+!GitHub/mjsds_dashboard/
+!MJS Financial Dash/
+!MJS Financial Dash/Resume Builder/
+!MJS Financial Dash backup 20260310_153810/
+!Momentum-OS/
+!Producer/
+!Producer/archive/
+!TuneFab/
+!Wayne Strain/
+!mjsds-website/
+
+# This child repo exists locally but has no first commit yet, so the
+# top-level repo cannot stage it as a gitlink until it is initialized.
+2024 Taxes/
