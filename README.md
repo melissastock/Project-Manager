@@ -17,10 +17,11 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 2. Refresh the dashboard with `python3 scripts/portfolio_status.py`.
 3. Use `docs/new-project-intake-template.md` for intake.
 4. Use `docs/new-project-onboarding-checklist.md` to operationalize new projects.
-5. Bootstrap new projects with `python3 scripts/bootstrap_project.py --name "Project Name" --add-to-manifest`.
-6. Use `python3 scripts/intake_wizard.py` for a lighter guided intake flow.
-7. Inspect child repo pointer drift with `python3 scripts/sync_child_repo_pointers.py`.
-8. Commit the portfolio updates from this top-level repo.
+5. Bootstrap new projects with `python3 scripts/bootstrap_project.py --name "Project Name"`.
+6. Use `--skip-portfolio-plan` when a new repo should stay standalone instead of being managed by the Project Manager portfolio plan.
+7. Use `python3 scripts/intake_wizard.py` for a lighter guided intake flow.
+8. Inspect child repo pointer drift with `python3 scripts/sync_child_repo_pointers.py`.
+9. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 

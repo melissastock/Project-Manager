@@ -5,6 +5,7 @@
 - Confirm project name, purpose, and owner.
 - Create the working directory in the portfolio workspace, or use `python3 scripts/intake_wizard.py` for a guided flow.
 - Use `python3 scripts/bootstrap_project.py` when you want a fully flag-driven setup.
+- Decide whether the project should be managed by the Project Manager portfolio plan or stay standalone.
 - Initialize the project repository on `main`.
 - Create or connect the GitHub remote.
 
@@ -13,7 +14,8 @@
 - Add a project README.
 - Add a project `.gitignore`.
 - Capture intake details with `docs/new-project-intake-template.md`.
-- Add the new project to `config/repos.json`, or let the bootstrap script do it with `--add-to-manifest`.
+- By default the bootstrap flow adds the repo to the Project Manager plan.
+- Use `--skip-portfolio-plan` when the repo should opt out and stay standalone.
 
 ## Operationalize
 

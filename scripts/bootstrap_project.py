@@ -36,6 +36,7 @@ def ensure_file(path: Path, content: str) -> None:
 
 
 def build_readme(args: argparse.Namespace) -> str:
+    portfolio_mode = "managed by Project Manager" if args.add_to_manifest else "standalone project"
     return (
         f"# {args.name}\n\n"
         f"{args.description}\n\n"
@@ -45,6 +46,7 @@ def build_readme(args: argparse.Namespace) -> str:
         f"- Owner: {args.owner}\n"
         f"- Primary milestone: {args.milestone}\n"
         f"- Portfolio role: {args.role}\n"
+        f"- Portfolio mode: {portfolio_mode}\n"
     )
 
 
@@ -99,7 +101,11 @@ def build_intake(args: argparse.Namespace, relative_path: str) -> str:
             f"- Remote created: {args.github_repo or 'not yet'}",
             "- Default branch: main",
             "- Ignore rules needed: starter .gitignore created",
-            "- Child repo relationship to Project Manager: tracked as independent child repository",
+            (
+                "- Child repo relationship to Project Manager: tracked as independent child repository"
+                if args.add_to_manifest
+                else "- Child repo relationship to Project Manager: standalone repo, not added to portfolio manifest"
+            ),
             "",
             "## Intake Decisions",
             "",
@@ -167,9 +173,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--github-repo", default="")
     parser.add_argument("--skip-git", action="store_true", help="Create files only and skip git init.")
     parser.add_argument(
+        "--skip-portfolio-plan",
+        action="store_true",
+        help="Opt out of adding this project to the Project Manager portfolio manifest.",
+    )
+    parser.add_argument(
         "--add-to-manifest",
         action="store_true",
-        help="Register the new repo in config/repos.json.",
+        help="Register the new repo in config/repos.json. This is the default unless --skip-portfolio-plan is used.",
     )
     parser.add_argument(
         "--initial-commit",
@@ -182,6 +193,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     args.init_git = not args.skip_git
+    args.add_to_manifest = not args.skip_portfolio_plan
 
     relative_path = args.path.strip("/") if args.path else slugify(args.name)
     repo_name = args.repo_name or Path(relative_path).name
@@ -224,6 +236,7 @@ def main() -> int:
 
     print(f"Project path: {project_path}")
     print(f"Repo initialized: {'yes' if args.init_git else 'no'}")
+    print(f"Managed by Project Manager plan: {'yes' if args.add_to_manifest else 'no'}")
     print(f"Manifest updated: {'yes' if args.add_to_manifest else 'no'}")
     print("Next: run `python3 scripts/portfolio_status.py` from the Project Manager repo.")
     return 0

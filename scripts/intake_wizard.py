@@ -36,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--priority", default="medium")
     parser.add_argument("--status-cadence", default="weekly")
     parser.add_argument("--initial-commit", action="store_true")
-    parser.add_argument("--skip-manifest", action="store_true")
+    parser.add_argument("--skip-portfolio-plan", action="store_true")
     parser.add_argument("--skip-git", action="store_true")
     return parser.parse_args()
 
@@ -62,7 +62,9 @@ def main() -> int:
     project_type = prompt("Project type", args.project_type)
     priority = prompt("Priority", args.priority)
     status_cadence = prompt("Status cadence", args.status_cadence)
-    add_to_manifest = not args.skip_manifest
+    add_to_manifest = prompt(
+        "Manage this repo from the Project Manager plan", "yes" if not args.skip_portfolio_plan else "no"
+    ).lower() in {"y", "yes"}
     init_git = not args.skip_git
     initial_commit = args.initial_commit
 
@@ -74,7 +76,7 @@ def main() -> int:
     print(f"- Role: {role}")
     print(f"- Intake stage: {intake_stage}")
     print(f"- Git init: {flag(init_git)}")
-    print(f"- Add to manifest: {flag(add_to_manifest)}")
+    print(f"- Managed by Project Manager plan: {flag(add_to_manifest)}")
     print(f"- Initial commit: {flag(initial_commit)}")
     print("")
 
@@ -112,6 +114,8 @@ def main() -> int:
         cmd.extend(["--path", path])
     if add_to_manifest:
         cmd.append("--add-to-manifest")
+    else:
+        cmd.append("--skip-portfolio-plan")
     if initial_commit:
         cmd.append("--initial-commit")
     if not init_git:
