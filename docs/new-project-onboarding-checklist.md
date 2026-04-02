@@ -3,7 +3,7 @@
 ## Create
 
 - Confirm project name, purpose, and owner.
-- Create the working directory in the portfolio workspace.
+- Create the working directory in the portfolio workspace, or use `python3 scripts/bootstrap_project.py`.
 - Initialize the project repository on `main`.
 - Create or connect the GitHub remote.
 
@@ -12,7 +12,7 @@
 - Add a project README.
 - Add a project `.gitignore`.
 - Capture intake details with `docs/new-project-intake-template.md`.
-- Add the new project to `config/repos.json`.
+- Add the new project to `config/repos.json`, or let the bootstrap script do it with `--add-to-manifest`.
 
 ## Operationalize
 

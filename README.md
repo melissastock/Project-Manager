@@ -17,7 +17,8 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 2. Refresh the dashboard with `python3 scripts/portfolio_status.py`.
 3. Use `docs/new-project-intake-template.md` for intake.
 4. Use `docs/new-project-onboarding-checklist.md` to operationalize new projects.
-5. Commit the portfolio updates from this top-level repo.
+5. Bootstrap new projects with `python3 scripts/bootstrap_project.py --name "Project Name" --add-to-manifest`.
+6. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 
