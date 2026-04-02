@@ -17,18 +17,18 @@
       "intake_stage": "active"
     },
     {
-      "name": "Teach - Home Learning Playbook",
-      "path": "App Builder/Teach/home-learning-playbook",
-      "category": "education",
-      "role": "teaching system project",
+      "name": "MJS Financial Dash",
+      "path": "MJS Financial Dash",
+      "category": "finance",
+      "role": "financial reconstruction and reporting",
       "intake_stage": "active"
     },
     {
-      "name": "Teach - Zahmeir Learning System",
-      "path": "App Builder/Teach/zahmeir-learning-system",
-      "category": "education",
-      "role": "teaching system project",
-      "intake_stage": "active"
+      "name": "MJS Financial Dash Backup",
+      "path": "MJS Financial Dash backup 20260310_153810",
+      "category": "archive",
+      "role": "snapshot backup of financial dashboard",
+      "intake_stage": "archive"
     },
     {
       "name": "MJSDS Dashboard",
@@ -38,25 +38,11 @@
       "intake_stage": "active"
     },
     {
-      "name": "MJS Financial Dash",
-      "path": "MJS Financial Dash",
-      "category": "finance",
-      "role": "financial reconstruction and reporting",
-      "intake_stage": "active"
-    },
-    {
-      "name": "Resume Builder",
-      "path": "MJS Financial Dash/Resume Builder",
-      "category": "career",
-      "role": "resume tooling",
+      "name": "MJSDS Website",
+      "path": "mjsds-website",
+      "category": "website",
+      "role": "website workspace",
       "intake_stage": "onboarding"
-    },
-    {
-      "name": "MJS Financial Dash Backup",
-      "path": "MJS Financial Dash backup 20260310_153810",
-      "category": "archive",
-      "role": "snapshot backup of financial dashboard",
-      "intake_stage": "archive"
     },
     {
       "name": "Momentum-OS",
@@ -80,6 +66,34 @@
       "intake_stage": "archive"
     },
     {
+      "name": "provider-access-hub",
+      "path": "provider-access-hub",
+      "category": "software",
+      "role": "provider platform codebase",
+      "intake_stage": "onboarding"
+    },
+    {
+      "name": "Resume Builder",
+      "path": "MJS Financial Dash/Resume Builder",
+      "category": "career",
+      "role": "resume tooling",
+      "intake_stage": "onboarding"
+    },
+    {
+      "name": "Teach - Home Learning Playbook",
+      "path": "App Builder/Teach/home-learning-playbook",
+      "category": "education",
+      "role": "teaching system project",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Teach - Zahmeir Learning System",
+      "path": "App Builder/Teach/zahmeir-learning-system",
+      "category": "education",
+      "role": "teaching system project",
+      "intake_stage": "active"
+    },
+    {
       "name": "TuneFab",
       "path": "TuneFab",
       "category": "software",
@@ -92,13 +106,6 @@
       "category": "research",
       "role": "validation and jurisdiction research",
       "intake_stage": "active"
-    },
-    {
-      "name": "MJSDS Website",
-      "path": "mjsds-website",
-      "category": "website",
-      "role": "website workspace",
-      "intake_stage": "onboarding"
     }
   ],
   "intake_defaults": {

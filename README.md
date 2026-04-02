@@ -37,6 +37,7 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `Producer`
 - `Producer/archive`
 - `TuneFab`
+- `provider-access-hub`
 - `Wayne Strain`
 - `mjsds-website`
 
