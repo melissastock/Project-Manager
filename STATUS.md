@@ -1,33 +1,33 @@
 # Portfolio Status
 
-Generated: 2026-04-01 21:17:57 MDT
+Generated: 2026-04-01 21:20:27 MDT
 
 ## Summary
 
 - Managed repositories: 15
-- Clean repositories: 3
-- Repositories with local changes: 12
+- Clean repositories: 8
+- Repositories with local changes: 7
 - Repositories in onboarding: 2
 
 ## Repository Snapshot
 
 | Project | Stage | Branch | Status | Sync | Head | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| Aneumind and TC Structure | active | codex/taylor-shell-claim-scenario | unstaged:3, untracked:45 | no-upstream | 6b6cc45 | Initial evidence baseline |
-| App Builder | active | codex/project-manager-scaffold | untracked:5 | ahead:1 behind:0 | 426480c | Update PAH references to standalone repo |
+| Aneumind and TC Structure | active | codex/taylor-shell-claim-scenario | unstaged:3, untracked:44 | no-upstream | c1a02f2 | Add onboarding pack |
+| App Builder | active | codex/project-manager-scaffold | clean | ahead:2 behind:0 | 7f5a60e | Add project onboarding pack |
 | MJS Financial Dash | active | codex/finance-snapshot-onboarding | unstaged:23, untracked:44 | ahead:0 behind:0 | 326be3b | Apply archival metadata and finish outputs routing |
 | MJS Financial Dash Backup | archive | main | unstaged:20, untracked:33 | ahead:0 behind:0 | 1d88e08 | Financial Dashboard 2022-26 |
-| MJSDS Dashboard | active | main | untracked:1 | ahead:0 behind:0 | b11084b | Add dashboard app, index redirect, fix README |
+| MJSDS Dashboard | active | main | clean | ahead:1 behind:0 | f5d1e51 | Add project onboarding pack |
 | MJSDS Website | onboarding | main | clean | no-upstream | 138378e | Keep website README project-scoped |
-| Momentum-OS | active | main | unstaged:5, untracked:11 | ahead:2 behind:0 | 41ef607 | Update PAH repository reference |
-| Producer | active | main | unstaged:7, untracked:11 | ahead:2 behind:0 | d787e75 | Refine Archiavellian story, format, and sales materials |
+| Momentum-OS | active | main | unstaged:5, untracked:6 | ahead:3 behind:0 | d334cf0 | Add project onboarding pack |
+| Producer | active | main | unstaged:7, untracked:10 | ahead:3 behind:0 | facedb9 | Add project onboarding pack |
 | Producer Archive | archive | main | clean | ahead:1 behind:0 | b084cdb | Remove sensitive archive inventories from tracking |
-| provider-access-hub | active | main | untracked:4 | ahead:0 behind:0 | 75f0e85 | Clarify project boundaries and update local paths |
-| Resume Builder | onboarding | main | untracked:5 | no-upstream | 17929bf | Initialize Resume Builder standalone repo |
-| Teach - Home Learning Playbook | active | main | unstaged:6, untracked:10 | ahead:0 behind:0 | 3ec80a1 | Initial commit |
-| Teach - Zahmeir Learning System | active | feat/lesson-1-direct-launch | unstaged:19, untracked:7 | ahead:0 behind:0 | 403bde0 | fix: add explicit Expo app entrypoint |
+| provider-access-hub | active | main | clean | ahead:1 behind:0 | ac76a94 | Add project onboarding pack |
+| Resume Builder | onboarding | main | clean | no-upstream | 1e0b7cd | Add project onboarding pack |
+| Teach - Home Learning Playbook | active | main | unstaged:6, untracked:5 | ahead:1 behind:0 | 13dd225 | Add project onboarding pack |
+| Teach - Zahmeir Learning System | active | feat/lesson-1-direct-launch | unstaged:19, untracked:2 | ahead:1 behind:0 | a8bce64 | Add project onboarding pack |
 | TuneFab | archive | main | clean | no-upstream | 0ccf7a6 | Convert TuneFab into archive workspace |
-| Wayne Strain | active | codex/milestone-1-jurisdiction-research | untracked:2 | ahead:0 behind:0 | 9693206 | Add Milestone 1 jurisdiction screening baseline |
+| Wayne Strain | active | codex/milestone-1-jurisdiction-research | clean | ahead:1 behind:0 | ea8ebaf | Add onboarding milestone docs |
 
 ## Intake And Onboarding
 
