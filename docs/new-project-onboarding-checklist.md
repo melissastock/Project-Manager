@@ -3,7 +3,8 @@
 ## Create
 
 - Confirm project name, purpose, and owner.
-- Create the working directory in the portfolio workspace, or use `python3 scripts/bootstrap_project.py`.
+- Create the working directory in the portfolio workspace, or use `python3 scripts/intake_wizard.py` for a guided flow.
+- Use `python3 scripts/bootstrap_project.py` when you want a fully flag-driven setup.
 - Initialize the project repository on `main`.
 - Create or connect the GitHub remote.
 
@@ -25,5 +26,6 @@
 
 - Confirm the child repo has at least one commit.
 - Confirm the top-level Project Manager repo sees the child repo correctly.
+- Use `python3 scripts/sync_child_repo_pointers.py` to inspect child repo commit drift.
 - Commit the Project Manager updates.
 - Push both the child repo and the Project Manager repo.
