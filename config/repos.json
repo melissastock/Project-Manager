@@ -1,0 +1,109 @@
+{
+  "workspace_name": "Project Manager",
+  "generated_status_file": "STATUS.md",
+  "managed_repositories": [
+    {
+      "name": "Aneumind and TC Structure",
+      "path": "Aneumind and TC Structure",
+      "category": "active-client",
+      "role": "business separation and evidence work",
+      "intake_stage": "active"
+    },
+    {
+      "name": "App Builder",
+      "path": "App Builder/App Builder",
+      "category": "platform",
+      "role": "portfolio planning and project scaffolding",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Teach - Home Learning Playbook",
+      "path": "App Builder/Teach/home-learning-playbook",
+      "category": "education",
+      "role": "teaching system project",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Teach - Zahmeir Learning System",
+      "path": "App Builder/Teach/zahmeir-learning-system",
+      "category": "education",
+      "role": "teaching system project",
+      "intake_stage": "active"
+    },
+    {
+      "name": "MJSDS Dashboard",
+      "path": "GitHub/mjsds_dashboard",
+      "category": "website",
+      "role": "published dashboard repository",
+      "intake_stage": "active"
+    },
+    {
+      "name": "MJS Financial Dash",
+      "path": "MJS Financial Dash",
+      "category": "finance",
+      "role": "financial reconstruction and reporting",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Resume Builder",
+      "path": "MJS Financial Dash/Resume Builder",
+      "category": "career",
+      "role": "resume tooling",
+      "intake_stage": "onboarding"
+    },
+    {
+      "name": "MJS Financial Dash Backup",
+      "path": "MJS Financial Dash backup 20260310_153810",
+      "category": "archive",
+      "role": "snapshot backup of financial dashboard",
+      "intake_stage": "archive"
+    },
+    {
+      "name": "Momentum-OS",
+      "path": "Momentum-OS",
+      "category": "platform",
+      "role": "operations and product planning",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Producer",
+      "path": "Producer",
+      "category": "media",
+      "role": "story, archive, and production workspace",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Producer Archive",
+      "path": "Producer/archive",
+      "category": "archive",
+      "role": "archive repository for Producer",
+      "intake_stage": "archive"
+    },
+    {
+      "name": "TuneFab",
+      "path": "TuneFab",
+      "category": "software",
+      "role": "provider access hub and related application work",
+      "intake_stage": "active"
+    },
+    {
+      "name": "Wayne Strain",
+      "path": "Wayne Strain",
+      "category": "research",
+      "role": "validation and jurisdiction research",
+      "intake_stage": "active"
+    },
+    {
+      "name": "MJSDS Website",
+      "path": "mjsds-website",
+      "category": "website",
+      "role": "website workspace",
+      "intake_stage": "onboarding"
+    }
+  ],
+  "intake_defaults": {
+    "new_project_root": ".",
+    "template_file": "docs/new-project-intake-template.md",
+    "onboarding_checklist_file": "docs/new-project-onboarding-checklist.md"
+  }
+}

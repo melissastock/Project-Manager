@@ -4,6 +4,13 @@
 # Keep manager metadata.
 !.gitignore
 !README.md
+!config/
+!config/**
+!docs/
+!docs/**
+!scripts/
+!scripts/**
+!STATUS.md
 
 # Keep selected child repositories as gitlinks.
 !Aneumind and TC Structure/

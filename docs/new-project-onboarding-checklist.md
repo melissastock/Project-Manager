@@ -1,0 +1,29 @@
+# New Project Onboarding Checklist
+
+## Create
+
+- Confirm project name, purpose, and owner.
+- Create the working directory in the portfolio workspace.
+- Initialize the project repository on `main`.
+- Create or connect the GitHub remote.
+
+## Configure
+
+- Add a project README.
+- Add a project `.gitignore`.
+- Capture intake details with `docs/new-project-intake-template.md`.
+- Add the new project to `config/repos.json`.
+
+## Operationalize
+
+- Define the first milestone and next actions.
+- Clarify whether the project is active, onboarding, paused, or archive.
+- Confirm how this project should be represented in the top-level dashboard.
+- Refresh `STATUS.md` with `python3 scripts/portfolio_status.py`.
+
+## Verify
+
+- Confirm the child repo has at least one commit.
+- Confirm the top-level Project Manager repo sees the child repo correctly.
+- Commit the Project Manager updates.
+- Push both the child repo and the Project Manager repo.
