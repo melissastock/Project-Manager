@@ -10,6 +10,7 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - Maintains a portfolio manifest in `config/repos.json`
 - Generates a portfolio dashboard in `STATUS.md`
 - Standardizes intake and onboarding for new projects
+- Defines the boundary between project-owned docs and PM-owned portfolio responsibilities
 
 ## Core Workflow
 
@@ -47,3 +48,4 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - Child repos remain the source of truth for their own code and history.
 - This repo is the source of truth for portfolio visibility, intake, and onboarding.
 - `provider-access-hub` is now the active PAH codebase; `TuneFab` is being transitioned toward archive status.
+- Boundary policy: `docs/project-boundary-policy.md`
