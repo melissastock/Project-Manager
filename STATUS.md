@@ -1,13 +1,13 @@
 # Portfolio Status
 
-Generated: 2026-04-01 19:47:12 MDT
+Generated: 2026-04-01 19:51:46 MDT
 
 ## Summary
 
 - Managed repositories: 15
 - Clean repositories: 7
 - Repositories with local changes: 8
-- Repositories in onboarding: 3
+- Repositories in onboarding: 2
 
 ## Repository Snapshot
 
@@ -22,11 +22,11 @@ Generated: 2026-04-01 19:47:12 MDT
 | Momentum-OS | active | main | unstaged:6, untracked:6 | ahead:1 behind:0 | 6afc5a3 | Provide summary and next steps |
 | Producer | active | main | unstaged:7, untracked:10 | ahead:2 behind:0 | d787e75 | Refine Archiavellian story, format, and sales materials |
 | Producer Archive | archive | main | clean | ahead:1 behind:0 | b084cdb | Remove sensitive archive inventories from tracking |
-| provider-access-hub | onboarding | main | clean | no-upstream | 69e5746 | Import curated Provider Access Hub baseline |
+| provider-access-hub | active | main | clean | no-upstream | 69e5746 | Import curated Provider Access Hub baseline |
 | Resume Builder | onboarding | main | clean | no-upstream | 17929bf | Initialize Resume Builder standalone repo |
 | Teach - Home Learning Playbook | active | main | unstaged:6, untracked:5 | ahead:0 behind:0 | 3ec80a1 | Initial commit |
 | Teach - Zahmeir Learning System | active | feat/lesson-1-direct-launch | unstaged:19, untracked:2 | ahead:0 behind:0 | 403bde0 | fix: add explicit Expo app entrypoint |
-| TuneFab | active | main | unstaged:70, untracked:6 | no-upstream | 792378a | Fix pnpm workspace indentation |
+| TuneFab | archive | main | unstaged:70, untracked:6 | no-upstream | 792378a | Fix pnpm workspace indentation |
 | Wayne Strain | active | codex/milestone-1-jurisdiction-research | clean | ahead:0 behind:0 | 9693206 | Add Milestone 1 jurisdiction screening baseline |
 
 ## Intake And Onboarding

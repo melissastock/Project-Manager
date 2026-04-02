@@ -70,7 +70,7 @@
       "path": "provider-access-hub",
       "category": "software",
       "role": "provider platform codebase",
-      "intake_stage": "onboarding"
+      "intake_stage": "active"
     },
     {
       "name": "Resume Builder",
@@ -96,9 +96,9 @@
     {
       "name": "TuneFab",
       "path": "TuneFab",
-      "category": "software",
-      "role": "provider access hub and related application work",
-      "intake_stage": "active"
+      "category": "archive",
+      "role": "legacy container holding media files and the pre-extraction PAH source copy",
+      "intake_stage": "archive"
     },
     {
       "name": "Wayne Strain",
