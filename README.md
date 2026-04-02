@@ -32,11 +32,11 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `App Builder/Teach/zahmeir-learning-system`
 - `GitHub/mjsds_dashboard`
 - `MJS Financial Dash`
-- `MJS Financial Dash/Resume Builder`
 - `MJS Financial Dash backup 20260310_153810`
 - `Momentum-OS`
 - `Producer`
 - `Producer/archive`
+- `Resume Builder`
 - `TuneFab`
 - `provider-access-hub`
 - `Wayne Strain`
