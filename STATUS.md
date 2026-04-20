@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-04-20 15:46:57 MDT
+Generated: 2026-04-20 15:49:24 MDT
 
 ## Summary
 
@@ -14,7 +14,7 @@ Generated: 2026-04-20 15:46:57 MDT
 | Project | Stage | Branch | Status | Sync | Head | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
 | Aneumind and TC Structure | active | codex/taylor-shell-claim-scenario | unstaged:3, untracked:45 | no-upstream | c1a02f2 | Add onboarding pack |
-| Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | active | main | clean | no-upstream | c5acc32 | Finalize client onboarding baseline |
+| Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | active | main | clean | no-upstream | 97d3dfd | Add discovery plan, system context, architecture outline, and private remote guide. |
 | App Builder | active | codex/project-manager-scaffold | clean | ahead:3 behind:0 | 89b7045 | Update Resume Builder repository path |
 | MJS Financial Dash | active | codex/finance-snapshot-onboarding | unstaged:23, untracked:50 | ahead:1 behind:0 | 034da28 | Merge backup-only outputs into canonical archive snapshot. |
 | MJS Financial Dash Backup | archive | main | unstaged:20, untracked:33 | ahead:0 behind:0 | 1d88e08 | Financial Dashboard 2022-26 |
