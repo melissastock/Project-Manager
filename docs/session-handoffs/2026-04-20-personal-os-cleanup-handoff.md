@@ -13,8 +13,11 @@
 ### Commits (verifiable)
 
 - `Archiavellian-Archive`: `fd9d693` - Add curated net-new archive ingest snapshot.
+- `Archiavellian-Archive`: `8a34896` - Clean archive index batch note formatting (removes accidental trailing `Yes` line in `index/archive-index.md`).
 - `MJS Financial Dash`: `034da28` - Merge backup-only outputs into canonical archive snapshot.
 - `Project Manager`: `cca8350` - Mark MJS Financial Dash backup as merged.
+- `Project Manager`: `9dcccd5` - Add session handoff, owner update queue, and iCloud indexing artifacts.
+- `Project Manager`: `d9f07da` - Register combat injury project and add existing-project onboarding automation.
 - `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System`: `0def77e` - Initialize project workspace.
 
 ### Key files created/updated (verifiable)
@@ -47,6 +50,8 @@
   - `docs/icloud-full-delta-candidates-2026-04-20.md`
   - `docs/icloud-net-new-candidates-2026-04-20.csv`
   - `docs/icloud-net-new-candidates-2026-04-20.md`
+- Archive CMS index hygiene:
+  - `Archiavellian-Archive/index/archive-index.md` (stray trailing `Yes` removed; commit `8a34896`).
 - New project onboarding artifacts:
   - `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System/docs/project-intake.md`
   - `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System/portfolio_management_intake.md`
@@ -82,7 +87,7 @@
 
 ### Facts
 
-- The four commits listed above exist locally and were created in this session window.
+- The commits listed in the evidence log exist locally and were created in this session window (including follow-up hygiene and handoff commits).
 - The combat-injury child repo was initialized locally and now has a first commit on `main`.
 - `MJS Financial Dash Backup` is now documented as deprecated/archive-only in `config/repos.json`.
 - iCloud full index was generated and saved; scan reported mostly files inside `Project Manager` corpus.
