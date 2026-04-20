@@ -19,14 +19,17 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 3. Use `docs/new-project-intake-template.md` for intake.
 4. Use `docs/new-project-onboarding-checklist.md` to operationalize new projects.
 5. Bootstrap new projects with `python3 scripts/bootstrap_project.py --name "Project Name"`.
-6. Use `--skip-portfolio-plan` when a new repo should stay standalone instead of being managed by the Project Manager portfolio plan.
-7. Use `python3 scripts/intake_wizard.py` for a lighter guided intake flow.
-8. Inspect child repo pointer drift with `python3 scripts/sync_child_repo_pointers.py`.
-9. Commit the portfolio updates from this top-level repo.
+6. Onboard an already-existing project folder with `python3 scripts/onboard_existing_project.py --name "Project Name" --path "Existing Folder"`.
+7. Add `--initial-commit --commit-all-files` when the onboarding run should also create the baseline repo commit for the full existing folder contents.
+8. Use `--skip-portfolio-plan` when a new repo should stay standalone instead of being managed by the Project Manager portfolio plan.
+9. Use `python3 scripts/intake_wizard.py` for a lighter guided intake flow.
+10. Inspect child repo pointer drift with `python3 scripts/sync_child_repo_pointers.py`.
+11. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 
 - `Aneumind and TC Structure`
+- `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System`
 - `App Builder/App Builder`
 - `App Builder/Teach/home-learning-playbook`
 - `App Builder/Teach/zahmeir-learning-system`

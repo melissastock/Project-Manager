@@ -5,6 +5,8 @@
 - Confirm project name, purpose, and owner.
 - Create the working directory in the portfolio workspace, or use `python3 scripts/intake_wizard.py` for a guided flow.
 - Use `python3 scripts/bootstrap_project.py` when you want a fully flag-driven setup.
+- Use `python3 scripts/onboard_existing_project.py` when the folder already exists and needs to be registered, documented, and onboarded automatically.
+- Add `--initial-commit --commit-all-files` when onboarding should also capture the folder's baseline contents in the child repo history.
 - Decide whether the project should be managed by the Project Manager portfolio plan or stay standalone.
 - Initialize the project repository on `main`.
 - Create or connect the GitHub remote.

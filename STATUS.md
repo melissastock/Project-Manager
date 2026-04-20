@@ -1,30 +1,31 @@
 # Portfolio Status
 
-Generated: 2026-04-20 10:30:24 MDT
+Generated: 2026-04-20 14:45:26 MDT
 
 ## Summary
 
-- Managed repositories: 15
-- Clean repositories: 7
+- Managed repositories: 16
+- Clean repositories: 8
 - Repositories with local changes: 8
-- Repositories in onboarding: 2
+- Repositories in onboarding: 3
 
 ## Repository Snapshot
 
 | Project | Stage | Branch | Status | Sync | Head | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| Aneumind and TC Structure | active | codex/taylor-shell-claim-scenario | unstaged:3, untracked:44 | no-upstream | c1a02f2 | Add onboarding pack |
+| Aneumind and TC Structure | active | codex/taylor-shell-claim-scenario | unstaged:3, untracked:45 | no-upstream | c1a02f2 | Add onboarding pack |
+| Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | onboarding | main | clean | no-upstream | 0def77e | Initialize project workspace |
 | App Builder | active | codex/project-manager-scaffold | clean | ahead:3 behind:0 | 89b7045 | Update Resume Builder repository path |
-| MJS Financial Dash | active | codex/finance-snapshot-onboarding | unstaged:25, untracked:45 | ahead:0 behind:0 | 326be3b | Canonical finance repo; backup reconciliation in progress |
-| MJS Financial Dash Backup | archive | main | unstaged:20, untracked:33 | ahead:0 behind:0 | 1d88e08 | Deprecated archive-only snapshot retained for audit and rollback verification |
+| MJS Financial Dash | active | codex/finance-snapshot-onboarding | unstaged:23, untracked:50 | ahead:1 behind:0 | 034da28 | Merge backup-only outputs into canonical archive snapshot. |
+| MJS Financial Dash Backup | archive | main | unstaged:20, untracked:33 | ahead:0 behind:0 | 1d88e08 | Financial Dashboard 2022-26 |
 | MJSDS Dashboard | active | main | clean | ahead:1 behind:0 | f5d1e51 | Add project onboarding pack |
 | MJSDS Website | onboarding | main | clean | no-upstream | 138378e | Keep website README project-scoped |
 | Momentum-OS | active | main | unstaged:5, untracked:6 | ahead:3 behind:0 | d334cf0 | Add project onboarding pack |
 | Producer | active | main | unstaged:7, untracked:10 | ahead:3 behind:0 | facedb9 | Add project onboarding pack |
-| Archiavellian-Archive | archive | main | untracked:2 | ahead:1 behind:0 | b084cdb | Remove sensitive archive inventories from tracking |
+| Archiavellian-Archive | archive | main | unstaged:1, untracked:79 | ahead:2 behind:0 | fd9d693 | Add curated net-new archive ingest snapshot. |
 | provider-access-hub | active | main | clean | ahead:1 behind:0 | ac76a94 | Add project onboarding pack |
 | Resume Builder | onboarding | main | clean | no-upstream | 6e950f5 | Update repo paths after extraction |
-| Teach - Home Learning Playbook | active | main | unstaged:6, untracked:5 | ahead:1 behind:0 | 13dd225 | Add project onboarding pack |
+| Teach - Home Learning Playbook | active | main | unstaged:6, untracked:7 | ahead:1 behind:0 | 13dd225 | Add project onboarding pack |
 | Teach - Zahmeir Learning System | active | feat/lesson-1-direct-launch | unstaged:19, untracked:2 | ahead:1 behind:0 | a8bce64 | Add project onboarding pack |
 | TuneFab | archive | main | clean | no-upstream | 0ccf7a6 | Convert TuneFab into archive workspace |
 | Wayne Strain | active | codex/milestone-1-jurisdiction-research | clean | ahead:1 behind:0 | ea8ebaf | Add onboarding milestone docs |
