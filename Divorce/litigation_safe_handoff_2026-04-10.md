@@ -296,8 +296,11 @@ These records are useful because they show both the late-stage condition issues 
 - `Documented Fact`: 1590 sold and Respondent received substantially more of the net sale proceeds than Petitioner.
 - `Documented Fact`: The settlement statement reflects a gross sale price of `$660,000.00`, a seller credit of `$10,200.00`, and payoff to Freedom Mortgage of `$409,219.55`, including `$111.89` in late charges.
 - `Documented Fact`: The settlement statement reflects net proceeds of `$196,178.25` to Jesse and `$11,450.85` to Melissa.
-- `Documented Fact`: The settlement statement does not show a separate line item paying Melissa the admitted `$14,566.98` arrears.
-- `Best practice`: A filing should say that the current closing statement does not reflect a separate arrears disbursement to Melissa, rather than overstate that no arrears were resolved through any other off-statement mechanism unless further proof rules that out.
+- `Documented Fact`: The settlement statement does not separately itemize payment of the admitted `$14,566.98` arrears.
+- `Documented Fact`: By at least April 19, 2024, the same loan was being serviced by `Freedom Mortgage`, which sent a billing-statement notice for loan ending `9289`.
+- `Documented Fact`: On April 26, 2024, Freedom Mortgage generated a `One Time Payment Request` confirmation for loan ending `9289` in the amount of `$3,116.13`, which Melissa forwarded to Jesse on April 27, 2024.
+- `Documented Fact`: Freedom Mortgage sent further billing-statement notices for the same loan on May 21, 2024 and June 19, 2024.
+- `Best practice`: A filing should say that the current closing statement does not separately itemize an arrears disbursement to Melissa, rather than overstate that no arrears were resolved through the closing distribution or any other off-statement mechanism unless further proof rules that out.
 
 ### September To October 2024: Continued SBA Payments
 
@@ -314,7 +317,7 @@ These records are useful because they show both the late-stage condition issues 
 
 - `Documented Fact`: Respondent admitted in writing on May 2, 2024 that he owed `$14,566.98` in January through May 2024 mortgage arrears.
 - `Documented Fact`: Petitioner's records also reflect mortgage payments being made from her own accounts during the period in which Respondent was supposed to be responsible under the SA.
-- `Needs Additional Proof`: The exact month-by-month late fees and whether all arrears remained unpaid at closing should be verified against Arvest statements and the closing file.
+- `Needs Additional Proof`: The exact month-by-month late fees and the precise closing reconciliation should be verified against the monthly mortgage statements and the closing file.
 
 ### Violation 2: Failure To Timely Assume / Refinance / Remove Petitioner From Exposure
 
@@ -346,6 +349,7 @@ These records are useful because they show both the late-stage condition issues 
 - `Documented Fact`: The SBA loan communications were in Jesse's email and under his control.
 - `Contemporaneous Statement`: Melissa told counsel in November 2023 that the SBA loan had been used for Jesse's kitchen remodel and that their credit cards had already been paid off in a prior cash-out refinance.
 - `Contemporaneous Statement`: Melissa told counsel on January 4, 2024 that Jesse misrepresented the use of SBA proceeds and kept the supporting receipts in a yellow envelope.
+- `Documented Fact`: The current `1590` support set includes an attic remodel contract and incomplete-work agreement associated with `1590`, which is consistent with the broader theory that significant improvement work was being done to the property Jesse retained.
 - `Needs Additional Proof`: The current file still lacks the lender-side use-of-proceeds package and a clean vendor-side proof chain tying specific SBA disbursements to specific property expenditures.
 
 Counsel can safely frame this as a serious and still-investigable misrepresentation issue. Counsel should not yet state as conclusively established fact that the SBA proceeds did not pay credit cards and instead went into real estate unless the motion attaches or cites the additional proof.

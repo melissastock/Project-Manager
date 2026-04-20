@@ -40,9 +40,20 @@ These amounts are established by the Separation Agreement or Respondent's own Ma
 | Denver Water Offsets (per Respondent's calc) | Jan.–May 2024 | `($___)` | Respondent's May 2, 2024 calc | `Partial` | Respondent's own calc nets these out to `$14,566.98` total. Confirm offset breakdown and whether Petitioner agrees. |
 | Late Fees (per SA) | Each missed payment | `$________` | SA (express provision); mortgage statements | `Needs documentation` | SA expressly provides for late fees on missed payments. Pull mortgage statements for each missed month to identify any lender-charged late fees passed through to Petitioner. |
 
-Bucket 1 Subtotal (minimum documented): `$14,566.98`
+### Freedom Servicing Support
 
-Per Respondent's own May 2, 2024 calculation, plus the express November reimbursement amount of `$2,929.32`, the current working minimum is `$17,496.30` before late fees and May close reconciliation.
+These items support the timeline showing Melissa remained actively exposed on the `1590` mortgage after servicing transferred from `Arvest` to `Freedom Mortgage`.
+
+| Item | Date | Amount | Source | Status | Notes / Open Items |
+| --- | --- | ---: | --- | --- | --- |
+| Freedom billing-statement notice — loan ending `9289` | `04/19/2024` | — | Gmail Freedom Mortgage notice | `Documented` | Confirms servicing by Freedom by at least April 19, 2024. |
+| Freedom one-time mortgage payment confirmation | `04/26/2024` | `$3,116.13` | Forwarded `One Time Payment Request` email | `Documented` | Melissa forwarded the confirmation to Jesse on `04/27/2024`; confirmation no. `01536592890001`. |
+| Freedom billing-statement notice — loan ending `9289` | `05/21/2024` | — | Gmail Freedom Mortgage notice | `Documented` |  |
+| Freedom billing-statement notice — loan ending `9289` | `06/19/2024` | — | Gmail Freedom Mortgage notice | `Documented` | Post-closing notice further confirms the same servicer / loan identity. |
+
+Bucket 1 Subtotal (admitted / scheduled amount before reconciliation): `$17,496.30`
+
+This subtotal is useful as a proof-of-noncompliance benchmark, but it should not automatically be used as the live judgment ask unless counsel confirms the closing reconciliation and any later payments.
 
 This figure should be treated as a **working exhibit number**, not a final filed damages amount, until counsel confirms:
 
@@ -53,8 +64,8 @@ This figure should be treated as a **working exhibit number**, not a final filed
 Counsel note:
 
 - Respondent's May 2, 2024 email is the linchpin for Bucket 1. It is a party admission of the arrears amount through that date.
-- Confirm whether any payment was ever made after May 2. If not, the full `$14,566.98 + $2,929.32` is uncontested.
-- The `1590` closing statement (`Exhibit 9`) should show whether any arrears were captured at close or whether Respondent walked away without paying them.
+- Confirm whether any payment was ever made after May 2.
+- The `1590` closing statement (`Exhibit 9`) should be used to determine what portion of the admitted arrears was effectively captured through closing distribution and what, if anything, remained unpaid beyond the separate `$2,929.32` reimbursement.
 
 ## Bucket 2
 
@@ -99,11 +110,17 @@ Causation note — critical for counsel:
 - Retirement liquidation penalties and tax consequences are potential add-on damages if the withdrawal was caused by Respondent's noncompliance.
 - Consider whether expert or CPA testimony is needed to quantify retirement / investment losses.
 
-## Total Claimed Damages
+## Current Filing-Safe Framing
 
 Subject to proof at hearing. Bucket 3 amounts remain `TBD` pending documentation.
 
-`$17,496.30 + TBD`
+- Cleanest current judgment target:
+  - `$2,929.32`
+  - plus proven late fees
+  - plus any net unpaid mortgage-related amount remaining after closing reconciliation
+- Broader admitted-and-documented damage picture:
+  - proof of the `$14,566.98` arrears admission
+  - plus `TBD` consequential damages
 
 ## Gaps
 
@@ -113,7 +130,7 @@ Priority — get these first:
 
 - `SSFCU` savings statements (`XXXXX02000`) for any period relevant to housing obligations
 - Rita Gallagher Stock text-thread screenshots confirming loan amounts and dates
-- `1590` closing statement (`Exhibit 9`) confirming whether arrears were paid at close
+- `1590` closing statement (`Exhibit 9`) and any supplemental reconciliation confirming how the admitted arrears were handled at close
 - Retirement account statements showing liquidation date, amount, and `1099-R`
 
 Newly improved on parental-loan tracing:
@@ -170,7 +187,7 @@ This is **not yet enough** to state as a documented fact that she paid `$2,600` 
 - Bucket 3 requires a causation argument. Do not claim debts that predate or are unrelated to Respondent's noncompliance.
 - Parental loans are insider transfers. Counsel should decide how to present these given bankruptcy context.
 - Retirement penalty damages may require CPA or expert support.
-- Confirm May payment reconciliation before asserting a number beyond `$14,566.98`.
+- Confirm closing reconciliation before asserting that the full `$14,566.98` remained unpaid after the `1590` sale.
 - Do not plead the full housing-rent theory as a fixed dollar amount until the lease, bank statements, or rent ledger support the month-by-month amounts.
 
 Stock v. Kaser
