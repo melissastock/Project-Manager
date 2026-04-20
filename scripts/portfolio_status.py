@@ -25,6 +25,7 @@ class RepoStatus:
     branch: str
     head: str
     summary: str
+    extra_note: str
     dirty: bool
     staged_count: int
     unstaged_count: int
@@ -87,6 +88,7 @@ def get_repo_status(entry: dict) -> RepoStatus:
         branch="missing",
         head="",
         summary="No repository found",
+        extra_note="",
         dirty=False,
         staged_count=0,
         unstaged_count=0,
@@ -106,6 +108,12 @@ def get_repo_status(entry: dict) -> RepoStatus:
     branch = run_git(repo_path, "branch", "--show-current").stdout.strip() or "detached"
     head = run_git(repo_path, "rev-parse", "--short", "HEAD").stdout.strip()
     summary = run_git(repo_path, "log", "-1", "--pretty=%s").stdout.strip()
+    extra_bits: list[str] = []
+    if entry.get("portfolio_parent"):
+        extra_bits.append(f"parent {entry['portfolio_parent']}")
+    if entry.get("github_repo_slug"):
+        extra_bits.append(f"GitHub {entry['github_repo_slug']} (private)")
+    extra_note = "; ".join(extra_bits)
     porcelain = run_git(repo_path, "status", "--porcelain").stdout
     staged_count, unstaged_count, untracked_count = parse_porcelain(porcelain)
     ahead, behind = ahead_behind(repo_path)
@@ -122,6 +130,7 @@ def get_repo_status(entry: dict) -> RepoStatus:
         branch=branch,
         head=head,
         summary=summary,
+        extra_note=extra_note,
         dirty=bool(porcelain.strip()),
         staged_count=staged_count,
         unstaged_count=unstaged_count,
@@ -180,8 +189,11 @@ def build_markdown(statuses: list[RepoStatus]) -> str:
                 sync_text = f"ahead:{repo.ahead} behind:{repo.behind}"
             head_text = repo.head
 
+        notes = repo.summary
+        if repo.extra_note:
+            notes = f"{repo.summary}; {repo.extra_note}"
         lines.append(
-            f"| {repo.name} | {repo.intake_stage} | {repo.branch} | {status_text} | {sync_text} | {head_text} | {repo.summary} |"
+            f"| {repo.name} | {repo.intake_stage} | {repo.branch} | {status_text} | {sync_text} | {head_text} | {notes} |"
         )
 
     lines.extend(

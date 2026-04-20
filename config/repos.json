@@ -14,7 +14,10 @@
       "path": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
       "category": "legal-healthtech",
       "role": "invention intake, patent support, and product framing for veteran injury documentation workflows",
-      "intake_stage": "active"
+      "intake_stage": "active",
+      "portfolio_parent": "Project Manager",
+      "github_repo_slug": "CIMPT",
+      "github_repo_url": "https://github.com/melissastock/CIMPT.git"
     },
     {
       "name": "App Builder",

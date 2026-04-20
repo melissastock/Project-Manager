@@ -29,7 +29,7 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 ## Managed Repositories
 
 - `Aneumind and TC Structure`
-- `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System`
+- `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System` (tracked gitlink; private GitHub **CIMPT**; parent portfolio is this **Project Manager** repo — see `config/repos.json`)
 - `App Builder/App Builder`
 - `App Builder/Teach/home-learning-playbook`
 - `App Builder/Teach/zahmeir-learning-system`
