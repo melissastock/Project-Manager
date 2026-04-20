@@ -22,6 +22,16 @@ def run(cmd: list[str], cwd: Path) -> None:
     subprocess.run(cmd, cwd=cwd, check=True)
 
 
+def resolve_project_path(raw_path: str) -> tuple[str, Path]:
+    relative_path = raw_path.strip("/")
+    project_path = (ROOT / relative_path).resolve()
+    try:
+        project_path.relative_to(ROOT)
+    except ValueError as exc:
+        raise SystemExit(f"Project path must stay inside the workspace: {raw_path}") from exc
+    return project_path.relative_to(ROOT).as_posix(), project_path
+
+
 def write_if_missing(path: Path, content: str, overwrite: bool = False) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     if overwrite or not path.exists():
@@ -217,8 +227,7 @@ def main() -> int:
     args.init_git = not args.skip_git
     args.add_to_manifest = not args.skip_portfolio_plan
 
-    relative_path = args.path.strip("/")
-    project_path = ROOT / relative_path
+    relative_path, project_path = resolve_project_path(args.path)
     if not project_path.exists() or not project_path.is_dir():
         raise SystemExit(f"Existing project folder not found: {project_path}")
 
