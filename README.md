@@ -45,6 +45,11 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `Wayne Strain`
 - `mjsds-website`
 
+## Public GitHub review (sanitized)
+
+- Treat the directory `private-only/20260420-session-artifacts` as **local-only** (it is under `private-only/`, which git must never track). Do not sync legal work product, archive intake, DAM material, or iCloud-derived indexes from there (or equivalents) to GitHub or any other public-facing path. Keep those artifacts only in restricted private storage when they must be retained.
+- For GitHub review and pull requests that touch this portfolio control plane, use the sanitized branch **`codex/review-and-pr-20260420`** only (safe onboarding and portfolio metadata changes). Do not fold unsanitized session or privacy-classified material into that branch.
+
 ## Notes
 
 - `2024 Taxes` is not yet tracked as a child gitlink because that repo has no first commit yet.

@@ -24,8 +24,8 @@
 !MJS Financial Dash/
 !MJS Financial Dash backup 20260310_153810/
 !Momentum-OS/
+!Archiavellian-Archive/
 !Producer/
-!Producer/archive/
 !Resume Builder/
 !TuneFab/
 !provider-access-hub/
@@ -35,3 +35,8 @@
 # This child repo exists locally but has no first commit yet, so the
 # top-level repo cannot stage it as a gitlink until it is initialized.
 2024 Taxes/
+
+# Local-only: never commit or push from here to public remotes. Use for
+# mirrors of legal, archive/DAM intake, iCloud-derived indexes, and other
+# session artifacts; retain originals only in restricted private storage.
+private-only/
