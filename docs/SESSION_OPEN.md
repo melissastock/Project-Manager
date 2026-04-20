@@ -7,6 +7,7 @@ Purpose:
 - restore context quickly
 - align with Project Manager (PM) system
 - ensure decisions are based on facts, not assumptions
+- confirm the review-gate standard for this session
 
 Timebox: 5–7 minutes
 
@@ -117,7 +118,19 @@ Document:
 
 This prevents starting in the wrong place.
 
-## Step 10 — Begin Work
+## Step 10 — Confirm Review Gates
+
+Before execution, confirm:
+- what code review will be required
+- what QC / validation is required
+- what governance / legal / privacy review is required
+- whether repo visibility is appropriate for the intended publication path
+
+Recommended:
+- read `docs/REVIEW_GATES.md`
+- run `python3 scripts/review_gate.py` when preparing PR-facing work
+
+## Step 11 — Begin Work
 
 Only now start execution.
 
@@ -127,6 +140,7 @@ Only now start execution.
 2. Do not skip evidence review
 3. Do not start work without a clear objective
 4. If context is unclear, stop and clarify
+5. Do not greenlight publishable work without review, QC, and compliance gates
 
 ## Definition of Done (Session Open)
 

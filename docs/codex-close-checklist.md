@@ -27,14 +27,22 @@ Use this at the end of every session. Timebox: ~2–3 minutes.
 
 ---
 
-## 4. Context for Next Dev
+## 4. Review Gates
+- [ ] Code review complete
+- [ ] QC / validation complete
+- [ ] Governance / legal / privacy review complete
+- [ ] Blockers fixed or explicitly accepted
+
+---
+
+## 5. Context for Next Dev
 - [ ] Where to look first
 - [ ] Key decisions captured
 - [ ] What not to change (if applicable)
 
 ---
 
-## 5. System Impact
+## 6. System Impact
 - [ ] PM updates needed identified:
   - [ ] repos.json
   - [ ] STATUS.md
@@ -43,13 +51,13 @@ Use this at the end of every session. Timebox: ~2–3 minutes.
 
 ---
 
-## 6. File Created
+## 7. File Created
 - [ ] Handoff file saved to:
   `docs/session-handoffs/YYYY-MM-DD-[project]-handoff.md`
 
 ---
 
-## 7. Final Check
+## 8. Final Check
 - [ ] Another developer could pick this up without guessing
 - [ ] Nothing critical left undocumented
 

@@ -34,6 +34,7 @@ Create the folder if it does not exist.
 
 - PM-Ready Summary (top, short, factual)
 - Evidence Log (commits, files, commands)
+- Review / QC / compliance status
 - Fact vs Interpretation vs Opinion
 - Context for next developer
 - Work status
@@ -47,11 +48,15 @@ Create the folder if it does not exist.
 ## Session Close Procedure
 
 1. Gather evidence (commits, files, commands, tests)
-2. Write PM-ready summary (short, factual)
-3. Classify facts vs interpretations vs opinions
-4. Preserve raw notes
-5. Save handoff file
-6. State PM update requirements (repos.json, STATUS.md, dependencies, or none)
+2. Record review status:
+   - code review findings or no-findings note
+   - QC / validation status
+   - governance / legal / privacy status
+3. Write PM-ready summary (short, factual)
+4. Classify facts vs interpretations vs opinions
+5. Preserve raw notes
+6. Save handoff file
+7. State PM update requirements (repos.json, STATUS.md, dependencies, or none)
 
 ## Portfolio Rules
 
@@ -79,5 +84,6 @@ A session is complete only if:
 - Handoff file exists
 - Summary is filled
 - Evidence is captured
+- Review / QC / compliance status is captured
 - Fact vs interpretation is separated
 - Next actions are clear

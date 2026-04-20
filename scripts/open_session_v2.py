@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-import os
 import subprocess
 
-HANDOFF_DIR = os.path.join("docs", "session-handoffs")
+try:
+    from session_handoff_common import find_latest_handoff, read_summary
+except ModuleNotFoundError:
+    from scripts.session_handoff_common import find_latest_handoff, read_summary
 
 
 def run_cmd(cmd):
@@ -12,37 +14,6 @@ def run_cmd(cmd):
         return result.decode("utf-8").strip()
     except Exception:
         return None
-
-
-def find_latest_handoff():
-    if not os.path.exists(HANDOFF_DIR):
-        return None
-
-    files = [f for f in os.listdir(HANDOFF_DIR) if f.endswith(".md")]
-    if not files:
-        return None
-
-    files.sort(reverse=True)
-    return os.path.join(HANDOFF_DIR, files[0])
-
-
-def read_summary(filepath):
-    with open(filepath, "r") as f:
-        lines = f.readlines()
-
-    summary = []
-    capture = False
-
-    for line in lines:
-        if "PM-Ready Summary" in line:
-            capture = True
-            continue
-        if capture and line.startswith("---"):
-            break
-        if capture:
-            summary.append(line.rstrip())
-
-    return "\n".join(summary).strip()
 
 
 def get_git_context():
@@ -89,8 +60,8 @@ def main():
     success = input("Success Criteria: ")
 
     print("\n=== SESSION START CONTEXT ===\n")
-    print(f"Objective: {objective}
-Success Criteria: {success}")
+    print(f"Objective: {objective}")
+    print(f"Success Criteria: {success}")
 
     print("\nReminder:")
     print("- Verify facts against commits/files before acting")

@@ -40,3 +40,6 @@
 # mirrors of legal, archive/DAM intake, iCloud-derived indexes, and other
 # session artifacts; retain originals only in restricted private storage.
 private-only/
+
+# macOS folder metadata
+**/.DS_Store
