@@ -52,6 +52,7 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 
 ## Notes
 
+- Private host repository **CIMPT** is the same engagement as the child folder `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System/` (short remote name, full local path).
 - `2024 Taxes` is not yet tracked as a child gitlink because that repo has no first commit yet.
 - Child repos remain the source of truth for their own code and history.
 - This repo is the source of truth for portfolio visibility, intake, and onboarding.
