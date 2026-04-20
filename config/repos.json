@@ -20,14 +20,14 @@
       "name": "MJS Financial Dash",
       "path": "MJS Financial Dash",
       "category": "finance",
-      "role": "financial reconstruction and reporting",
+      "role": "canonical finance reconstruction and reporting repository",
       "intake_stage": "active"
     },
     {
       "name": "MJS Financial Dash Backup",
       "path": "MJS Financial Dash backup 20260310_153810",
       "category": "archive",
-      "role": "snapshot backup of financial dashboard",
+      "role": "deprecated archive-only snapshot of MJS Financial Dash retained temporarily for audit and rollback verification",
       "intake_stage": "archive"
     },
     {
@@ -59,10 +59,10 @@
       "intake_stage": "active"
     },
     {
-      "name": "Producer Archive",
-      "path": "Producer/archive",
+      "name": "Archiavellian-Archive",
+      "path": "Archiavellian-Archive",
       "category": "archive",
-      "role": "archive repository for Producer",
+      "role": "archive repository for evidence, source materials, and preserved project inputs",
       "intake_stage": "archive"
     },
     {

@@ -34,8 +34,8 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `MJS Financial Dash`
 - `MJS Financial Dash backup 20260310_153810`
 - `Momentum-OS`
+- `Archiavellian-Archive`
 - `Producer`
-- `Producer/archive`
 - `Resume Builder`
 - `TuneFab`
 - `provider-access-hub`
@@ -47,5 +47,6 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `2024 Taxes` is not yet tracked as a child gitlink because that repo has no first commit yet.
 - Child repos remain the source of truth for their own code and history.
 - This repo is the source of truth for portfolio visibility, intake, and onboarding.
+- `MJS Financial Dash` is the canonical finance repository. `MJS Financial Dash backup 20260310_153810` is retained only as a deprecated archive-only snapshot until final removal is explicitly approved.
 - `provider-access-hub` is now the active PAH codebase; `TuneFab` is being transitioned toward archive status.
 - Boundary policy: `docs/project-boundary-policy.md`
