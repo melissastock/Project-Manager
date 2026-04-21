@@ -32,6 +32,12 @@ This operating system must do three things consistently:
 - reusable process scaffolds (delivery, GTM, investor pack)
 - readiness gates and rollout scripts
 
+Control plane publication posture:
+
+- private canonical control plane
+- optional redacted public mirror generated from allowlisted non-sensitive artifacts
+- all client-sensitive and IP-protected material remains private
+
 ### Domain Lanes
 
 Each child repo belongs to one lane with one primary mission.
@@ -294,6 +300,8 @@ Target direction:
 3. Add lane fields to `docs/new-project-intake-template.md`.
 4. Generate refreshed `STATUS.md` with lane-aware notes.
 5. Create first Recovery Core canonical artifact index draft.
+6. Apply visibility/data/IP classification fields across managed repos and intake defaults.
+7. Add branch/repo security baseline (branch protection + remote separation checks).
 
 ---
 

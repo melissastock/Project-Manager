@@ -9,7 +9,11 @@
       "role": "tax decision support and advisor packet workspace",
       "intake_stage": "active",
       "lane": "recovery-core",
-      "priority_class": "core"
+      "priority_class": "core",
+      "visibility_tier": "private-client",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Aneumind and TC Structure",
@@ -18,7 +22,11 @@
       "role": "business separation and evidence work",
       "intake_stage": "active",
       "lane": "business-structure",
-      "priority_class": "core"
+      "priority_class": "core",
+      "visibility_tier": "private-client",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "App Builder",
@@ -27,7 +35,11 @@
       "role": "portfolio planning and project scaffolding",
       "intake_stage": "active",
       "lane": "platform-product",
-      "priority_class": "adjacent"
+      "priority_class": "adjacent",
+      "visibility_tier": "private-internal",
+      "data_class": "internal-ops",
+      "ip_class": "personal-os-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Archiavellian",
@@ -38,7 +50,11 @@
       "lane": "archive-incubator",
       "priority_class": "peripheral",
       "github_repo_slug": "archiavellian",
-      "github_repo_url": "https://github.com/melissastock/archiavellian.git"
+      "github_repo_url": "https://github.com/melissastock/archiavellian.git",
+      "visibility_tier": "private-internal",
+      "data_class": "ip-restricted",
+      "ip_class": "personal-os-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Archiavellian-Archive",
@@ -47,7 +63,11 @@
       "role": "archive repository for evidence, source materials, and preserved project inputs",
       "intake_stage": "archive",
       "lane": "recovery-core",
-      "priority_class": "core"
+      "priority_class": "core",
+      "visibility_tier": "private-client",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Bankruptcy",
@@ -56,7 +76,11 @@
       "role": "bankruptcy evidence and filing-support workspace",
       "intake_stage": "active",
       "lane": "recovery-core",
-      "priority_class": "core"
+      "priority_class": "core",
+      "visibility_tier": "private-client",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
@@ -68,14 +92,24 @@
       "priority_class": "adjacent",
       "portfolio_parent": "Project Manager",
       "github_repo_slug": "CIMPT",
-      "github_repo_url": "https://github.com/melissastock/CIMPT.git"
+      "github_repo_url": "https://github.com/melissastock/CIMPT.git",
+      "visibility_tier": "private-client",
+      "data_class": "regulated-sensitive",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Divorce",
       "path": "Divorce",
       "category": "legal",
       "role": "post-divorce litigation evidence and filing-support workspace",
-      "intake_stage": "active"
+      "intake_stage": "active",
+      "visibility_tier": "private-client",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false,
+      "lane": "recovery-core",
+      "priority_class": "core"
     },
     {
       "name": "MJS Financial Dash",
@@ -84,7 +118,11 @@
       "role": "canonical finance reconstruction and reporting repository",
       "intake_stage": "active",
       "lane": "recovery-core",
-      "priority_class": "core"
+      "priority_class": "core",
+      "visibility_tier": "private-client",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "MJS Financial Dash Backup",
@@ -93,7 +131,13 @@
       "role": "deprecated archive-only snapshot of MJS Financial Dash retained temporarily for audit and rollback verification",
       "intake_stage": "archive",
       "lane": "archive-incubator",
-      "priority_class": "peripheral"
+      "priority_class": "peripheral",
+      "github_repo_slug": "MJS-Financial-Dash-backup",
+      "github_repo_url": "https://github.com/melissastock/MJS-Financial-Dash-backup.git",
+      "visibility_tier": "private-archive",
+      "data_class": "legal-financial-restricted",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "MJSDS Dashboard",
@@ -102,7 +146,11 @@
       "role": "published dashboard repository",
       "intake_stage": "active",
       "lane": "platform-product",
-      "priority_class": "peripheral"
+      "priority_class": "peripheral",
+      "visibility_tier": "public",
+      "data_class": "public-open",
+      "ip_class": "internal-standard",
+      "public_sync_allowed": true
     },
     {
       "name": "MJSDS Website",
@@ -111,7 +159,11 @@
       "role": "website workspace",
       "intake_stage": "onboarding",
       "lane": "platform-product",
-      "priority_class": "peripheral"
+      "priority_class": "peripheral",
+      "visibility_tier": "private-internal",
+      "data_class": "internal-ops",
+      "ip_class": "personal-os-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Momentum-OS",
@@ -122,7 +174,11 @@
       "lane": "platform-product",
       "priority_class": "adjacent",
       "github_repo_slug": "momentum-os",
-      "github_repo_url": "https://github.com/melissastock/momentum-os.git"
+      "github_repo_url": "https://github.com/melissastock/momentum-os.git",
+      "visibility_tier": "private-internal",
+      "data_class": "internal-ops",
+      "ip_class": "personal-os-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "provider-access-hub",
@@ -131,7 +187,11 @@
       "role": "provider platform codebase",
       "intake_stage": "active",
       "lane": "platform-product",
-      "priority_class": "adjacent"
+      "priority_class": "adjacent",
+      "visibility_tier": "private-client",
+      "data_class": "regulated-sensitive",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Resume Builder",
@@ -140,7 +200,11 @@
       "role": "resume tooling",
       "intake_stage": "onboarding",
       "lane": "platform-product",
-      "priority_class": "adjacent"
+      "priority_class": "adjacent",
+      "visibility_tier": "private-internal",
+      "data_class": "internal-ops",
+      "ip_class": "personal-os-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Teach - Home Learning Playbook",
@@ -149,7 +213,11 @@
       "role": "teaching system project",
       "intake_stage": "active",
       "lane": "family-outcomes",
-      "priority_class": "adjacent"
+      "priority_class": "adjacent",
+      "visibility_tier": "private-client",
+      "data_class": "family-sensitive",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "Teach - Zahmeir Learning System",
@@ -158,7 +226,11 @@
       "role": "teaching system project",
       "intake_stage": "active",
       "lane": "family-outcomes",
-      "priority_class": "adjacent"
+      "priority_class": "adjacent",
+      "visibility_tier": "private-client",
+      "data_class": "family-sensitive",
+      "ip_class": "client-invention-protected",
+      "public_sync_allowed": false
     },
     {
       "name": "TuneFab",
@@ -167,7 +239,11 @@
       "role": "legacy container holding media files and the pre-extraction PAH source copy",
       "intake_stage": "archive",
       "lane": "archive-incubator",
-      "priority_class": "peripheral"
+      "priority_class": "peripheral",
+      "visibility_tier": "private-archive",
+      "data_class": "archive-sensitive",
+      "ip_class": "internal-standard",
+      "public_sync_allowed": false
     },
     {
       "name": "Wayne Strain",
@@ -176,7 +252,11 @@
       "role": "validation and jurisdiction research",
       "intake_stage": "active",
       "lane": "archive-incubator",
-      "priority_class": "peripheral"
+      "priority_class": "peripheral",
+      "visibility_tier": "private-internal",
+      "data_class": "research-sensitive",
+      "ip_class": "personal-os-protected",
+      "public_sync_allowed": false
     }
   ],
   "intake_defaults": {

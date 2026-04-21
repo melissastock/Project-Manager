@@ -28,3 +28,15 @@ This policy keeps project-side information inside each project repository and ke
 If a document answers "how do we build or operate this specific project?" it belongs in the project repo.
 
 If a document answers "how do we prioritize, supervise, classify, or sequence projects across the portfolio?" it belongs in `Project Manager`.
+
+## Visibility And Publication Rule
+
+- `Project Manager` is private canonical by default.
+- Any public publication must be generated from an explicit allowlist export.
+- Client-sensitive, legal/financial, family, regulated, or IP-protected artifacts are never eligible for public export.
+
+## Git Isolation Rule
+
+- Client isolation is repository-based (repo-per-client/project), not branch-based.
+- Branches are lifecycle tools (`feature/*`, `release/*`, `hotfix/*`), not long-term client partitions.
+- Backup/archive clones must use separate remotes from canonical production repositories.

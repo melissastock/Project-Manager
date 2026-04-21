@@ -36,6 +36,10 @@
 - Category:
 - Lane:
 - Priority class:
+- Visibility tier:
+- Data class:
+- IP class:
+- Public sync allowed:
 - Intake stage:
 - Priority:
 - Status cadence:
