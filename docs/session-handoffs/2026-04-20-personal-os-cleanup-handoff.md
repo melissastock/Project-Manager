@@ -173,3 +173,51 @@
   - Archived one-time Archiavellian staging/hardening docs under `docs/session-artifacts/2026-04-20/`.
 - ZIP extraction test added 229 files into dated inbox extraction folder for controlled next-step review.
 - Final “sync + clean” objective is partially met (sync visibility high, git cleanliness still pending).
+
+---
+
+## Late-Session Addendum (CIMPT + PM backbone rollout)
+
+### What changed in this addendum
+
+- Expanded `CIMPT` from discovery-only artifacts into an implementation-ready baseline:
+  - OpenAPI contract and demo-server vertical slice alignment
+  - backend runtime scaffold with modular boundaries
+  - PostgreSQL schema baseline and multi-client/ROI foundation migration
+  - investor-book template + populated assumptions draft
+  - GTM planning and pilot-outreach documentation
+- Added Project Manager backbone automation for repeatable rollout:
+  - `scripts/scaffold_production_delivery.py`
+  - `scripts/scaffold_gtm_pack.py`
+  - `scripts/scaffold_investor_book.py`
+  - `scripts/rollout_pm_backbone.py`
+  - `scripts/check_production_readiness.py` (with conditional GTM and investor-book intake gates)
+- Rolled latest PM backbone scaffolds across all managed repos (including archive repositories by explicit request):
+  - updated: 16
+  - skipped: 0
+  - failed: 0
+
+### Verification highlights
+
+- `CIMPT` production readiness gate status:
+  - PASS
+  - GTM conditional gate validated
+  - investor-book conditional gate validated
+- Delivery artifacts now scaffolded and populated in `CIMPT/docs/delivery/`:
+  - `backlog.md`
+  - `sprint-plan.md`
+  - `test-report.md`
+  - `pr-readiness.md`
+
+### Canonical pre-handoff evidence
+
+- Use this file as the source of truth for current end-of-night state:
+  - `docs/session-artifacts/2026-04-20/pre-handoff-state-snapshot.md`
+
+### Recommended first action next session
+
+1. Read `pre-handoff-state-snapshot.md`.
+2. Decide commit boundaries and commit order:
+   - Project Manager control-plane changes
+   - CIMPT child-repo changes
+3. Execute push strategy only after branch hygiene and visibility checks.

@@ -38,6 +38,15 @@
 - Priority:
 - Status cadence:
 - Notes for dashboard:
+- Investor-book workflow needed:
+- If yes, investor-book owner:
+- If yes, target raise window:
+- Agile production delivery required:
+- If yes, sprint cadence:
+- If yes, backlog owner:
+- GTM workflow needed:
+- If yes, GTM owner:
+- If yes, pilot window target:
 
 ## First Moves
 

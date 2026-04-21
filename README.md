@@ -25,7 +25,12 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 9. Use `python3 scripts/intake_wizard.py` for a lighter guided intake flow.
 10. Inspect child repo pointer drift with `python3 scripts/sync_child_repo_pointers.py`.
 11. Use `python3 scripts/scaffold_client_engagement_pack.py --target "path/to/repo" --project-name "Project Name"` when a managed child repo needs the reusable client-facing engagement doc pack.
-12. Commit the portfolio updates from this top-level repo.
+12. Use `python3 scripts/scaffold_investor_book.py --target "path/to/repo" --project-name "Project Name"` when a project needs a repeatable investor-book template and section-coverage checklist.
+13. Use `python3 scripts/scaffold_production_delivery.py --target "path/to/repo"` to add standardized backlog/sprint/test/PR-readiness docs.
+14. Before any PR, run `python3 scripts/check_production_readiness.py --target "path/to/repo"` to enforce agile planning + testing evidence gates.
+15. Use `python3 scripts/scaffold_gtm_pack.py --target "path/to/repo"` when a project needs repeatable GTM hypothesis and pilot outreach docs.
+16. Use `python3 scripts/rollout_pm_backbone.py` to roll out the latest production/GTM/investor scaffolds across managed projects.
+17. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 
@@ -60,3 +65,6 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `MJS Financial Dash` is the canonical finance repository. `MJS Financial Dash backup 20260310_153810` is retained only as a deprecated archive-only snapshot until final removal is explicitly approved.
 - `provider-access-hub` is now the active PAH codebase; `TuneFab` is being transitioned toward archive status.
 - Boundary policy: `docs/project-boundary-policy.md`
+- Investor-book repeatable process: `docs/investor-book-repeatable-workflow.md`
+- Agile production process standard: `docs/agile-production-process.md`
+- GTM repeatable process: `docs/gtm-repeatable-workflow.md`
