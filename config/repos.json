@@ -13,7 +13,12 @@
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Aneumind and TC Structure",
@@ -26,7 +31,12 @@
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "App Builder",
@@ -39,7 +49,12 @@
       "visibility_tier": "private-internal",
       "data_class": "internal-ops",
       "ip_class": "personal-os-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Archiavellian",
@@ -54,7 +69,12 @@
       "visibility_tier": "private-internal",
       "data_class": "ip-restricted",
       "ip_class": "personal-os-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Archiavellian-Archive",
@@ -67,7 +87,12 @@
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Bankruptcy",
@@ -80,7 +105,12 @@
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
@@ -96,7 +126,12 @@
       "visibility_tier": "private-client",
       "data_class": "regulated-sensitive",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Divorce",
@@ -109,7 +144,12 @@
       "ip_class": "client-invention-protected",
       "public_sync_allowed": false,
       "lane": "recovery-core",
-      "priority_class": "core"
+      "priority_class": "core",
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "MJS Financial Dash",
@@ -122,7 +162,12 @@
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "MJS Financial Dash Backup",
@@ -137,7 +182,12 @@
       "visibility_tier": "private-archive",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "MJSDS Dashboard",
@@ -150,7 +200,12 @@
       "visibility_tier": "public",
       "data_class": "public-open",
       "ip_class": "internal-standard",
-      "public_sync_allowed": true
+      "public_sync_allowed": true,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "MJSDS Website",
@@ -163,7 +218,12 @@
       "visibility_tier": "private-internal",
       "data_class": "internal-ops",
       "ip_class": "personal-os-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Momentum-OS",
@@ -178,7 +238,12 @@
       "visibility_tier": "private-internal",
       "data_class": "internal-ops",
       "ip_class": "personal-os-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "provider-access-hub",
@@ -191,7 +256,12 @@
       "visibility_tier": "private-client",
       "data_class": "regulated-sensitive",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Resume Builder",
@@ -204,7 +274,12 @@
       "visibility_tier": "private-internal",
       "data_class": "internal-ops",
       "ip_class": "personal-os-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Teach - Home Learning Playbook",
@@ -217,7 +292,12 @@
       "visibility_tier": "private-client",
       "data_class": "family-sensitive",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Teach - Zahmeir Learning System",
@@ -230,7 +310,12 @@
       "visibility_tier": "private-client",
       "data_class": "family-sensitive",
       "ip_class": "client-invention-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "TuneFab",
@@ -243,7 +328,12 @@
       "visibility_tier": "private-archive",
       "data_class": "archive-sensitive",
       "ip_class": "internal-standard",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     },
     {
       "name": "Wayne Strain",
@@ -256,7 +346,12 @@
       "visibility_tier": "private-internal",
       "data_class": "research-sensitive",
       "ip_class": "personal-os-protected",
-      "public_sync_allowed": false
+      "public_sync_allowed": false,
+      "governance_steward": "Melissa Stock",
+      "lane_operator": "Melissa Stock",
+      "release_packaging_owner": "Melissa Stock",
+      "compliance_reviewer": "Melissa Stock",
+      "automation_maintainer": "Melissa Stock"
     }
   ],
   "intake_defaults": {

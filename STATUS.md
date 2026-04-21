@@ -1,6 +1,6 @@
 # Portfolio Status
 
-Generated: 2026-04-21 10:32:18 MDT
+Generated: 2026-04-21 11:05:35 MDT
 
 ## Summary
 
@@ -22,13 +22,13 @@ Generated: 2026-04-21 10:32:18 MDT
 | Archiavellian-Archive | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | archive | main | untracked:335 | ahead:0 behind:0 | 55e146d | Clean archive index batch note formatting |
 | Bankruptcy | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | unborn | unborn | - | - | Repository exists but has no commits yet |
 | Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | platform-product | adjacent | private-client | regulated-sensitive | client-invention-protected | no | active | main | clean | ahead:1 behind:0 | cee8dc9 | Add implementation baseline and delivery planning; parent Project Manager; GitHub CIMPT (private) |
-| Divorce | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | clean | no-upstream | 9a208c9 | Initial commit: litigation workspace, handoff maps, and PM delivery scaffold. |
+| Divorce | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | unstaged:1 | no-upstream | 9a208c9 | Initial commit: litigation workspace, handoff maps, and PM delivery scaffold. |
 | MJS Financial Dash | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | codex/finance-snapshot-onboarding | untracked:56 | ahead:0 behind:0 | 8ac9660 | Refresh finance snapshot pipeline, retire generated outputs from version control, and extend reporting and Google sources. |
-| MJS Financial Dash Backup | archive-incubator | peripheral | private-archive | legal-financial-restricted | client-invention-protected | no | archive | main | unstaged:1 | ahead:0 behind:0 | e82856a | Reconcile main with rewritten default-branch history after secret purge.; GitHub MJS-Financial-Dash-backup (private) |
+| MJS Financial Dash Backup | archive-incubator | peripheral | private-archive | legal-financial-restricted | client-invention-protected | no | archive | main | clean | ahead:0 behind:0 | 9da2182 | Clarify backup repository as archive-only and non-canonical.; GitHub MJS-Financial-Dash-backup (private) |
 | MJSDS Dashboard | platform-product | peripheral | public | public-open | internal-standard | yes | active | main | untracked:5 | ahead:0 behind:0 | 4133068 | Align dashboard scaffold with deprecated status |
 | MJSDS Website | platform-product | peripheral | private-internal | internal-ops | personal-os-protected | no | onboarding | main | untracked:5 | no-upstream | 138378e | Keep website README project-scoped |
 | Momentum-OS | platform-product | adjacent | private-internal | internal-ops | personal-os-protected | no | active | main | untracked:5 | ahead:0 behind:0 | cc1bff2 | Remove stale Momentum-OS snapshot files; GitHub momentum-os (private) |
-| provider-access-hub | platform-product | adjacent | private-client | regulated-sensitive | client-invention-protected | no | active | main | untracked:5 | ahead:0 behind:0 | eded0c5 | Add client-facing delivery scaffold docs |
+| provider-access-hub | platform-product | adjacent | private-client | regulated-sensitive | client-invention-protected | no | active | main | unstaged:1, untracked:5 | ahead:0 behind:0 | eded0c5 | Add client-facing delivery scaffold docs |
 | Resume Builder | platform-product | adjacent | private-internal | internal-ops | personal-os-protected | no | onboarding | main | untracked:5 | no-upstream | 6e950f5 | Update repo paths after extraction |
 | Teach - Home Learning Playbook | family-outcomes | adjacent | private-client | family-sensitive | client-invention-protected | no | active | main | untracked:9 | ahead:1 behind:0 | 8f6ccf5 | Update playbook templates and add production/onboarding docs. |
 | Teach - Zahmeir Learning System | family-outcomes | adjacent | private-client | family-sensitive | client-invention-protected | no | active | feat/lesson-1-direct-launch | clean | ahead:1 behind:0 | a8bce64 | Add project onboarding pack |

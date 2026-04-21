@@ -47,6 +47,11 @@
 - Canonical owner:
 - Backup reviewer:
 - Canonical artifact home repo:
+- Governance steward:
+- Lane operator:
+- Release/packaging owner:
+- Compliance reviewer:
+- Automation maintainer:
 - Investor-book workflow needed:
 - If yes, investor-book owner:
 - If yes, target raise window:
