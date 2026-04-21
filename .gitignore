@@ -5,6 +5,8 @@
 !.gitignore
 !README.md
 !environment.yml
+!.github/
+!.github/**
 !config/
 !config/**
 !docs/
