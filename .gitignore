@@ -4,6 +4,7 @@
 # Keep manager metadata.
 !.gitignore
 !README.md
+!environment.yml
 !config/
 !config/**
 !docs/
