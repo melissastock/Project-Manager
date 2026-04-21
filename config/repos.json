@@ -64,11 +64,13 @@
       "github_repo_url": "https://github.com/melissastock/momentum-os.git"
     },
     {
-      "name": "Producer",
+      "name": "Archiavellian",
       "path": "Producer",
       "category": "media",
-      "role": "story, archive, and production workspace",
-      "intake_stage": "active"
+      "role": "bounded narrative product repository for story architecture, packaging, and pitch development",
+      "intake_stage": "active",
+      "github_repo_slug": "archiavellian",
+      "github_repo_url": "https://github.com/melissastock/archiavellian.git"
     },
     {
       "name": "Archiavellian-Archive",
