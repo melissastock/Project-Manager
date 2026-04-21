@@ -38,6 +38,20 @@ export interface Snapshot {
   sprint_files: string[];
 }
 
+export interface BranchHealth {
+  branch: string;
+  head: string;
+  subject: string;
+  age_days: number;
+  upstream: string;
+  ahead: number | null;
+  behind: number | null;
+  commits_since_main_base: number | null;
+  score: number;
+  band: "ready" | "monitor" | "at-risk" | "critical";
+  recommendation: string;
+}
+
 export interface ProjectReadiness {
   project: {
     name: string;
@@ -52,6 +66,7 @@ export interface ProjectReadiness {
   band: "ready" | "monitor" | "at-risk" | "critical";
   dimensions: DimensionScore[];
   snapshot: Snapshot;
+  branch_health: BranchHealth[];
   recommendations: Recommendation[];
   decisions: RecommendationDecision[];
 }

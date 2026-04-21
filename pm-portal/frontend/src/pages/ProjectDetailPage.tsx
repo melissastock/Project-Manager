@@ -23,6 +23,39 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
       <h3>Readiness dimensions</h3>
       {project.dimensions.map((dimension) => <DimensionCard key={dimension.dimension} dimension={dimension} />)}
 
+      <h3 style={{ marginTop: 20 }}>Branch health</h3>
+      <div style={{ overflowX: "auto", marginBottom: 20 }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Branch</th>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Score</th>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Band</th>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Age</th>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Ahead</th>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Behind</th>
+              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Recommendation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {project.branch_health.map((row) => (
+              <tr key={row.branch}>
+                <td style={{ borderBottom: "1px solid #f0f0f0", padding: "6px 0" }}>
+                  <strong>{row.branch}</strong>
+                  <div style={{ fontSize: 12, color: "#555" }}>{row.head} - {row.subject}</div>
+                </td>
+                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.score}</td>
+                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.band}</td>
+                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.age_days}d</td>
+                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.ahead ?? "n/a"}</td>
+                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.behind ?? "n/a"}</td>
+                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.recommendation}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
       <RecommendationPanel project={project} onRefresh={onRefresh} />
     </div>
   );

@@ -61,12 +61,27 @@ class RecommendationDecision(BaseModel):
     updated_at: datetime
 
 
+class BranchHealth(BaseModel):
+    branch: str
+    head: str
+    subject: str
+    age_days: int
+    upstream: str
+    ahead: Optional[int] = None
+    behind: Optional[int] = None
+    commits_since_main_base: Optional[int] = None
+    score: int
+    band: ReadinessBand
+    recommendation: str
+
+
 class ProjectReadiness(BaseModel):
     project: Project
     score: int
     band: ReadinessBand
     dimensions: list[ReadinessDimensionScore]
     snapshot: SignalSnapshot
+    branch_health: list[BranchHealth]
     recommendations: list[Recommendation]
     decisions: list[RecommendationDecision]
 
