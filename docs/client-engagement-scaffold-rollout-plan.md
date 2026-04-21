@@ -27,7 +27,7 @@ A repo should get the scaffold when at least two of these are true:
 A repo should not be prioritized when:
 
 - it is archive-only
-n- it is primarily an internal portfolio-control repository
+- it is primarily an internal portfolio-control repository
 - the repo is too unstable to benefit from orientation docs yet
 - the work is dominated by private or legal material that should stay tightly contained
 
