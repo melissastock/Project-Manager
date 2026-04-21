@@ -58,8 +58,10 @@
       "name": "Momentum-OS",
       "path": "Momentum-OS",
       "category": "platform",
-      "role": "operations and product planning",
-      "intake_stage": "active"
+      "role": "founder/operator control tower for Aneumind launch readiness and privacy-safe operations",
+      "intake_stage": "active",
+      "github_repo_slug": "momentum-os",
+      "github_repo_url": "https://github.com/melissastock/momentum-os.git"
     },
     {
       "name": "Producer",
