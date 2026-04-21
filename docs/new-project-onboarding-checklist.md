@@ -16,6 +16,7 @@
 - Add a project README.
 - Add a project `.gitignore`.
 - Capture intake details with `docs/new-project-intake-template.md`.
+- Use `python3 scripts/scaffold_client_engagement_pack.py --target "path/to/repo" --project-name "Project Name"` when a managed client-facing repo needs the reusable engagement doc pack.
 - By default the bootstrap flow adds the repo to the Project Manager plan.
 - Use `--skip-portfolio-plan` when the repo should opt out and stay standalone.
 

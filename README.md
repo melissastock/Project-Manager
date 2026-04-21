@@ -24,7 +24,8 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 8. Use `--skip-portfolio-plan` when a new repo should stay standalone instead of being managed by the Project Manager portfolio plan.
 9. Use `python3 scripts/intake_wizard.py` for a lighter guided intake flow.
 10. Inspect child repo pointer drift with `python3 scripts/sync_child_repo_pointers.py`.
-11. Commit the portfolio updates from this top-level repo.
+11. Use `python3 scripts/scaffold_client_engagement_pack.py --target "path/to/repo" --project-name "Project Name"` when a managed child repo needs the reusable client-facing engagement doc pack.
+12. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 
