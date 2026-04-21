@@ -17,6 +17,8 @@ class RepoStatus:
     name: str
     path: str
     category: str
+    lane: str
+    priority_class: str
     role: str
     intake_stage: str
     exists: bool
@@ -80,6 +82,8 @@ def get_repo_status(entry: dict) -> RepoStatus:
         name=entry["name"],
         path=entry["path"],
         category=entry.get("category", ""),
+        lane=entry.get("lane", ""),
+        priority_class=entry.get("priority_class", ""),
         role=entry.get("role", ""),
         intake_stage=entry.get("intake_stage", ""),
         exists=exists,
@@ -96,6 +100,10 @@ def get_repo_status(entry: dict) -> RepoStatus:
         ahead=None,
         behind=None,
     )
+    if exists and not is_git_repo:
+        default.branch = "not-initialized"
+        default.summary = "Folder exists but is not initialized as a git repository"
+        return default
     if not is_git_repo:
         return default
 
@@ -122,6 +130,8 @@ def get_repo_status(entry: dict) -> RepoStatus:
         name=entry["name"],
         path=entry["path"],
         category=entry.get("category", ""),
+        lane=entry.get("lane", ""),
+        priority_class=entry.get("priority_class", ""),
         role=entry.get("role", ""),
         intake_stage=entry.get("intake_stage", ""),
         exists=True,
@@ -161,8 +171,8 @@ def build_markdown(statuses: list[RepoStatus]) -> str:
         "",
         "## Repository Snapshot",
         "",
-        "| Project | Stage | Branch | Status | Sync | Head | Notes |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| Project | Lane | Priority | Stage | Branch | Status | Sync | Head | Notes |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
 
     for repo in statuses:
@@ -193,7 +203,7 @@ def build_markdown(statuses: list[RepoStatus]) -> str:
         if repo.extra_note:
             notes = f"{repo.summary}; {repo.extra_note}"
         lines.append(
-            f"| {repo.name} | {repo.intake_stage} | {repo.branch} | {status_text} | {sync_text} | {head_text} | {notes} |"
+            f"| {repo.name} | {repo.lane or '-'} | {repo.priority_class or '-'} | {repo.intake_stage} | {repo.branch} | {status_text} | {sync_text} | {head_text} | {notes} |"
         )
 
     lines.extend(

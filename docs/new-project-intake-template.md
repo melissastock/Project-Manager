@@ -34,10 +34,15 @@
 ## Intake Decisions
 
 - Category:
+- Lane:
+- Priority class:
 - Intake stage:
 - Priority:
 - Status cadence:
 - Notes for dashboard:
+- Canonical owner:
+- Backup reviewer:
+- Canonical artifact home repo:
 - Investor-book workflow needed:
 - If yes, investor-book owner:
 - If yes, target raise window:

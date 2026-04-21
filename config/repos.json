@@ -3,65 +3,31 @@
   "generated_status_file": "STATUS.md",
   "managed_repositories": [
     {
+      "name": "2024 Taxes",
+      "path": "2024 Taxes",
+      "category": "finance",
+      "role": "tax decision support and advisor packet workspace",
+      "intake_stage": "active",
+      "lane": "recovery-core",
+      "priority_class": "core"
+    },
+    {
       "name": "Aneumind and TC Structure",
       "path": "Aneumind and TC Structure",
       "category": "active-client",
       "role": "business separation and evidence work",
-      "intake_stage": "active"
-    },
-    {
-      "name": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
-      "path": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
-      "category": "healthtech-workflow",
-      "role": "client delivery workspace for combat-injury documentation product discovery, systems planning, and architecture",
       "intake_stage": "active",
-      "portfolio_parent": "Project Manager",
-      "github_repo_slug": "CIMPT",
-      "github_repo_url": "https://github.com/melissastock/CIMPT.git"
+      "lane": "business-structure",
+      "priority_class": "core"
     },
     {
       "name": "App Builder",
       "path": "App Builder/App Builder",
       "category": "platform",
       "role": "portfolio planning and project scaffolding",
-      "intake_stage": "active"
-    },
-    {
-      "name": "MJS Financial Dash",
-      "path": "MJS Financial Dash",
-      "category": "finance",
-      "role": "canonical finance reconstruction and reporting repository",
-      "intake_stage": "active"
-    },
-    {
-      "name": "MJS Financial Dash Backup",
-      "path": "MJS Financial Dash backup 20260310_153810",
-      "category": "archive",
-      "role": "deprecated archive-only snapshot of MJS Financial Dash retained temporarily for audit and rollback verification",
-      "intake_stage": "archive"
-    },
-    {
-      "name": "MJSDS Dashboard",
-      "path": "GitHub/mjsds_dashboard",
-      "category": "website",
-      "role": "published dashboard repository",
-      "intake_stage": "active"
-    },
-    {
-      "name": "MJSDS Website",
-      "path": "mjsds-website",
-      "category": "website",
-      "role": "website workspace",
-      "intake_stage": "onboarding"
-    },
-    {
-      "name": "Momentum-OS",
-      "path": "Momentum-OS",
-      "category": "platform",
-      "role": "founder/operator control tower for Aneumind launch readiness and privacy-safe operations",
       "intake_stage": "active",
-      "github_repo_slug": "momentum-os",
-      "github_repo_url": "https://github.com/melissastock/momentum-os.git"
+      "lane": "platform-product",
+      "priority_class": "adjacent"
     },
     {
       "name": "Archiavellian",
@@ -69,6 +35,8 @@
       "category": "media",
       "role": "bounded narrative product repository for story architecture, packaging, and pitch development",
       "intake_stage": "active",
+      "lane": "archive-incubator",
+      "priority_class": "peripheral",
       "github_repo_slug": "archiavellian",
       "github_repo_url": "https://github.com/melissastock/archiavellian.git"
     },
@@ -77,49 +45,138 @@
       "path": "Archiavellian-Archive",
       "category": "archive",
       "role": "archive repository for evidence, source materials, and preserved project inputs",
-      "intake_stage": "archive"
+      "intake_stage": "archive",
+      "lane": "recovery-core",
+      "priority_class": "core"
+    },
+    {
+      "name": "Bankruptcy",
+      "path": "Bankruptcy",
+      "category": "finance",
+      "role": "bankruptcy evidence and filing-support workspace",
+      "intake_stage": "active",
+      "lane": "recovery-core",
+      "priority_class": "core"
+    },
+    {
+      "name": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
+      "path": "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System",
+      "category": "healthtech-workflow",
+      "role": "client delivery workspace for combat-injury documentation product discovery, systems planning, and architecture",
+      "intake_stage": "active",
+      "lane": "platform-product",
+      "priority_class": "adjacent",
+      "portfolio_parent": "Project Manager",
+      "github_repo_slug": "CIMPT",
+      "github_repo_url": "https://github.com/melissastock/CIMPT.git"
+    },
+    {
+      "name": "Divorce",
+      "path": "Divorce",
+      "category": "legal",
+      "role": "post-divorce litigation evidence and filing-support workspace",
+      "intake_stage": "active"
+    },
+    {
+      "name": "MJS Financial Dash",
+      "path": "MJS Financial Dash",
+      "category": "finance",
+      "role": "canonical finance reconstruction and reporting repository",
+      "intake_stage": "active",
+      "lane": "recovery-core",
+      "priority_class": "core"
+    },
+    {
+      "name": "MJS Financial Dash Backup",
+      "path": "MJS Financial Dash backup 20260310_153810",
+      "category": "archive",
+      "role": "deprecated archive-only snapshot of MJS Financial Dash retained temporarily for audit and rollback verification",
+      "intake_stage": "archive",
+      "lane": "archive-incubator",
+      "priority_class": "peripheral"
+    },
+    {
+      "name": "MJSDS Dashboard",
+      "path": "GitHub/mjsds_dashboard",
+      "category": "website",
+      "role": "published dashboard repository",
+      "intake_stage": "active",
+      "lane": "platform-product",
+      "priority_class": "peripheral"
+    },
+    {
+      "name": "MJSDS Website",
+      "path": "mjsds-website",
+      "category": "website",
+      "role": "website workspace",
+      "intake_stage": "onboarding",
+      "lane": "platform-product",
+      "priority_class": "peripheral"
+    },
+    {
+      "name": "Momentum-OS",
+      "path": "Momentum-OS",
+      "category": "platform",
+      "role": "founder/operator control tower for Aneumind launch readiness and privacy-safe operations",
+      "intake_stage": "active",
+      "lane": "platform-product",
+      "priority_class": "adjacent",
+      "github_repo_slug": "momentum-os",
+      "github_repo_url": "https://github.com/melissastock/momentum-os.git"
     },
     {
       "name": "provider-access-hub",
       "path": "provider-access-hub",
       "category": "software",
       "role": "provider platform codebase",
-      "intake_stage": "active"
+      "intake_stage": "active",
+      "lane": "platform-product",
+      "priority_class": "adjacent"
     },
     {
       "name": "Resume Builder",
       "path": "Resume Builder",
       "category": "career",
       "role": "resume tooling",
-      "intake_stage": "onboarding"
+      "intake_stage": "onboarding",
+      "lane": "platform-product",
+      "priority_class": "adjacent"
     },
     {
       "name": "Teach - Home Learning Playbook",
       "path": "App Builder/Teach/home-learning-playbook",
       "category": "education",
       "role": "teaching system project",
-      "intake_stage": "active"
+      "intake_stage": "active",
+      "lane": "family-outcomes",
+      "priority_class": "adjacent"
     },
     {
       "name": "Teach - Zahmeir Learning System",
       "path": "App Builder/Teach/zahmeir-learning-system",
       "category": "education",
       "role": "teaching system project",
-      "intake_stage": "active"
+      "intake_stage": "active",
+      "lane": "family-outcomes",
+      "priority_class": "adjacent"
     },
     {
       "name": "TuneFab",
       "path": "TuneFab",
       "category": "archive",
       "role": "legacy container holding media files and the pre-extraction PAH source copy",
-      "intake_stage": "archive"
+      "intake_stage": "archive",
+      "lane": "archive-incubator",
+      "priority_class": "peripheral"
     },
     {
       "name": "Wayne Strain",
       "path": "Wayne Strain",
       "category": "research",
       "role": "validation and jurisdiction research",
-      "intake_stage": "active"
+      "intake_stage": "active",
+      "lane": "archive-incubator",
+      "priority_class": "peripheral"
     }
   ],
   "intake_defaults": {
