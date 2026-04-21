@@ -16,6 +16,7 @@
 - Add a project README.
 - Add a project `.gitignore`.
 - Capture intake details with `docs/new-project-intake-template.md`.
+- Apply routing and redaction decisions with `docs/data-routing-and-templatization-policy.md`.
 - Use `python3 scripts/scaffold_client_engagement_pack.py --target "path/to/repo" --project-name "Project Name"` when a managed client-facing repo needs the reusable engagement doc pack.
 - Use `python3 scripts/scaffold_investor_book.py --target "path/to/repo" --project-name "Project Name"` when fundraising or investor-ready documentation is expected.
 - Use `python3 scripts/scaffold_production_delivery.py --target "path/to/repo"` to install standardized agile production delivery artifacts.
