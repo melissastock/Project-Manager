@@ -75,6 +75,27 @@ Required pass criteria:
 - if `docs/project-intake.md` marks `GTM workflow needed: yes`, GTM docs must exist
 - if `docs/project-intake.md` marks `Investor-book workflow needed: yes`, investor docs must exist
 
+## Packaged output policy
+
+Before release or externally shared delivery, each active project must include:
+
+- `docs/delivery/release-package.md`
+- `docs/delivery/release-notes.md`
+- `docs/delivery/rollback-plan.md`
+- `docs/delivery/output-acceptance.md`
+
+Validate with:
+
+```bash
+python3 scripts/check_packaged_output.py --target "path/to/child/repo"
+```
+
+For full-cycle release governance, run:
+
+```bash
+python3 scripts/check_portfolio_release_gate.py --target "path/to/child/repo" --decision-log "docs/session-artifacts/standup/DECISION_LOG-YYYYMMDD_HHMMSS.md"
+```
+
 ## Rollout
 
 For a new or existing project:

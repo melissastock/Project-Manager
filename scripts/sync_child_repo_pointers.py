@@ -21,6 +21,12 @@ class PointerChange:
     summary: str
 
 
+@dataclass
+class GitlinkMetadataIssue:
+    path: str
+    issue: str
+
+
 def run(cmd: list[str], cwd: Path, check: bool = True) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, cwd=cwd, check=check, capture_output=True, text=True)
 
@@ -40,6 +46,43 @@ def tracked_gitlinks() -> dict[str, str]:
         if mode == "160000":
             gitlinks[path] = sha
     return gitlinks
+
+
+def configured_submodule_paths() -> set[str]:
+    result = run(["git", "config", "--file", ".gitmodules", "--get-regexp", r"^submodule\..*\.path$"], ROOT, check=False)
+    if result.returncode != 0:
+        return set()
+    paths: set[str] = set()
+    for line in result.stdout.splitlines():
+        parts = line.split(maxsplit=1)
+        if len(parts) == 2:
+            paths.add(parts[1])
+    return paths
+
+
+def find_gitlink_metadata_issues() -> list[GitlinkMetadataIssue]:
+    gitlinks = tracked_gitlinks()
+    if not gitlinks:
+        return []
+
+    configured_paths = configured_submodule_paths()
+    issues: list[GitlinkMetadataIssue] = []
+    for path in sorted(gitlinks):
+        if path not in configured_paths:
+            issues.append(
+                GitlinkMetadataIssue(
+                    path=path,
+                    issue="tracked as a gitlink but missing .gitmodules metadata",
+                )
+            )
+    for path in sorted(configured_paths - set(gitlinks)):
+        issues.append(
+            GitlinkMetadataIssue(
+                path=path,
+                issue="listed in .gitmodules but not tracked as a gitlink",
+            )
+        )
+    return issues
 
 
 def repo_has_commits(repo_path: Path) -> bool:
@@ -110,11 +153,28 @@ def parse_args() -> argparse.Namespace:
         default=[],
         help="Optional subset of managed repo paths to inspect or stage.",
     )
+    parser.add_argument(
+        "--check-metadata",
+        action="store_true",
+        help="Fail if tracked gitlinks are missing matching .gitmodules metadata.",
+    )
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    metadata_issues = find_gitlink_metadata_issues()
+    if metadata_issues:
+        print("Gitlink metadata issues:")
+        for issue in metadata_issues:
+            print(f"- {issue.path}: {issue.issue}")
+        print("")
+        print("Best-practice options:")
+        print("- add valid .gitmodules entries for each gitlink, or")
+        print("- stop tracking child repositories as gitlinks and rely on manifest/status artifacts.")
+        if args.check_metadata or args.apply:
+            return 1
+
     paths = set(args.paths) if args.paths else None
     changes = find_pointer_changes(paths)
 

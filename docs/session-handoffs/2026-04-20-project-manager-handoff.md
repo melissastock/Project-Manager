@@ -11,26 +11,26 @@ Branch(es): Parent `main`; `MJS Financial Dash` `codex/finance-snapshot-onboardi
 
 ## What Changed (Facts Only)
 
-- **MJS-Financial-Dash (GitHub):** History was rewritten with `git filter-repo` to remove `token.json` and `credentials.json` from all commits; `main` and other branches were force-pushed; `main` tip is **`e82856a`** (merge of secret purge + prior default-branch work).
-- **MJS Financial Dash backup (submodule):** Tracked secrets removed from index; `.gitignore` added; submodule pointer moved through secret hygiene and filter-repo reconciliation (**`e82856a`** on `main` in that clone).
-- **MJS Financial Dash (canonical working tree, submodule):** Commit **`8ac9660`** on **`codex/finance-snapshot-onboarding`** (pipeline / reporting / `git add -u` tracked changes only; large untracked trees **not** committed). Parent records submodule at **`8ac9660`**.
-- **Divorce:** First real commit **`9a208c9`** in nested repo; parent **stopped tracking** `Divorce/*` as normal files and records **`Divorce`** as gitlink **`9a208c9`**; parent **`.gitignore`** gained **`!Divorce/`** so the deny-by-default portfolio rule allows the path.
-- **Project Manager `main`:** Pushed to **`fc2a692`** (includes submodule pointer updates above). **`STATUS.md`** regenerated via `python3 scripts/portfolio_status.py` at session close.
+- **MJS-Financial-Dash (GitHub):** History was rewritten with `git filter-repo` to remove `token.json` and `credentials.json` from all commits; `main` and other branches were force-pushed; `main` tip is `**e82856a`** (merge of secret purge + prior default-branch work).
+- **MJS Financial Dash backup (submodule):** Tracked secrets removed from index; `.gitignore` added; submodule pointer moved through secret hygiene and filter-repo reconciliation (`**e82856a`** on `main` in that clone).
+- **MJS Financial Dash (canonical working tree, submodule):** Commit `**8ac9660`** on `**codex/finance-snapshot-onboarding**` (pipeline / reporting / `git add -u` tracked changes only; large untracked trees **not** committed). Parent records submodule at `**8ac9660`**.
+- **Divorce:** First real commit `**9a208c9`** in nested repo; parent **stopped tracking** `Divorce/*` as normal files and records `**Divorce`** as gitlink `**9a208c9**`; parent `**.gitignore**` gained `**!Divorce/**` so the deny-by-default portfolio rule allows the path.
+- **Project Manager `main`:** Pushed to `**fc2a692`** (includes submodule pointer updates above). `**STATUS.md**` regenerated via `python3 scripts/portfolio_status.py` at session close.
 
 ## Current State
 
 - Parent repo is **clean** aside from expected **untracked / dirty child subtrees** (see `git status`); submodule pointers on `main` match the SHAs above for `Divorce`, `MJS Financial Dash`, and `MJS Financial Dash backup` where applicable.
-- **`Divorce`** has **no `origin` remote** yet; litigation PDFs and CSV exist **in commit `9a208c9`**—treat any future public remote as **high sensitivity**.
+- `**Divorce`** has **no `origin` remote** yet; litigation PDFs and CSV exist **in commit `9a208c9`**—treat any future public remote as **high sensitivity**.
 
 ## Blockers / Risks
 
 - **Credential rotation:** OAuth / API material previously in git history must be **rotated in provider consoles** by the owner; rewriting GitHub does not invalidate already-leaked tokens.
-- **Same remote URL:** **`MJS Financial Dash backup`** and **canonical `MJS Financial Dash`** both pointed at **`https://github.com/melissastock/MJS-Financial-Dash.git`**. Force-pushing from the backup rewrote branches the canonical clone used; recovery was done via **cherry-pick** onto current remote tips. **Opinion:** point the backup folder at a **separate remote or fork** to avoid recurrence.
+- **Same remote URL:** `**MJS Financial Dash backup`** and **canonical `MJS Financial Dash`** both pointed at `**https://github.com/melissastock/MJS-Financial-Dash.git**`. Force-pushing from the backup rewrote branches the canonical clone used; recovery was done via **cherry-pick** onto current remote tips. **Opinion:** point the backup folder at a **separate remote or fork** to avoid recurrence.
 
 ## Top Next Actions
 
 1. **Owner:** Complete **credential rotation** for anything that ever lived in `token.json` / `credentials.json` (Google / OAuth client).
-2. **Next engineer:** If `Divorce` should be backed up to GitHub, create a **private** repo, `git remote add origin …`, `git push -u origin main`, then add **`github_repo_url`** (and slug) to **`config/repos.json`** for the Divorce entry (optional **`lane` / `priority_class`** alignment with other recovery-core repos).
+2. **Next engineer:** If `Divorce` should be backed up to GitHub, create a **private** repo, `git remote add origin …`, `git push -u origin main`, then add `**github_repo_url`** (and slug) to `**config/repos.json**` for the Divorce entry (optional `**lane` / `priority_class**` alignment with other recovery-core repos).
 3. **Next engineer:** Reconcile **dirty submodules** the parent still reports (`git status`) using the portfolio’s normal stash / clean workflow; do **not** commit secrets from backup stashes without `.gitignore` review.
 
 ---
@@ -39,15 +39,17 @@ Branch(es): Parent `main`; `MJS Financial Dash` `codex/finance-snapshot-onboardi
 
 ## Commits Made (representative; parent `main`)
 
-| Repo | Branch | Commit SHA | Message |
-|------|--------|------------|---------|
-| Project Manager | `main` | `fc2a692` | Update MJS Financial Dash submodule to latest finance-snapshot-onboarding commit. |
-| Project Manager | `main` | `30a8e89` | Record Divorce as its own repository (gitlink) and allow the path in .gitignore. |
-| Project Manager | `main` | `dd473a5` | Update MJS Financial Dash backup submodule after filter-repo and main reconciliation. |
-| Project Manager | `main` | `eb98abe` | Update MJS Financial Dash backup pointer after secret hygiene commit. |
-| MJS-Financial-Dash (remote) | `main` | `e82856a` | Reconcile main with rewritten default-branch history after secret purge. |
-| MJS Financial Dash | `codex/finance-snapshot-onboarding` | `8ac9660` | Refresh finance snapshot pipeline, retire generated outputs from version control, and extend reporting and Google sources. |
-| Divorce | `main` | `9a208c9` | Initial commit: litigation workspace, handoff maps, and PM delivery scaffold. |
+
+| Repo                        | Branch                              | Commit SHA | Message                                                                                                                    |
+| --------------------------- | ----------------------------------- | ---------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Project Manager             | `main`                              | `fc2a692`  | Update MJS Financial Dash submodule to latest finance-snapshot-onboarding commit.                                          |
+| Project Manager             | `main`                              | `30a8e89`  | Record Divorce as its own repository (gitlink) and allow the path in .gitignore.                                           |
+| Project Manager             | `main`                              | `dd473a5`  | Update MJS Financial Dash backup submodule after filter-repo and main reconciliation.                                      |
+| Project Manager             | `main`                              | `eb98abe`  | Update MJS Financial Dash backup pointer after secret hygiene commit.                                                      |
+| MJS-Financial-Dash (remote) | `main`                              | `e82856a`  | Reconcile main with rewritten default-branch history after secret purge.                                                   |
+| MJS Financial Dash          | `codex/finance-snapshot-onboarding` | `8ac9660`  | Refresh finance snapshot pipeline, retire generated outputs from version control, and extend reporting and Google sources. |
+| Divorce                     | `main`                              | `9a208c9`  | Initial commit: litigation workspace, handoff maps, and PM delivery scaffold.                                              |
+
 
 **Verification commands (local):**
 
@@ -65,9 +67,9 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 - `brew install git-filter-repo`
 - `git filter-repo --force --path token.json --path credentials.json --invert-paths` (in **MJS Financial Dash backup** clone used for rewrite; same remote as canonical—see risks).
-- `git merge` / reconciliation on backup `main` → **`e82856a`**.
+- `git merge` / reconciliation on backup `main` → `**e82856a`**.
 - `git fetch`, `git push --force-with-lease` (multiple branches) for **MJS-Financial-Dash**; `git push origin main` for **Project Manager**.
-- `python3 scripts/portfolio_status.py` → wrote **`STATUS.md`**.
+- `python3 scripts/portfolio_status.py` → wrote `**STATUS.md`**.
 
 ---
 
@@ -76,17 +78,17 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 ## Facts (Verifiable Only)
 
 - `origin/main` on **MJS-Financial-Dash** previously contained `credentials.json` at tip; `token.json` existed in history (`git cat-file` / `git show` verified before rewrite).
-- After filter-repo + push, **`git ls-files -s`** in parent records **`Divorce`** at **`9a208c9`**, **`MJS Financial Dash`** at **`8ac9660`**, backup submodule at **`e82856a`** (verify with command in Evidence Log).
-- **`brew install git-filter-repo`** succeeded; version reported as `a40bce548d2c` in an earlier shell check.
+- After filter-repo + push, `**git ls-files -s`** in parent records `**Divorce**` at `**9a208c9**`, `**MJS Financial Dash**` at `**8ac9660**`, backup submodule at `**e82856a**` (verify with command in Evidence Log).
+- `**brew install git-filter-repo**` succeeded; version reported as `a40bce548d2c` in an earlier shell check.
 
 ## Interpretations (Clearly Marked)
 
-- **Interpretation:** Cherry-pick **`147b445` → `8ac9660`** on canonical **MJS Financial Dash** preserved the same **file-level patch** as the pre-reconciliation commit while sitting on the **post–force-push** remote history.
+- **Interpretation:** Cherry-pick `**147b445` → `8ac9660`** on canonical **MJS Financial Dash** preserved the same **file-level patch** as the pre-reconciliation commit while sitting on the **post–force-push** remote history.
 
 ## Opinions (Explicitly Labeled)
 
-- **Opinion:** Prefer **`git filter-repo`** over `bfg` for this portfolio unless there is a specific BFG constraint; both are acceptable with care.
-- **Opinion:** Keep **`Divorce`** on a **private** remote only unless counsel explicitly approves a wider audience.
+- **Opinion:** Prefer `**git filter-repo`** over `bfg` for this portfolio unless there is a specific BFG constraint; both are acceptable with care.
+- **Opinion:** Keep `**Divorce`** on a **private** remote only unless counsel explicitly approves a wider audience.
 
 ---
 
@@ -99,19 +101,19 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 ## Where to Look First
 
-- This handoff → **`STATUS.md`** → **`config/repos.json`**
-- **`Divorce/README.md`**, **`Divorce/docs/project-intake.md`**
-- **`MJS Financial Dash`** branch **`codex/finance-snapshot-onboarding`** at **`8ac9660`**
+- This handoff → `**STATUS.md`** → `**config/repos.json**`
+- `**Divorce/README.md**`, `**Divorce/docs/project-intake.md**`
+- `**MJS Financial Dash**` branch `**codex/finance-snapshot-onboarding**` at `**8ac9660**`
 
 ## Key Decisions Made
 
-- Tracked secret files removed from backup submodule index + **`.gitignore`**; history purged with **filter-repo**; **GitHub** updated via **force-with-lease** after fetch.
-- **`Divorce`** promoted to **gitlink** in parent; duplicate Finder files excluded via **`**/* 2.md`** in **`Divorce/.gitignore`**.
-- Canonical **MJS Financial Dash** work committed with **`git add -u`** only (no mass-add of untracked archives).
+- Tracked secret files removed from backup submodule index + `**.gitignore**`; history purged with **filter-repo**; **GitHub** updated via **force-with-lease** after fetch.
+- `**Divorce`** promoted to **gitlink** in parent; duplicate Finder files excluded via `****/* 2.md`** in `**Divorce/.gitignore**`.
+- Canonical **MJS Financial Dash** work committed with `**git add -u`** only (no mass-add of untracked archives).
 
 ## What Not to Change
 
-- Do not revert parent **`.gitignore`** `!Divorce/` without a replacement strategy—**`Divorce`** would become invisible to **`git add`** again.
+- Do not revert parent `**.gitignore**` `!Divorce/` without a replacement strategy—`**Divorce**` would become invisible to `**git add**` again.
 
 ---
 
@@ -121,8 +123,8 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 - Filter-repo secret purge + remote reconciliation for **MJS-Financial-Dash**; parent + children commits pushed where applicable.
 - **Divorce** initial commit + parent gitlink + `.gitignore` allowlist.
-- **MJS Financial Dash** pipeline/reporting commit **`8ac9660`** pushed; parent pointer **`fc2a692`** pushed.
-- Session handoff + **`STATUS.md`** refresh.
+- **MJS Financial Dash** pipeline/reporting commit `**8ac9660`** pushed; parent pointer `**fc2a692**` pushed.
+- Session handoff + `**STATUS.md**` refresh.
 
 ## In Progress
 
@@ -130,7 +132,7 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 ## Not Started (but relevant)
 
-- **`Divorce`**: optional private **`origin`** + **`repos.json`** URL fields.
+- `**Divorce**`: optional private `**origin**` + `**repos.json**` URL fields.
 - **Credential rotation** in provider UIs (owner).
 
 ---
@@ -140,7 +142,7 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 ## Confirmed
 
 - **Homebrew** `git-filter-repo` available on the machine used for the rewrite.
-- **GitHub** push access for **`melissastock/Project-Manager`** and **`melissastock/MJS-Financial-Dash`** (pushes succeeded).
+- **GitHub** push access for `**melissastock/Project-Manager`** and `**melissastock/MJS-Financial-Dash**` (pushes succeeded).
 
 ## Suspected / Unverified
 
@@ -150,15 +152,15 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 # Open Questions
 
-- Should **`MJS Financial Dash backup`** use a **dedicated fork or bare mirror** remote instead of the canonical app repo?
-- Should **`Divorce`** receive **`lane` / `priority_class`** in **`repos.json`** to match the portfolio OS schema used elsewhere?
+- Should `**MJS Financial Dash backup`** use a **dedicated fork or bare mirror** remote instead of the canonical app repo?
+- Should `**Divorce`** receive `**lane` / `priority_class**` in `**repos.json**` to match the portfolio OS schema used elsewhere?
 
 ---
 
 # Issues / Challenges
 
 - **Force-push coordination:** All clones of **MJS-Financial-Dash** must reset to new history.
-- **Submodule dirty flags:** Parent may still show **`m`** / **`?`** for other children unrelated to this session—triage per child repo policy.
+- **Submodule dirty flags:** Parent may still show `**m`** / `**?**` for other children unrelated to this session—triage per child repo policy.
 
 ---
 
@@ -166,15 +168,15 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 ## Repo / Structure Impact
 
-- **`Divorce/`** is no longer a flat directory of files in parent history; it is a **nested repository** (gitlink).
+- `**Divorce/**` is no longer a flat directory of files in parent history; it is a **nested repository** (gitlink).
 
 ## PM Tracking Impact
 
 - Needs update:
-  - [ ] `repos.json` (optional: Divorce `github_repo_url`, `lane`, `priority_class`; backup remote policy note—no file change required for session completeness)
-  - [x] `STATUS.md` (regenerated this close)
-  - [ ] dependency docs (none required for this close)
-  - [ ] none for blocking handoff
+  - `repos.json` (optional: Divorce `github_repo_url`, `lane`, `priority_class`; backup remote policy note—no file change required for session completeness)
+  - `STATUS.md` (regenerated this close)
+  - dependency docs (none required for this close)
+  - none for blocking handoff
 
 ---
 
@@ -197,6 +199,7 @@ cd "Project Manager" && git rev-parse main && git ls-files -s Divorce "MJS Finan
 
 # Raw Notes (Do Not Summarize)
 
-- Removed broken ref file **`refs/remotes/origin/main 2`** (space in name) under **MJS Financial Dash backup** before fetch/push cycle.
-- Parent **`git diff`** briefly showed submodule pseudo-entry **`…-dirty`** when canonical **MJS Financial Dash** had local changes before the final **`git add -u`** commit path.
+- Removed broken ref file `**refs/remotes/origin/main 2`** (space in name) under **MJS Financial Dash backup** before fetch/push cycle.
+- Parent `**git diff`** briefly showed submodule pseudo-entry `**…-dirty**` when canonical **MJS Financial Dash** had local changes before the final `**git add -u`** commit path.
 - `git merge-base` failed across pre/post filter SHAs until histories were realigned via **reset + cherry-pick** (see Interpretations).
+

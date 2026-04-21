@@ -35,6 +35,7 @@ class RepoSnapshot:
     behind: int | None
     backlog_files: list[str]
     sprint_files: list[str]
+    package_files: list[str]
 
 
 def run_git(repo_path: Path, *args: str) -> subprocess.CompletedProcess[str]:
@@ -63,24 +64,32 @@ def parse_porcelain(output: str) -> tuple[int, int, int]:
     return staged, unstaged, untracked
 
 
-def discover_planning_files(repo_path: Path) -> tuple[list[str], list[str]]:
+def discover_delivery_files(repo_path: Path) -> tuple[list[str], list[str], list[str]]:
     candidates = []
     docs_dir = repo_path / "docs"
     if docs_dir.exists():
         candidates.extend(p for p in docs_dir.glob("*.md"))
+    delivery_dir = docs_dir / "delivery"
+    if delivery_dir.exists():
+        candidates.extend(p for p in delivery_dir.glob("*.md"))
     candidates.extend(p for p in repo_path.glob("*.md"))
     backlog = sorted(str(p.relative_to(repo_path)) for p in candidates if "backlog" in p.name.lower())
     sprint = sorted(str(p.relative_to(repo_path)) for p in candidates if "sprint" in p.name.lower())
-    return backlog, sprint
+    package = sorted(
+        str(p.relative_to(repo_path))
+        for p in candidates
+        if p.name.lower() in {"release-package.md", "release-notes.md", "rollback-plan.md", "output-acceptance.md"}
+    )
+    return backlog, sprint, package
 
 
 def resolve_repo_snapshot(entry: dict[str, Any]) -> RepoSnapshot:
     repo_path = ROOT / entry["path"]
     exists = repo_path.exists()
     is_git_repo = exists and (repo_path / ".git").exists()
-    backlog_files, sprint_files = ([], [])
+    backlog_files, sprint_files, package_files = ([], [], [])
     if exists:
-        backlog_files, sprint_files = discover_planning_files(repo_path)
+        backlog_files, sprint_files, package_files = discover_delivery_files(repo_path)
     if not is_git_repo:
         return RepoSnapshot(
             name=entry["name"],
@@ -100,6 +109,7 @@ def resolve_repo_snapshot(entry: dict[str, Any]) -> RepoSnapshot:
             behind=None,
             backlog_files=backlog_files,
             sprint_files=sprint_files,
+            package_files=package_files,
         )
 
     head_cp = run_git(repo_path, "rev-parse", "--verify", "HEAD")
@@ -122,6 +132,7 @@ def resolve_repo_snapshot(entry: dict[str, Any]) -> RepoSnapshot:
             behind=None,
             backlog_files=backlog_files,
             sprint_files=sprint_files,
+            package_files=package_files,
         )
 
     branch = run_git(repo_path, "branch", "--show-current").stdout.strip() or "detached"
@@ -154,6 +165,7 @@ def resolve_repo_snapshot(entry: dict[str, Any]) -> RepoSnapshot:
         behind=behind,
         backlog_files=backlog_files,
         sprint_files=sprint_files,
+        package_files=package_files,
     )
 
 
@@ -188,6 +200,12 @@ def compute_score(repo: RepoSnapshot, policy: dict[str, Any]) -> tuple[int, list
         reasons.append("No backlog document detected.")
     if not repo.sprint_files:
         reasons.append("No sprint plan document detected.")
+    if len(repo.package_files) < 4:
+        reasons.append("Packaged output artifacts are incomplete.")
+    if not repo.backlog_files or not repo.sprint_files:
+        score = min(score, int(policy.get("readiness_caps", {}).get("missing_planning", score)))
+    if len(repo.package_files) < 4:
+        score = min(score, int(policy.get("readiness_caps", {}).get("missing_packaging", score)))
     score = max(0, min(100, score))
     return score, reasons
 
@@ -219,6 +237,15 @@ def recommend_next_steps(repo: RepoSnapshot, score: int, label: str, policy: dic
                 "why_now": "Standup prioritization quality drops without explicit queue context.",
                 "risk_if_delayed": "Next-step suggestions become less explainable and auditable.",
                 "alternatives_considered": "Use ad-hoc memory only (rejected due to owner approval requirements).",
+            }
+        )
+    if len(repo.package_files) < 4:
+        recs.append(
+            {
+                "action": "Create or refresh release package, release notes, rollback plan, and output acceptance docs.",
+                "why_now": "Managed outputs cannot be treated as release-ready without packaging artifacts.",
+                "risk_if_delayed": "Teams can ship work without clear delivery contract or acceptance evidence.",
+                "alternatives_considered": "Rely on ad-hoc release notes (rejected due to governance traceability requirements).",
             }
         )
     if label in {"critical", "at-risk"}:
@@ -275,12 +302,12 @@ def generate_reports(snapshots: list[RepoSnapshot], policy: dict[str, Any], outp
     score_lines = [
         "# Readiness Scorecard",
         "",
-        "| Project | Lane | Priority | Score | Band | Drift (staged/unstaged/untracked) | Backlog | Sprint |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| Project | Lane | Priority | Score | Band | Drift (staged/unstaged/untracked) | Backlog | Sprint | Packaging |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for repo, score, label, _ in scores:
         score_lines.append(
-            f"| {repo.name} | {repo.lane or '-'} | {repo.priority_class or '-'} | {score} | {label} | {repo.staged_count}/{repo.unstaged_count}/{repo.untracked_count} | {'yes' if repo.backlog_files else 'no'} | {'yes' if repo.sprint_files else 'no'} |"
+            f"| {repo.name} | {repo.lane or '-'} | {repo.priority_class or '-'} | {score} | {label} | {repo.staged_count}/{repo.unstaged_count}/{repo.untracked_count} | {'yes' if repo.backlog_files else 'no'} | {'yes' if repo.sprint_files else 'no'} | {'yes' if len(repo.package_files) >= 4 else 'no'} |"
         )
     scorecard_path.write_text("\n".join(score_lines) + "\n", encoding="utf-8")
 

@@ -31,7 +31,10 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 15. Use `python3 scripts/scaffold_gtm_pack.py --target "path/to/repo"` when a project needs repeatable GTM hypothesis and pilot outreach docs.
 16. Use `python3 scripts/scaffold_monetization_pack.py --target "path/to/repo"` when a project needs repeatable monetization strategy and pricing implementation docs.
 17. Use `python3 scripts/rollout_pm_backbone.py` to roll out the latest production/GTM/monetization/investor scaffolds across managed projects.
-18. Commit the portfolio updates from this top-level repo.
+18. Run `python3 scripts/check_packaged_output.py --target "path/to/repo"` to enforce release-package and output-acceptance artifacts before release.
+19. Run `python3 scripts/check_decision_log_completeness.py --decision-log "docs/session-artifacts/standup/DECISION_LOG-YYYYMMDD_HHMMSS.md"` before batch execution.
+20. Run `python3 scripts/check_portfolio_release_gate.py --target "path/to/repo" --decision-log "docs/session-artifacts/standup/DECISION_LOG-YYYYMMDD_HHMMSS.md"` as the final integrated gate.
+21. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 
@@ -69,3 +72,5 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - Investor-book repeatable process: `docs/investor-book-repeatable-workflow.md`
 - Agile production process standard: `docs/agile-production-process.md`
 - GTM repeatable process: `docs/gtm-repeatable-workflow.md`
+- Packaged output standard: `docs/portfolio-packaged-output-standard.md`
+- Portfolio execution queue: `docs/portfolio-execution-queue.md`

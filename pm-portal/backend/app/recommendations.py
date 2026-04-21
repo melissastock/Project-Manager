@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-import json
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 from .models import Recommendation, RecommendationDecision, SignalSnapshot
+from .db import fetch_recommendation_decisions, upsert_recommendation_decision
 
 
 def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, score: int, max_items: int) -> list[Recommendation]:
@@ -51,16 +52,6 @@ def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, sc
             alternatives_considered="Ad hoc planning only (rejected: weak auditability).",
             confidence="medium",
         ))
-    if snapshot.monetization_required and len(snapshot.monetization_files) < 2:
-        recs.append(Recommendation(
-            id=f"{prefix}-monetization-pack",
-            project=project["name"],
-            action="Scaffold and complete monetization strategy and pricing implementation docs.",
-            why_now="Intake requires monetization workflow but required artifacts are missing or incomplete.",
-            risk_if_delayed="Revenue execution remains implicit and difficult to govern across portfolio reviews.",
-            alternatives_considered="Ad hoc pricing notes only (rejected: weak traceability and inconsistent rollout).",
-            confidence="high",
-        ))
 
     if not recs:
         recs.append(Recommendation(
@@ -75,15 +66,18 @@ def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, sc
     return recs[:max_items]
 
 
-def load_decisions(path: Path) -> dict[str, dict]:
-    if not path.exists():
-        return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+def load_decisions(_path: Path | None = None) -> dict[str, dict[str, Any]]:
+    rows = fetch_recommendation_decisions()
+    return {
+        row["recommendation_id"]: row
+        for row in rows
+        if row.get("recommendation_id")
+    }
 
 
-def persist_decisions(path: Path, decisions: dict[str, dict]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(decisions, indent=2), encoding="utf-8")
+def persist_decisions(_path: Path | None, decisions: dict[str, dict[str, Any]]) -> None:
+    for value in decisions.values():
+        upsert_recommendation_decision(value)
 
 
 def decisions_for_recommendations(rec_ids: list[str], cache: dict[str, dict]) -> list[RecommendationDecision]:

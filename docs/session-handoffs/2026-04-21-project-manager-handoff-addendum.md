@@ -5,7 +5,7 @@ Scope: Clarify authoritative standup artifacts and close operational gaps discov
 
 ## Authoritative Artifact Set
 
-Use the **14:37 MDT** standup artifacts as the current source of truth:
+Use the **14:37 MDT** standup artifacts as the current source of truth. Paths below are relative to the Project Manager workspace root; from inside `docs/`, omit the leading `docs/`.
 
 - `docs/session-artifacts/standup/STANDUP_SUMMARY-20260421_143723.md`
 - `docs/session-artifacts/standup/READINESS_SCORECARD-20260421_143723.md`
@@ -41,10 +41,10 @@ The earlier **11:47 MDT** set remains historical reference only and should not d
 - Do not execute backlog actions from earlier timestamped standup files when a newer set exists.
 - Triage and approve/reject/defer actions in:
   - `docs/session-artifacts/standup/DECISION_LOG-20260421_143723.md`
+  - from inside `docs/`: `session-artifacts/standup/DECISION_LOG-20260421_143723.md`
 - Treat untracked-file growth as active operational drift and resolve before claiming readiness.
 
 ## Remaining Open Items
 
 - Owner approval decisions for proposed actions are still pending in the latest decision log.
-- Newly generated 14:37 standup artifacts are present and currently untracked in the parent repo; commit/disposition decision is required.
-
+- Batch execution order and exit criteria for the 14:37 baseline live in `docs/portfolio-execution-queue.md`.

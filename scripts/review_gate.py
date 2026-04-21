@@ -38,10 +38,18 @@ def find_latest_publication_review() -> Optional[str]:
 
 
 def get_changed_files() -> List[str]:
-    output = run_cmd(["git", "diff", "--name-only"])
-    if not output:
-        return []
-    return [line.strip() for line in output.splitlines() if line.strip()]
+    changed: set[str] = set()
+    commands = [
+        ["git", "diff", "--name-only"],
+        ["git", "diff", "--cached", "--name-only"],
+        ["git", "ls-files", "--others", "--exclude-standard"],
+    ]
+    for command in commands:
+        output = run_cmd(command)
+        if not output:
+            continue
+        changed.update(line.strip() for line in output.splitlines() if line.strip())
+    return sorted(changed)
 
 
 def load_text(path: str) -> str:

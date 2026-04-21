@@ -11,6 +11,8 @@
 !scripts/
 !scripts/**
 !STATUS.md
+!pm-portal/
+!pm-portal/**
 
 # Keep selected child repositories as gitlinks.
 !Aneumind and TC Structure/

@@ -33,8 +33,6 @@ class SignalSnapshot(BaseModel):
     behind: Optional[int] = None
     backlog_files: list[str] = Field(default_factory=list)
     sprint_files: list[str] = Field(default_factory=list)
-    monetization_files: list[str] = Field(default_factory=list)
-    monetization_required: bool = False
     captured_at: datetime
 
 

@@ -23,6 +23,10 @@
     "behind_per_commit": 2,
     "missing_git_repo": 40
   },
+  "readiness_caps": {
+    "missing_planning": 84,
+    "missing_packaging": 79
+  },
   "readiness_bands": [
     {
       "min_score": 85,

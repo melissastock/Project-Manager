@@ -38,37 +38,13 @@ def _discover_planning_files(repo_path: Path) -> tuple[list[str], list[str]]:
     return backlog, sprint
 
 
-def _discover_monetization_files(repo_path: Path) -> list[str]:
-    docs = repo_path / "docs"
-    if not docs.exists():
-        return []
-    files = []
-    for p in docs.rglob("*.md"):
-        lowered = p.name.lower()
-        if "monetization" in lowered or "pricing" in lowered:
-            files.append(str(p.relative_to(repo_path)))
-    return sorted(files)
-
-
-def _monetization_required(repo_path: Path) -> bool:
-    intake = repo_path / "docs" / "project-intake.md"
-    if not intake.exists():
-        return False
-    text = intake.read_text(encoding="utf-8").lower()
-    return "- monetization workflow needed: yes" in text
-
-
 def collect_snapshot(pm_root: Path, project: Project) -> SignalSnapshot:
     repo_path = pm_root / project.path
     exists = repo_path.exists()
     is_git = exists and (repo_path / ".git").exists()
     backlog_files, sprint_files = ([], [])
-    monetization_files: list[str] = []
-    monetization_required = False
     if exists:
         backlog_files, sprint_files = _discover_planning_files(repo_path)
-        monetization_files = _discover_monetization_files(repo_path)
-        monetization_required = _monetization_required(repo_path)
 
     if not is_git:
         return SignalSnapshot(
@@ -83,8 +59,6 @@ def collect_snapshot(pm_root: Path, project: Project) -> SignalSnapshot:
             untracked_count=0,
             backlog_files=backlog_files,
             sprint_files=sprint_files,
-            monetization_files=monetization_files,
-            monetization_required=monetization_required,
             captured_at=datetime.now(timezone.utc),
         )
 
@@ -102,8 +76,6 @@ def collect_snapshot(pm_root: Path, project: Project) -> SignalSnapshot:
             untracked_count=0,
             backlog_files=backlog_files,
             sprint_files=sprint_files,
-            monetization_files=monetization_files,
-            monetization_required=monetization_required,
             captured_at=datetime.now(timezone.utc),
         )
 
@@ -133,7 +105,5 @@ def collect_snapshot(pm_root: Path, project: Project) -> SignalSnapshot:
         behind=behind,
         backlog_files=backlog_files,
         sprint_files=sprint_files,
-        monetization_files=monetization_files,
-        monetization_required=monetization_required,
         captured_at=datetime.now(timezone.utc),
     )

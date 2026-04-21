@@ -14,11 +14,10 @@
     "operations": 0.20,
     "legal_compliance": 0.15,
     "marketing": 0.10,
-    "monetization": 0.10,
     "analysis_reporting": 0.15,
-    "development": 0.15,
+    "development": 0.20,
     "financial": 0.10,
-    "investor_readiness": 0.05
+    "investor_readiness": 0.10
   },
   "readiness_bands": [
     {"min_score": 85, "label": "ready"},
