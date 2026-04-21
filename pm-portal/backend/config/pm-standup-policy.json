@@ -1,0 +1,29 @@
+{
+  "critical_lanes": ["recovery-core"],
+  "priority_weights": {"core": 25, "adjacent": 10, "peripheral": 3},
+  "lane_weights": {"recovery-core": 20, "platform-product": 8, "archive-incubator": 4, "family-outcomes": 6, "business-structure": 10},
+  "risk_penalties": {
+    "staged": 15,
+    "unstaged": 12,
+    "untracked_per_item": 1,
+    "max_untracked_penalty": 25,
+    "behind_per_commit": 2,
+    "missing_git_repo": 40
+  },
+  "dimension_weights": {
+    "operations": 0.20,
+    "legal_compliance": 0.15,
+    "marketing": 0.10,
+    "analysis_reporting": 0.15,
+    "development": 0.20,
+    "financial": 0.10,
+    "investor_readiness": 0.10
+  },
+  "readiness_bands": [
+    {"min_score": 85, "label": "ready"},
+    {"min_score": 70, "label": "monitor"},
+    {"min_score": 50, "label": "at-risk"},
+    {"min_score": 0, "label": "critical"}
+  ],
+  "max_recommendations_per_project": 5
+}

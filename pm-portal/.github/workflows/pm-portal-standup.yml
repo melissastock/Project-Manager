@@ -1,0 +1,30 @@
+name: PM Portal Standup Snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * 1-5"
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install backend dependencies
+        run: pip install -r backend/requirements.txt
+
+      - name: Export standup snapshot
+        run: PYTHONPATH=. python3 scripts/export_standup_snapshot.py
+
+      - name: Upload snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: pm-portal-snapshots
+          path: backend/data/standup-snapshot-*.json
