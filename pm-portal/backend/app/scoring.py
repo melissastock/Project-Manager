@@ -34,6 +34,7 @@ def compute_dimensions(base_score: int, snapshot: SignalSnapshot, policy: dict) 
         "operations",
         "legal_compliance",
         "marketing",
+        "monetization",
         "analysis_reporting",
         "development",
         "financial",
@@ -53,6 +54,12 @@ def compute_dimensions(base_score: int, snapshot: SignalSnapshot, policy: dict) 
             evidence.append(f"backlog docs={len(snapshot.backlog_files)}, sprint docs={len(snapshot.sprint_files)}")
             if not snapshot.backlog_files:
                 score -= 7
+        elif key == "monetization":
+            evidence.append(f"monetization docs={len(snapshot.monetization_files)}, required={snapshot.monetization_required}")
+            if snapshot.monetization_required and len(snapshot.monetization_files) < 2:
+                score -= 12
+            elif len(snapshot.monetization_files) == 0:
+                score -= 5
         elif key == "legal_compliance":
             evidence.append("Derived from repository governance and traceability signals")
         elif key == "investor_readiness":

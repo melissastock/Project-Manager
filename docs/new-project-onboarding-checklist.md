@@ -20,6 +20,7 @@
 - Use `python3 scripts/scaffold_investor_book.py --target "path/to/repo" --project-name "Project Name"` when fundraising or investor-ready documentation is expected.
 - Use `python3 scripts/scaffold_production_delivery.py --target "path/to/repo"` to install standardized agile production delivery artifacts.
 - Use `python3 scripts/scaffold_gtm_pack.py --target "path/to/repo"` when commercialization, pilot, or partner outreach planning is in scope.
+- Use `python3 scripts/scaffold_monetization_pack.py --target "path/to/repo"` when pricing, packaging, billing, or revenue operations planning is in scope.
 - Use `python3 scripts/rollout_pm_backbone.py` from Project Manager when you need to apply the latest PM backbone standards to all managed repos in one pass.
 - By default the bootstrap flow adds the repo to the Project Manager plan.
 - Use `--skip-portfolio-plan` when the repo should opt out and stay standalone.

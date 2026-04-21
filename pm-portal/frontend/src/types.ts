@@ -36,6 +36,8 @@ export interface Snapshot {
   behind: number | null;
   backlog_files: string[];
   sprint_files: string[];
+  monetization_files: string[];
+  monetization_required: boolean;
 }
 
 export interface BranchHealth {

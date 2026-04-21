@@ -51,6 +51,16 @@ def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, sc
             alternatives_considered="Ad hoc planning only (rejected: weak auditability).",
             confidence="medium",
         ))
+    if snapshot.monetization_required and len(snapshot.monetization_files) < 2:
+        recs.append(Recommendation(
+            id=f"{prefix}-monetization-pack",
+            project=project["name"],
+            action="Scaffold and complete monetization strategy and pricing implementation docs.",
+            why_now="Intake requires monetization workflow but required artifacts are missing or incomplete.",
+            risk_if_delayed="Revenue execution remains implicit and difficult to govern across portfolio reviews.",
+            alternatives_considered="Ad hoc pricing notes only (rejected: weak traceability and inconsistent rollout).",
+            confidence="high",
+        ))
 
     if not recs:
         recs.append(Recommendation(

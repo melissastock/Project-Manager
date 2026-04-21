@@ -18,6 +18,7 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
         <li>Summary: {project.snapshot.summary}</li>
         <li>Drift: staged {project.snapshot.staged_count}, unstaged {project.snapshot.unstaged_count}, untracked {project.snapshot.untracked_count}</li>
         <li>Sync: ahead {project.snapshot.ahead ?? "n/a"}, behind {project.snapshot.behind ?? "n/a"}</li>
+        <li>Monetization docs: {project.snapshot.monetization_files.length} (required: {project.snapshot.monetization_required ? "yes" : "no"})</li>
       </ul>
 
       <h3>Readiness dimensions</h3>

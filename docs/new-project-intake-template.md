@@ -61,6 +61,9 @@
 - GTM workflow needed:
 - If yes, GTM owner:
 - If yes, pilot window target:
+- Monetization workflow needed:
+- If yes, monetization owner:
+- If yes, pricing decision date:
 
 ## First Moves
 

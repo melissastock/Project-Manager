@@ -29,8 +29,9 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 13. Use `python3 scripts/scaffold_production_delivery.py --target "path/to/repo"` to add standardized backlog/sprint/test/PR-readiness docs.
 14. Before any PR, run `python3 scripts/check_production_readiness.py --target "path/to/repo"` to enforce agile planning + testing evidence gates.
 15. Use `python3 scripts/scaffold_gtm_pack.py --target "path/to/repo"` when a project needs repeatable GTM hypothesis and pilot outreach docs.
-16. Use `python3 scripts/rollout_pm_backbone.py` to roll out the latest production/GTM/investor scaffolds across managed projects.
-17. Commit the portfolio updates from this top-level repo.
+16. Use `python3 scripts/scaffold_monetization_pack.py --target "path/to/repo"` when a project needs repeatable monetization strategy and pricing implementation docs.
+17. Use `python3 scripts/rollout_pm_backbone.py` to roll out the latest production/GTM/monetization/investor scaffolds across managed projects.
+18. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 

@@ -24,6 +24,11 @@ INVESTOR_REQUIRED_FILES = [
     "docs/investor-book-section-coverage.md",
 ]
 
+MONETIZATION_REQUIRED_FILES = [
+    "docs/monetization-strategy.md",
+    "docs/pricing-implementation-plan.md",
+]
+
 
 def load(path: Path) -> str:
     return path.read_text() if path.exists() else ""
@@ -106,6 +111,12 @@ def main() -> int:
             if not (target / rel).exists():
                 failures.append(f"Investor-book workflow required by intake, missing file: {rel}")
 
+    monetization_required = intake_flag_enabled(intake, "Monetization workflow needed")
+    if monetization_required:
+        for rel in MONETIZATION_REQUIRED_FILES:
+            if not (target / rel).exists():
+                failures.append(f"Monetization workflow required by intake, missing file: {rel}")
+
     if failures:
         print("Production readiness: FAIL")
         for item in failures:
@@ -118,6 +129,8 @@ def main() -> int:
         print("Conditional gate: GTM workflow required and validated.")
     if investor_required:
         print("Conditional gate: Investor-book workflow required and validated.")
+    if monetization_required:
+        print("Conditional gate: Monetization workflow required and validated.")
     return 0
 
 
