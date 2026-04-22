@@ -6,6 +6,14 @@ import { ScoreBadge } from "../components/ScoreBadge";
 import { TeamStructurePanel } from "../components/TeamStructurePanel";
 import { TicketPanel } from "../components/TicketPanel";
 
+function formatUsd(value: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0
+  }).format(value ?? 0);
+}
+
 export function ProjectDetailPage({ project, onRefresh }: { project: ProjectReadiness; onRefresh: () => Promise<void> }) {
   return (
     <div>
@@ -22,6 +30,14 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
         <li>Summary: {project.snapshot.summary}</li>
         <li>Drift: staged {project.snapshot.staged_count}, unstaged {project.snapshot.unstaged_count}, untracked {project.snapshot.untracked_count}</li>
         <li>Sync: ahead {project.snapshot.ahead ?? "n/a"}, behind {project.snapshot.behind ?? "n/a"}</li>
+        <li>KPI profile: {project.project.kpi_profile || "not set"} (owner: {project.project.kpi_owner || "not set"})</li>
+        <li>KPI cadence: {project.project.kpi_reporting_cadence || "not set"}</li>
+        <li>Financial profile: {project.project.financial_reporting_profile || "not set"}</li>
+        <li>Downstream governance: {project.project.downstream_governance_profile || "not set"} (owner: {project.project.downstream_governance_owner || "not set"})</li>
+        <li>Budget vs actual: {formatUsd(project.project.budget_planned_usd)} vs {formatUsd(project.project.actual_spend_mtd_usd)}</li>
+        <li>Committed vs forecast: {formatUsd(project.project.committed_spend_usd)} vs {formatUsd(project.project.forecast_to_complete_usd)}</li>
+        <li>Variance: {formatUsd(project.project.variance_usd)} · Burn/mo: {formatUsd(project.project.burn_rate_monthly_usd)} · Runway: {project.project.runway_months ?? 0} mo</li>
+        <li>Open invoices: {formatUsd(project.project.open_invoices_usd)} · Overdue AR: {formatUsd(project.project.overdue_ar_usd)}</li>
       </ul>
 
       <h3 className="pm-section-title">Readiness Dimensions</h3>

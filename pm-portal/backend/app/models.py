@@ -28,6 +28,22 @@ class Project(BaseModel):
     release_packaging_owner: str = ""
     compliance_reviewer: str = ""
     automation_maintainer: str = ""
+    kpi_profile: str = ""
+    kpi_owner: str = ""
+    kpi_reporting_cadence: str = ""
+    financial_reporting_profile: str = ""
+    downstream_governance_profile: str = ""
+    downstream_governance_owner: str = ""
+    project_type_escalation_triggers: str = ""
+    budget_planned_usd: float = 0.0
+    actual_spend_mtd_usd: float = 0.0
+    committed_spend_usd: float = 0.0
+    forecast_to_complete_usd: float = 0.0
+    variance_usd: float = 0.0
+    burn_rate_monthly_usd: float = 0.0
+    runway_months: float = 0.0
+    open_invoices_usd: float = 0.0
+    overdue_ar_usd: float = 0.0
 
 
 class SignalSnapshot(BaseModel):

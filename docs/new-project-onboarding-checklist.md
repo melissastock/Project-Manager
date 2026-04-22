@@ -39,6 +39,47 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - Confirm the top-level Project Manager repo sees the child repo correctly.
 - Use `python3 scripts/sync_child_repo_pointers.py` to inspect child repo commit drift.
 - Run `python3 scripts/check_production_readiness.py --target "path/to/repo"` before opening PRs to enforce backlog, sprint, and testing gates.
+- Run `python3 scripts/validate_downstream_governance.py --target "path/to/repo"` to enforce project-type downstream governance intake gates.
+- Use `python3 scripts/validate_downstream_governance.py --target "path/to/repo" --fix` to auto-fill missing downstream governance intake fields when needed.
 - Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py` before scaling work.
 - Commit the Project Manager updates.
 - Push both the child repo and the Project Manager repo.
+
+## Governance Requirements (MANDATORY)
+
+- classification assigned
+- compliance profile assigned
+- governance docs created
+- repo visibility verified
+
+### regulated-sensitive
+- privacy boundaries doc exists
+- private collaboration enforced
+
+### family-sensitive
+- minor privacy rules defined
+
+### legal-financial
+- evidence handling defined
+
+### customer-facing projects
+- customer service SLA documented
+- escalation path documented
+- support owner + backup assigned
+- staffing trigger criteria defined
+- CS training plan documented before launch
+
+### KPI profile requirements
+- project type explicitly assigned (`Producer`, `Archiavellian`, `Archive`, or other approved type)
+- KPI profile assigned in `docs/governance/kpi-profile-matrix.md`
+- KPI owner assigned
+- reporting cadence defined
+- financial KPIs selected based on project type
+
+### downstream governance requirements
+- downstream governance profile mapped in `docs/governance/project-type-downstream-governance-rules.md`
+- project-type escalation triggers defined
+- review cadence checkpoint created based on project type
+- downstream governance owner assigned
+
+Project is NOT onboarded until complete.

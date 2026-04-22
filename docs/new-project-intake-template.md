@@ -20,6 +20,13 @@ If intake is blocked by portfolio tooling (not the project itself), see **`docs/
 ## Delivery Shape
 
 - Project type:
+- KPI profile:
+- KPI owner:
+- KPI reporting cadence:
+- Financial reporting profile:
+- Downstream governance profile:
+- Downstream governance owner:
+- Project-type escalation triggers:
 - Main deliverables:
 - Required tools or platforms:
 - Primary language/runtime:
