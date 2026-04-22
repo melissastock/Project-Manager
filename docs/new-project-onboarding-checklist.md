@@ -1,6 +1,7 @@
 # New Project Onboarding Checklist
 
 Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports) live in **`docs/operator-friction-log.md`**—glance it when onboarding stalls for non-project reasons.
+For recurring session workflow (Draft/Apply mode, commit sequencing, and push order), use **`docs/process/session-playbook.md`**.
 
 ## Create
 
