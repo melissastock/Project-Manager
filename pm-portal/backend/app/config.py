@@ -10,6 +10,8 @@ PROJECT_MANAGER_ROOT = ROOT.parent
 REPOS_PATH = PROJECT_MANAGER_ROOT / "config" / "repos.json"
 POLICY_PATH = ROOT / "backend" / "config" / "pm-standup-policy.json"
 DECISIONS_PATH = ROOT / "data" / "decisions.json"
+TICKETS_PATH = ROOT / "data" / "tickets.json"
+TEAM_ASSIGNMENTS_PATH = ROOT / "data" / "team_assignments.json"
 
 # Portal root first, then backend (backend wins on duplicate keys).
 load_dotenv(ROOT / ".env")

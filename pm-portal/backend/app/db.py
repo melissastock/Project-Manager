@@ -44,6 +44,42 @@ def fetch_recommendation_decisions() -> list[dict[str, Any]]:
     return response.data or []
 
 
+def upsert_project_ticket(payload: dict[str, Any]) -> dict[str, Any]:
+    client = get_supabase_client()
+    response = (
+        client.table("project_tickets")
+        .upsert(payload, on_conflict="id")
+        .execute()
+    )
+    if not response.data:
+        raise RuntimeError("No data returned from Supabase ticket upsert")
+    return response.data[0]
+
+
+def fetch_project_tickets() -> list[dict[str, Any]]:
+    client = get_supabase_client()
+    response = client.table("project_tickets").select("*").execute()
+    return response.data or []
+
+
+def upsert_team_assignment(payload: dict[str, Any]) -> dict[str, Any]:
+    client = get_supabase_client()
+    response = (
+        client.table("project_team_assignments")
+        .upsert(payload, on_conflict="id")
+        .execute()
+    )
+    if not response.data:
+        raise RuntimeError("No data returned from Supabase team assignment upsert")
+    return response.data[0]
+
+
+def fetch_team_assignments() -> list[dict[str, Any]]:
+    client = get_supabase_client()
+    response = client.table("project_team_assignments").select("*").execute()
+    return response.data or []
+
+
 def insert_runtime_observations(rows: list[dict[str, Any]]) -> None:
     if not rows:
         return

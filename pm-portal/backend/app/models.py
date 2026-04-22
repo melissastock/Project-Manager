@@ -9,6 +9,10 @@ ReadinessBand = Literal["ready", "monitor", "at-risk", "critical"]
 DecisionState = Literal["approved", "rejected", "defer", "pending"]
 RegistryStatus = Literal["registered", "unknown"]
 RuntimeStatus = Literal["ok", "path-missing", "git-unavailable", "unborn"]
+TicketState = Literal["new", "triaged", "in_progress", "blocked", "done", "deferred"]
+TicketPriority = Literal["P0", "P1", "P2", "P3"]
+AssignmentStatus = Literal["proposed", "approved", "rejected"]
+AssigneeType = Literal["human", "agent", "hybrid"]
 
 
 class Project(BaseModel):
@@ -19,6 +23,11 @@ class Project(BaseModel):
     intake_stage: str = ""
     category: str = ""
     role: str = ""
+    governance_steward: str = ""
+    lane_operator: str = ""
+    release_packaging_owner: str = ""
+    compliance_reviewer: str = ""
+    automation_maintainer: str = ""
 
 
 class SignalSnapshot(BaseModel):
@@ -63,6 +72,41 @@ class RecommendationDecision(BaseModel):
     updated_at: datetime
 
 
+class ProjectTicket(BaseModel):
+    id: str
+    project: str
+    title: str
+    description: str = ""
+    state: TicketState = "new"
+    priority: TicketPriority = "P2"
+    owner: str = ""
+    lane: str = ""
+    scope_label: Literal["all-repos", "selected-lanes", "pm-portal-only"] = "pm-portal-only"
+    due_date: str = ""
+    source: str = "pm-portal"
+    created_at: datetime
+    updated_at: datetime
+
+
+class TeamAssignment(BaseModel):
+    id: str
+    project: str
+    role_key: str
+    role_label: str
+    raci_tags: list[Literal["R", "A", "C", "I"]] = Field(default_factory=list)
+    assignee_name: str = ""
+    assignee_type: AssigneeType = "human"
+    workstream: str = ""
+    narrative: str = ""
+    status: AssignmentStatus = "proposed"
+    approved_by: str = ""
+    approved_at: datetime | None = None
+    approval_note: str = ""
+    source: str = "pm-portal"
+    created_at: datetime
+    updated_at: datetime
+
+
 class BranchHealth(BaseModel):
     branch: str
     head: str
@@ -89,6 +133,8 @@ class ProjectReadiness(BaseModel):
     branch_health: list[BranchHealth]
     recommendations: list[Recommendation]
     decisions: list[RecommendationDecision]
+    tickets: list[ProjectTicket] = Field(default_factory=list)
+    team_assignments: list[TeamAssignment] = Field(default_factory=list)
 
 
 class StandupRun(BaseModel):

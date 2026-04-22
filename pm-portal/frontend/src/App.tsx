@@ -1,18 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { fetchStandup } from "./api";
+import { fetchLatestGovernanceSummary, fetchStandup } from "./api";
 import { ProjectDetailPage } from "./pages/ProjectDetailPage";
-import type { ProjectReadiness, StandupRun } from "./types";
+import type { GovernanceRunSummary, ProjectReadiness, StandupRun } from "./types";
 
 export default function App() {
   const [run, setRun] = useState<StandupRun | null>(null);
   const [selectedName, setSelectedName] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [govSummary, setGovSummary] = useState<GovernanceRunSummary | null>(null);
 
   async function refresh() {
     try {
       setError("");
       const next = await fetchStandup();
+      const nextSummary = await fetchLatestGovernanceSummary();
       setRun(next);
+      setGovSummary(nextSummary);
       if (!selectedName && next.projects.length > 0) {
         setSelectedName(next.projects[0].project.name);
       }
@@ -38,6 +41,21 @@ export default function App() {
 
       <div className="pm-shell">
         <aside className="pm-card pm-pane pm-scroll-pane">
+          <div className="pm-card-block">
+            <div className="pm-meta-label">Latest Governance Run</div>
+            {govSummary ? (
+              <div>
+                <div className="pm-status-line">Profile: {govSummary.profile}</div>
+                <div className="pm-status-line">Trigger: {govSummary.trigger_reason}</div>
+                <div className="pm-status-line">
+                  Enabled checks: {govSummary.checks.filter((c) => c.status === "enabled").length}/{govSummary.checks.length}
+                </div>
+                <div className="pm-status-line">Updated: {new Date(govSummary.generated_at).toLocaleString()}</div>
+              </div>
+            ) : (
+              <div className="pm-status-line">No governance run summary available yet.</div>
+            )}
+          </div>
           <div className="pm-sidebar-header">
             <div>
               <div className="pm-meta-label">Portfolio Projects</div>

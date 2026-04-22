@@ -1,25 +1,45 @@
 # PM Governance Runbook
 
-## Daily Sweep
+## Daily Sweep (MVP fast profile)
 
 Run from `Project Manager` root:
 
 ```bash
-./scripts/run_pm_governance_sweep.sh
+PROFILE=fast ./scripts/run_governance_profile.sh
 ```
 
-Or stepwise:
+This runs only lightweight checks by default. Use env flags to force specific checks for a small chunk:
 
 ```bash
-python3 scripts/portfolio_status.py
-python3 scripts/check_remote_collisions.py
-python3 scripts/validate_cascade_scope.py
-python3 scripts/run_portfolio_readiness_checks.py
-python3 scripts/validate_mobile_governance.py
-python3 scripts/check_runtime_disclosure_drift.py
-python3 scripts/validate_architecture_scale_fit.py
-# optional publication-review coupling check:
-# python3 scripts/review_gate.py
+PROFILE=fast RUN_SCOPE_CHECK=1 RUN_ARCH_SCALE_FIT_CHECK=1 ./scripts/run_governance_profile.sh
+```
+
+## Profiles
+
+- `fast` (default): PR/push-safe selective checks only.
+- `pm-portal`: portal/mobile policy and disclosure alignment checks.
+- `release`: pre-send/pre-release checks for a target scope.
+- `full`: all governance checks (best for nightly/manual full audits).
+
+Examples:
+
+```bash
+PROFILE=pm-portal ./scripts/run_governance_profile.sh
+PROFILE=release TARGET_REPO="pm-portal" ./scripts/run_governance_profile.sh
+PROFILE=full ./scripts/run_governance_profile.sh
+```
+
+Each profile run writes a transparency summary artifact:
+
+- `docs/session-artifacts/governance/last-governance-run.json`
+- `docs/session-artifacts/governance/last-governance-run.md`
+
+These files show which checks were enabled/skipped and why (profile + trigger reason).
+
+## Full Legacy Sweep (compatibility)
+
+```bash
+./scripts/run_pm_governance_sweep.sh
 ```
 
 If any command fails:
@@ -29,6 +49,8 @@ If any command fails:
 3. Assign owner and due date.
 
 ## Weekly Control Review
+
+Run `PROFILE=full ./scripts/run_governance_profile.sh` at least weekly (or use nightly CI schedule) before high-risk release windows.
 
 1. Review `STATUS.md` for:
    - missing upstream repos

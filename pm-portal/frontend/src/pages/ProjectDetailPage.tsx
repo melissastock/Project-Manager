@@ -3,6 +3,8 @@ import type { ProjectReadiness } from "../types";
 import { DimensionCard } from "../components/DimensionCard";
 import { RecommendationPanel } from "../components/RecommendationPanel";
 import { ScoreBadge } from "../components/ScoreBadge";
+import { TeamStructurePanel } from "../components/TeamStructurePanel";
+import { TicketPanel } from "../components/TicketPanel";
 
 export function ProjectDetailPage({ project, onRefresh }: { project: ProjectReadiness; onRefresh: () => Promise<void> }) {
   return (
@@ -59,6 +61,8 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
       </div>
 
       <RecommendationPanel project={project} onRefresh={onRefresh} />
+      <TeamStructurePanel project={project} onRefresh={onRefresh} />
+      <TicketPanel project={project} onRefresh={onRefresh} />
     </div>
   );
 }

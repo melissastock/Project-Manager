@@ -48,6 +48,18 @@
 !pm-portal/docs/mobile-privacy-and-disclosures.md
 !pm-portal/backend/config/mobile-compliance-governance.json
 !pm-portal/backend/config/mobile-store-disclosures.json
+!pm-portal/backend/app/
+!pm-portal/backend/app/tickets.py
+!pm-portal/backend/app/team_assignments.py
+!pm-portal/frontend/src/components/
+!pm-portal/frontend/src/components/TicketPanel.tsx
+!pm-portal/frontend/src/components/TeamStructurePanel.tsx
+!pm-portal/frontend/src/pages/
+!pm-portal/frontend/src/pages/ProjectDetailPage.tsx
+!pm-portal/supabase/
+!pm-portal/supabase/migrations/
+!pm-portal/supabase/migrations/20260422103000_project_tickets.sql
+!pm-portal/supabase/migrations/20260422113000_project_team_assignments.sql
 pm-portal/frontend/.gitignore
 
 # This child repo exists locally but has no first commit yet, so the

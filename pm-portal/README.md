@@ -72,6 +72,50 @@ create table if not exists public.project_runtime_observations (
 
 When those variables are unset, the portal keeps working using `data/decisions.json` under the portal root.
 
+## Ticketing API (Phase 1)
+
+PM Portal now includes internal ticket lifecycle endpoints (works with local JSON fallback and can use Supabase table `project_tickets` when available):
+
+- `GET /api/tickets?project=<name>&state=<state>`
+- `POST /api/tickets`
+- `PATCH /api/tickets/{ticket_id}`
+
+`project_tickets` migration is included under:
+
+- `supabase/migrations/20260422103000_project_tickets.sql`
+
+Columns:
+
+- `id` (primary key)
+- `project`
+- `title`
+- `description`
+- `state` (`new|triaged|in_progress|blocked|done|deferred`)
+- `priority` (`P0|P1|P2|P3`)
+- `owner`
+- `lane`
+- `scope_label` (`all-repos|selected-lanes|pm-portal-only`)
+- `due_date`
+- `source`
+- `created_at`
+- `updated_at`
+
+## Team assignments + human approval
+
+Portal now reports team structure directly in each project detail view so operators can see exactly who is carrying each workstream and approve the team composition.
+
+API:
+
+- `GET /api/team-assignments?project=<name>`
+- `PATCH /api/team-assignments/{project_name}/{role_key}`
+- `POST /api/team-assignments/{project_name}/approve`
+
+Supabase migration:
+
+- `supabase/migrations/20260422113000_project_team_assignments.sql`
+
+This table stores role cards, RACI tags, assignee details, and owner approval metadata (`status`, `approved_by`, `approved_at`, `approval_note`) for transparent governance and trust.
+
 ## Supabase CLI (optional)
 
 From the `pm-portal` directory, after [installing the Supabase CLI](https://supabase.com/docs/guides/cli):

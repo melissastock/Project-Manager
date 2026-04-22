@@ -19,6 +19,56 @@ export interface Recommendation {
   confidence: "high" | "medium" | "low";
 }
 
+export interface Ticket {
+  id: string;
+  project: string;
+  title: string;
+  description: string;
+  state: "new" | "triaged" | "in_progress" | "blocked" | "done" | "deferred";
+  priority: "P0" | "P1" | "P2" | "P3";
+  owner: string;
+  lane: string;
+  scope_label: "all-repos" | "selected-lanes" | "pm-portal-only";
+  due_date: string;
+  source: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TeamAssignment {
+  id: string;
+  project: string;
+  role_key: string;
+  role_label: string;
+  raci_tags: Array<"R" | "A" | "C" | "I">;
+  assignee_name: string;
+  assignee_type: "human" | "agent" | "hybrid";
+  workstream: string;
+  narrative: string;
+  status: "proposed" | "approved" | "rejected";
+  approved_by: string;
+  approved_at: string | null;
+  approval_note: string;
+  source: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface GovernanceCheckStatus {
+  check: string;
+  flag: string;
+  status: "enabled" | "skipped";
+}
+
+export interface GovernanceRunSummary {
+  generated_at: string;
+  profile: string;
+  target_repo: string;
+  target_lane: string;
+  trigger_reason: string;
+  checks: GovernanceCheckStatus[];
+}
+
 export interface DimensionScore {
   dimension: string;
   score: number;
@@ -61,6 +111,11 @@ export interface ProjectReadiness {
     intake_stage: string;
     category: string;
     role: string;
+    governance_steward: string;
+    lane_operator: string;
+    release_packaging_owner: string;
+    compliance_reviewer: string;
+    automation_maintainer: string;
   };
   registry_status: "registered" | "unknown";
   runtime_status: "ok" | "path-missing" | "git-unavailable" | "unborn";
@@ -72,6 +127,8 @@ export interface ProjectReadiness {
   branch_health: BranchHealth[];
   recommendations: Recommendation[];
   decisions: RecommendationDecision[];
+  tickets: Ticket[];
+  team_assignments: TeamAssignment[];
 }
 
 export interface StandupRun {

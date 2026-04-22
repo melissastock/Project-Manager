@@ -5,8 +5,17 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 echo "== PM governance sweep (from $ROOT) =="
-python3 scripts/portfolio_status.py
-python3 scripts/check_remote_collisions.py
+if [[ "${RUN_PORTFOLIO_STATUS:-1}" == "1" ]]; then
+  python3 scripts/portfolio_status.py
+else
+  echo "Skipping portfolio_status.py (set RUN_PORTFOLIO_STATUS=1 to enable)."
+fi
+
+if [[ "${RUN_REMOTE_COLLISIONS:-1}" == "1" ]]; then
+  python3 scripts/check_remote_collisions.py
+else
+  echo "Skipping check_remote_collisions.py (set RUN_REMOTE_COLLISIONS=1 to enable)."
+fi
 
 if [[ "${RUN_REVIEW_GATE:-0}" == "1" ]]; then
   python3 scripts/review_gate.py
