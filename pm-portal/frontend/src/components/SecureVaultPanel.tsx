@@ -1,0 +1,254 @@
+import React, { useState } from "react";
+import {
+  createSecureVaultFile,
+  fetchSecureVaultAudit,
+  getSecureVaultSignedDownloadUrl,
+  getSecureVaultSignedUploadUrl,
+  verifySecureVaultChecksum,
+} from "../api";
+import type { ProjectReadiness } from "../types";
+
+export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadiness; onRefresh: () => Promise<void> }) {
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [signedUrlOutput, setSignedUrlOutput] = useState("");
+  const [auditOutput, setAuditOutput] = useState("");
+  const [expectedChecksumByFile, setExpectedChecksumByFile] = useState<Record<string, string>>({});
+  const [form, setForm] = useState({
+    client_name: "",
+    file_name: "",
+    storage_uri: "",
+    data_class: "other" as "ip_invention" | "financial" | "legal" | "medical" | "regulated" | "other",
+    sensitivity_level: "restricted" as "restricted" | "highly_restricted",
+    retention_policy: "retain-until-client-request-or-policy-expiry",
+    access_roles: "business_owner,portfolio_owner,technical_owner",
+    checksum_sha256: "",
+    uploaded_by: "Melissa Stock",
+    notes: "",
+  });
+
+  async function registerFile() {
+    if (!form.file_name.trim()) return;
+    try {
+      setBusy(true);
+      setError("");
+      await createSecureVaultFile({
+        project: project.project.name,
+        client_name: form.client_name,
+        file_name: form.file_name,
+        storage_uri: form.storage_uri,
+        data_class: form.data_class,
+        sensitivity_level: form.sensitivity_level,
+        encryption_status: "encrypted_at_rest_and_transport",
+        retention_policy: form.retention_policy,
+        access_roles: form.access_roles.split(",").map((x) => x.trim()).filter(Boolean),
+        checksum_sha256: form.checksum_sha256,
+        uploaded_by: form.uploaded_by,
+        notes: form.notes,
+      });
+      setForm((prev) => ({ ...prev, file_name: "", storage_uri: "", checksum_sha256: "", notes: "" }));
+      await onRefresh();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function issueSignedUrl(vaultFileId: string, direction: "upload" | "download") {
+    try {
+      setBusy(true);
+      setError("");
+      const payload = { actor_name: form.uploaded_by || "portal-user", actor_role: "business_owner", expires_in_seconds: 900 };
+      const result =
+        direction === "upload"
+          ? await getSecureVaultSignedUploadUrl(vaultFileId, payload)
+          : await getSecureVaultSignedDownloadUrl(vaultFileId, payload);
+      setSignedUrlOutput(JSON.stringify(result, null, 2));
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function uploadFileDirect(vaultFileId: string, file: File) {
+    try {
+      setBusy(true);
+      setError("");
+      const payload = { actor_name: form.uploaded_by || "portal-user", actor_role: "business_owner", expires_in_seconds: 900 };
+      const result = await getSecureVaultSignedUploadUrl(vaultFileId, payload);
+      const signedUpload = (result.signed_upload ?? {}) as Record<string, unknown>;
+      const uploadPath = String(result.storage_path ?? "");
+      const signedUrl =
+        String(signedUpload.signedURL ?? signedUpload.signedUrl ?? signedUpload.url ?? "");
+      const token = String(signedUpload.token ?? "");
+      if (!signedUrl) {
+        throw new Error("Signed upload URL not returned by backend.");
+      }
+      const headers: Record<string, string> = {};
+      if (token) headers.authorization = `Bearer ${token}`;
+      const response = await fetch(signedUrl, {
+        method: "PUT",
+        body: file,
+        headers,
+      });
+      if (!response.ok) throw new Error("Direct upload failed.");
+      setSignedUrlOutput(JSON.stringify({ uploadPath, signedUpload }, null, 2));
+      await onRefresh();
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function downloadFileDirect(vaultFileId: string) {
+    try {
+      setBusy(true);
+      setError("");
+      const payload = { actor_name: form.uploaded_by || "portal-user", actor_role: "business_owner", expires_in_seconds: 900 };
+      const result = await getSecureVaultSignedDownloadUrl(vaultFileId, payload);
+      const signedDownload = (result.signed_download ?? {}) as Record<string, unknown>;
+      const signedUrl = String(signedDownload.signedURL ?? signedDownload.signedUrl ?? signedDownload.url ?? "");
+      if (!signedUrl) throw new Error("Signed download URL not returned by backend.");
+      window.open(signedUrl, "_blank", "noopener,noreferrer");
+      setSignedUrlOutput(JSON.stringify(result, null, 2));
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function verifyChecksum(vaultFileId: string) {
+    try {
+      setBusy(true);
+      setError("");
+      const expected = expectedChecksumByFile[vaultFileId] || "";
+      if (!expected.trim()) throw new Error("Enter expected checksum before verifying.");
+      await verifySecureVaultChecksum(vaultFileId, {
+        actor_name: form.uploaded_by || "portal-user",
+        actor_role: "business_owner",
+        expected_checksum_sha256: expected.trim(),
+      });
+      await onRefresh();
+      await loadAudit(vaultFileId);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function loadAudit(vaultFileId: string) {
+    try {
+      setBusy(true);
+      setError("");
+      const events = await fetchSecureVaultAudit(vaultFileId);
+      setAuditOutput(JSON.stringify(events, null, 2));
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div>
+      <h3 className="pm-section-title pm-section-title-spaced">Secure Client Vault</h3>
+      <p className="pm-subtitle">
+        Protected file register for IP, invention, financial, legal, medical, and other sensitive client materials.
+      </p>
+      {error ? <p className="pm-error">{error}</p> : null}
+      <div className="pm-card pm-card-block">
+        <div className="pm-action-row">
+          <input className="pm-input" placeholder="Client name" value={form.client_name} onChange={(e) => setForm((p) => ({ ...p, client_name: e.target.value }))} />
+          <input className="pm-input" placeholder="File name" value={form.file_name} onChange={(e) => setForm((p) => ({ ...p, file_name: e.target.value }))} />
+        </div>
+        <div className="pm-action-row">
+          <input className="pm-input" placeholder="Secure storage URI (vault path)" value={form.storage_uri} onChange={(e) => setForm((p) => ({ ...p, storage_uri: e.target.value }))} />
+          <select className="pm-input" value={form.data_class} onChange={(e) => setForm((p) => ({ ...p, data_class: e.target.value as typeof form.data_class }))}>
+            <option value="ip_invention">IP / invention</option>
+            <option value="financial">financial</option>
+            <option value="legal">legal</option>
+            <option value="medical">medical</option>
+            <option value="regulated">regulated</option>
+            <option value="other">other</option>
+          </select>
+          <select className="pm-input" value={form.sensitivity_level} onChange={(e) => setForm((p) => ({ ...p, sensitivity_level: e.target.value as typeof form.sensitivity_level }))}>
+            <option value="restricted">restricted</option>
+            <option value="highly_restricted">highly restricted</option>
+          </select>
+        </div>
+        <div className="pm-action-row">
+          <input className="pm-input" placeholder="Access roles (comma-separated)" value={form.access_roles} onChange={(e) => setForm((p) => ({ ...p, access_roles: e.target.value }))} />
+          <input className="pm-input" placeholder="SHA256 checksum (optional)" value={form.checksum_sha256} onChange={(e) => setForm((p) => ({ ...p, checksum_sha256: e.target.value }))} />
+        </div>
+        <textarea className="pm-input pm-textarea" placeholder="Retention policy / notes" value={form.notes} onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))} />
+        <button className="pm-action-btn" disabled={busy} onClick={registerFile}>Register Secure File</button>
+      </div>
+
+      {project.secure_vault_files.length === 0 ? (
+        <p className="pm-muted-metadata">No secure files registered yet.</p>
+      ) : (
+        project.secure_vault_files.map((file) => (
+          <div key={file.id} className="pm-card pm-card-block">
+            <strong>{file.file_name}</strong>
+            <p className="pm-muted-metadata">
+              Class: {file.data_class} | Sensitivity: {file.sensitivity_level} | Encryption: {file.encryption_status}
+            </p>
+            <p className="pm-muted-metadata">
+              URI: {file.storage_uri || "not set"} | Access: {file.access_roles.join(", ") || "none"}
+            </p>
+            <p className="pm-muted-metadata">
+              Retention: {file.retention_policy} | Checksum status: {file.checksum_status}
+            </p>
+            <div className="pm-action-row">
+              <input
+                className="pm-input"
+                type="file"
+                onChange={(e) => {
+                  const picked = e.target.files?.[0];
+                  if (picked) uploadFileDirect(file.id, picked);
+                }}
+              />
+              <button className="pm-action-btn secondary" disabled={busy} onClick={() => issueSignedUrl(file.id, "upload")}>
+                Issue Signed Upload URL
+              </button>
+              <button className="pm-action-btn secondary" disabled={busy} onClick={() => downloadFileDirect(file.id)}>
+                Download Secure File
+              </button>
+              <button className="pm-action-btn secondary" disabled={busy} onClick={() => loadAudit(file.id)}>
+                View Vault Audit
+              </button>
+            </div>
+            <div className="pm-action-row">
+              <input
+                className="pm-input"
+                placeholder="Expected SHA256 checksum"
+                value={expectedChecksumByFile[file.id] || ""}
+                onChange={(e) => setExpectedChecksumByFile((prev) => ({ ...prev, [file.id]: e.target.value }))}
+              />
+              <button className="pm-action-btn secondary" disabled={busy} onClick={() => verifyChecksum(file.id)}>
+                Verify Checksum
+              </button>
+            </div>
+          </div>
+        ))
+      )}
+      {signedUrlOutput ? (
+        <div className="pm-card pm-card-block">
+          <div className="pm-meta-label">Signed URL payload</div>
+          <pre className="pm-muted-metadata">{signedUrlOutput}</pre>
+        </div>
+      ) : null}
+      {auditOutput ? (
+        <div className="pm-card pm-card-block">
+          <div className="pm-meta-label">Vault audit events</div>
+          <pre className="pm-muted-metadata">{auditOutput}</pre>
+        </div>
+      ) : null}
+    </div>
+  );
+}

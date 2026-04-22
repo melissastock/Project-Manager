@@ -3,6 +3,9 @@ import type { ProjectReadiness } from "../types";
 import { DimensionCard } from "../components/DimensionCard";
 import { RecommendationPanel } from "../components/RecommendationPanel";
 import { ScoreBadge } from "../components/ScoreBadge";
+import { ClientAgreementPanel } from "../components/ClientAgreementPanel";
+import { LaborEstimatePanel } from "../components/LaborEstimatePanel";
+import { SecureVaultPanel } from "../components/SecureVaultPanel";
 import { TeamStructurePanel } from "../components/TeamStructurePanel";
 import { TicketPanel } from "../components/TicketPanel";
 
@@ -77,6 +80,9 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
       </div>
 
       <RecommendationPanel project={project} onRefresh={onRefresh} />
+      <ClientAgreementPanel project={project} onRefresh={onRefresh} />
+      <LaborEstimatePanel project={project} onRefresh={onRefresh} />
+      <SecureVaultPanel project={project} onRefresh={onRefresh} />
       <TeamStructurePanel project={project} onRefresh={onRefresh} />
       <TicketPanel project={project} onRefresh={onRefresh} />
     </div>

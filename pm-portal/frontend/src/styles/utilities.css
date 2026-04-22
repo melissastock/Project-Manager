@@ -9,8 +9,8 @@
 }
 
 .pm-card-block {
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
 }
 
 .pm-flex-between {
@@ -21,6 +21,7 @@
 .pm-action-row {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .pm-score-badge {
@@ -31,7 +32,7 @@
 
 .pm-score-value {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 24px;
+  font-size: 26px;
   color: var(--mjsds-navy);
 }
 

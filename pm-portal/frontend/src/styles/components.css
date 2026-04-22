@@ -1,37 +1,41 @@
 .pm-app {
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 24px 22px 30px;
 }
 
 .pm-brand-title {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 38px;
+  font-size: 40px;
+  font-weight: 500;
   line-height: 1.1;
   margin: 0;
+  color: var(--mjsds-navy);
 }
 
 .pm-subtitle {
-  margin: 8px 0 0;
+  margin: 10px 0 0;
+  max-width: 840px;
+  line-height: 1.5;
   color: var(--mjsds-ink-mid);
 }
 
 .pm-shell {
-  margin-top: 18px;
+  margin-top: 22px;
   display: grid;
   grid-template-columns: 340px 1fr;
-  gap: 16px;
+  gap: 18px;
 }
 
 .pm-card {
   background: var(--mjsds-white);
   border: 1px solid var(--mjsds-divider);
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(37, 57, 67, 0.08);
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(21, 42, 53, 0.08);
 }
 
 .pm-pane {
-  padding: 14px;
+  padding: 16px;
 }
 
 .pm-sidebar-header {
@@ -52,17 +56,32 @@
 .pm-action-btn {
   border: 1px solid var(--mjsds-navy);
   background: var(--mjsds-navy);
-  color: var(--mjsds-off-white);
+  color: var(--mjsds-white);
   border-radius: 8px;
-  padding: 6px 10px;
+  padding: 7px 11px;
   font-weight: 600;
   cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.pm-action-btn:hover {
+  background: var(--mjsds-navy-deep);
+  border-color: var(--mjsds-navy-deep);
+}
+
+.pm-action-btn:focus-visible {
+  outline: 2px solid var(--mjsds-gold-light);
+  outline-offset: 2px;
 }
 
 .pm-action-btn.secondary {
   background: var(--mjsds-white);
   color: var(--mjsds-navy);
   border-color: var(--mjsds-gold);
+}
+
+.pm-action-btn.secondary:hover {
+  background: var(--mjsds-gold-pale);
 }
 
 .pm-input {
@@ -73,6 +92,12 @@
   border-radius: 8px;
   padding: 8px 10px;
   font: inherit;
+}
+
+.pm-input:focus-visible {
+  outline: 2px solid var(--mjsds-gold-light);
+  outline-offset: 1px;
+  border-color: var(--mjsds-gold);
 }
 
 .pm-textarea {
@@ -93,10 +118,15 @@
   width: 100%;
   text-align: left;
   border: 1px solid var(--mjsds-divider);
-  border-radius: 10px;
+  border-radius: 9px;
   background: var(--mjsds-white);
   padding: 10px;
   cursor: pointer;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.pm-project-btn:hover {
+  border-color: var(--mjsds-gold-light);
 }
 
 .pm-project-btn.active {
@@ -112,7 +142,9 @@
 
 .pm-section-title {
   font-family: "Cormorant Garamond", Georgia, serif;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-size: 31px;
+  color: var(--mjsds-navy);
 }
 
 .pm-section-title-spaced {
@@ -167,6 +199,14 @@
   padding: 8px 6px;
   text-align: left;
   vertical-align: top;
+}
+
+.pm-table th {
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--mjsds-slate);
 }
 
 .pm-error {

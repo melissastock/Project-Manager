@@ -116,6 +116,62 @@ Supabase migration:
 
 This table stores role cards, RACI tags, assignee details, and owner approval metadata (`status`, `approved_by`, `approved_at`, `approval_note`) for transparent governance and trust.
 
+## Client-facing intake + contract lock
+
+Portal now supports client-facing agreement capture with post-intake lock controls:
+
+- `GET /api/client-agreements?project=<name>`
+- `POST /api/client-agreements`
+- `PATCH /api/client-agreements/{agreement_id}`
+- `POST /api/client-agreements/{agreement_id}/intake-complete`
+- `GET /api/client-agreements/{agreement_id}/messages`
+- `POST /api/client-agreements/{agreement_id}/messages`
+- `GET /api/client-agreements/{agreement_id}/change-orders`
+- `POST /api/client-agreements/{agreement_id}/change-orders`
+- `POST /api/client-agreements/{agreement_id}/change-orders/{change_order_id}/decision`
+- `GET /api/client-agreements/{agreement_id}/audit`
+
+Supabase migration:
+
+- `supabase/migrations/20260422133000_client_agreements_intake_lock.sql`
+
+Lock behavior:
+
+- Agreement fields are editable before intake completion.
+- Intake completion locks scope/price/package fields.
+- Post-lock scope/pricing changes must go through change orders.
+- Audit events are recorded for lock, updates, messages, and change-order decisions.
+
+## Secure client vault (sensitive files)
+
+For sensitive client materials (IP/invention, financial, legal, medical, regulated), PM Portal includes a secure vault register and signed URL issuance endpoints.
+
+API:
+
+- `GET /api/secure-vault/files?project=<name>`
+- `POST /api/secure-vault/files`
+- `POST /api/secure-vault/files/{vault_file_id}/signed-upload-url`
+- `POST /api/secure-vault/files/{vault_file_id}/signed-download-url`
+- `POST /api/secure-vault/files/{vault_file_id}/verify-checksum`
+- `GET /api/secure-vault/files/{vault_file_id}/audit`
+
+Required secure storage environment variables in `backend/.env`:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_SECURE_VAULT_BUCKET` (default: `secure-client-vault`)
+
+Notes:
+
+- Signed URLs are role-gated by each vault file's `access_roles`.
+- All registration and signed URL issuance actions are recorded in vault audit events.
+- Default bucket path structure is auto-generated as:
+  - `<project>/<client>/<data_class>/<vault_file_id>/<file_name>`
+- Upload verification flow:
+  1) upload file via signed upload URL
+  2) provide expected SHA256
+  3) call checksum verification endpoint to compare expected vs actual bytes in storage.
+
 ## Supabase CLI (optional)
 
 From the `pm-portal` directory, after [installing the Supabase CLI](https://supabase.com/docs/guides/cli):

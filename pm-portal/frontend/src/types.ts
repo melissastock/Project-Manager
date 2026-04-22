@@ -54,6 +54,144 @@ export interface TeamAssignment {
   updated_at: string;
 }
 
+export interface AgreementDeliverable {
+  id: string;
+  title: string;
+  description: string;
+  due_date: string;
+  acceptance_criteria: string;
+}
+
+export interface IntakeResponse {
+  // Client-owned
+  client_goals: string;
+  success_criteria: string;
+  communication_preferences: string;
+  primary_contact: string;
+  required_assets: string[];
+
+  // Business-owner-owned
+  constraints: string;
+  dependencies: string;
+  budget_range_usd: string;
+  scope_boundaries: string;
+  compliance_requirements: string;
+  approval_authority: string;
+  risk_assumptions: string;
+
+  completed: boolean;
+  completed_at: string | null;
+}
+
+export interface ClientAgreement {
+  id: string;
+  project: string;
+  client_name: string;
+  package_name: string;
+  product_brief: string;
+  scope_definition: string;
+  deliverables_summary: string;
+  pricing_model: "fixed" | "package" | "retainer" | "mixed";
+  price_terms_json: Record<string, unknown>;
+  agreement_status: "draft" | "under_review" | "ready_for_signature" | "active" | "locked" | "amended";
+  is_locked: boolean;
+  locked_at: string | null;
+  locked_by: string;
+  lock_reason: string;
+  owner_role: string;
+  neuro_worker_type: string;
+  intake: IntakeResponse;
+  deliverables: AgreementDeliverable[];
+  source: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AgreementMessage {
+  id: string;
+  agreement_id: string;
+  project: string;
+  author_name: string;
+  author_role: string;
+  message: string;
+  visibility: "client_and_team" | "internal_only";
+  created_at: string;
+}
+
+export interface AgreementChangeOrder {
+  id: string;
+  agreement_id: string;
+  project: string;
+  requested_by: string;
+  requested_scope_delta: string;
+  requested_price_delta: string;
+  requested_timeline_delta: string;
+  status: "requested" | "approved" | "rejected" | "implemented";
+  approver: string;
+  decision_note: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface LaborEstimateModule {
+  module_key: "strategy" | "development" | "operationalization" | "governance" | "marketing" | "gtm";
+  estimated_hours: number;
+  estimated_cost_usd: number;
+  notes: string;
+  subcomponents: string[];
+}
+
+export interface NonLaborCostItem {
+  category: "hosting" | "storage" | "third_party_tools" | "security_compliance" | "operations_support" | "contingency" | "other";
+  one_time_usd: number;
+  monthly_recurring_usd: number;
+  usage_variable_monthly_usd: number;
+  notes: string;
+}
+
+export interface LaborEstimate {
+  id: string;
+  project: string;
+  estimate_stage: "post-intake-pre-onboarding";
+  hourly_rate_usd: number;
+  modules: LaborEstimateModule[];
+  non_labor_costs: NonLaborCostItem[];
+  total_hours: number;
+  total_cost_usd: number;
+  non_labor_one_time_usd: number;
+  non_labor_monthly_usd: number;
+  non_labor_variable_monthly_usd: number;
+  total_build_cost_usd: number;
+  total_monthly_run_cost_usd: number;
+  projected_12m_tco_usd: number;
+  confidence: "low" | "medium" | "high";
+  assumptions: string[];
+  created_by: string;
+  source: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SecureVaultFile {
+  id: string;
+  project: string;
+  client_name: string;
+  file_name: string;
+  storage_uri: string;
+  data_class: "ip_invention" | "financial" | "legal" | "medical" | "regulated" | "other";
+  sensitivity_level: "restricted" | "highly_restricted";
+  encryption_status: "encrypted_at_rest" | "encrypted_at_rest_and_transport";
+  retention_policy: string;
+  access_roles: string[];
+  checksum_sha256: string;
+  checksum_status: "pending" | "verified" | "mismatch";
+  upload_verified_at: string | null;
+  uploaded_by: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface GovernanceCheckStatus {
   check: string;
   flag: string;
@@ -145,6 +283,9 @@ export interface ProjectReadiness {
   decisions: RecommendationDecision[];
   tickets: Ticket[];
   team_assignments: TeamAssignment[];
+  client_agreements: ClientAgreement[];
+  labor_estimates: LaborEstimate[];
+  secure_vault_files: SecureVaultFile[];
 }
 
 export interface StandupRun {

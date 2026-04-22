@@ -4,14 +4,57 @@ from datetime import datetime, timezone
 from pathlib import Path
 import subprocess
 
-from .config import DECISIONS_PATH, POLICY_PATH, REPOS_PATH, TEAM_ASSIGNMENTS_PATH, TICKETS_PATH, load_json
+from .agreements import (
+    append_audit_event,
+    get_agreement,
+    list_change_orders_for_agreement,
+    list_audit_events_for_agreement,
+    list_messages_for_agreement,
+    list_project_agreements,
+    load_audit_events,
+    load_agreement_messages,
+    load_change_orders,
+    load_client_agreements,
+    persist_agreement_messages,
+    persist_change_orders,
+    persist_client_agreements,
+)
+from .config import (
+    AGREEMENT_CHANGE_ORDERS_PATH,
+    AGREEMENT_AUDIT_EVENTS_PATH,
+    AGREEMENT_MESSAGES_PATH,
+    CLIENT_AGREEMENTS_PATH,
+    DECISIONS_PATH,
+    LABOR_ESTIMATES_PATH,
+    POLICY_PATH,
+    REPOS_PATH,
+    SECURE_VAULT_FILES_PATH,
+    SECURE_VAULT_AUDIT_EVENTS_PATH,
+    TEAM_ASSIGNMENTS_PATH,
+    TICKETS_PATH,
+    load_json,
+)
 from .db import insert_runtime_observations, supabase_configured
 from .ingestion import collect_snapshot
+from .labor_estimates import (
+    list_project_labor_estimates,
+    load_labor_estimates,
+    persist_labor_estimates,
+)
 from .models import BranchHealth, Project, ProjectReadiness, RecommendationDecision, RuntimeObservation, RuntimeStatus, StandupRun, TeamAssignment
 from .recommendations import build_recommendations, decisions_for_recommendations, load_decisions, persist_decisions
 from .scoring import compute_base_score, compute_dimensions, readiness_band
 from .team_assignments import list_project_team_assignments, load_team_assignments, persist_team_assignments
 from .tickets import list_project_tickets, load_tickets, persist_tickets
+from .secure_vault import (
+    get_secure_vault_file,
+    list_project_secure_vault_files,
+    list_vault_audit_events_for_file,
+    load_secure_vault_audit_events,
+    load_secure_vault_files,
+    persist_secure_vault_audit_events,
+    persist_secure_vault_files,
+)
 
 
 def _project_manager_root() -> Path:
@@ -38,6 +81,9 @@ def build_standup_view() -> StandupRun:
     decisions_cache = load_decisions(DECISIONS_PATH)
     tickets_cache = load_tickets(TICKETS_PATH)
     team_cache = load_team_assignments(TEAM_ASSIGNMENTS_PATH)
+    agreements_cache = load_client_agreements(CLIENT_AGREEMENTS_PATH)
+    labor_cache = load_labor_estimates(LABOR_ESTIMATES_PATH)
+    vault_cache = load_secure_vault_files(SECURE_VAULT_FILES_PATH)
     pm_root = _project_manager_root()
 
     projects: list[ProjectReadiness] = []
@@ -65,6 +111,9 @@ def build_standup_view() -> StandupRun:
             decisions=decisions,
             tickets=list_project_tickets(project.name, tickets_cache),
             team_assignments=list_project_team_assignments(entry, team_cache),
+            client_agreements=list_project_agreements(project.name, agreements_cache),
+            labor_estimates=list_project_labor_estimates(project.name, labor_cache),
+            secure_vault_files=list_project_secure_vault_files(project.name, vault_cache),
         ))
         observations.append(
             RuntimeObservation(
@@ -137,3 +186,99 @@ def upsert_team_assignment_payload(payload: dict) -> dict:
     cache[payload["id"]] = payload
     persist_team_assignments(TEAM_ASSIGNMENTS_PATH, cache)
     return payload
+
+
+def list_client_agreements(project_name: str) -> list[dict]:
+    cache = load_client_agreements(CLIENT_AGREEMENTS_PATH)
+    return [item.model_dump(mode="json") for item in list_project_agreements(project_name, cache)]
+
+
+def get_client_agreement(agreement_id: str) -> dict | None:
+    cache = load_client_agreements(CLIENT_AGREEMENTS_PATH)
+    return get_agreement(agreement_id, cache)
+
+
+def upsert_client_agreement_payload(payload: dict) -> dict:
+    cache = load_client_agreements(CLIENT_AGREEMENTS_PATH)
+    cache[payload["id"]] = payload
+    persist_client_agreements(CLIENT_AGREEMENTS_PATH, cache)
+    return payload
+
+
+def list_agreement_messages(agreement_id: str) -> list[dict]:
+    cache = load_agreement_messages(AGREEMENT_MESSAGES_PATH)
+    return [item.model_dump(mode="json") for item in list_messages_for_agreement(agreement_id, cache)]
+
+
+def upsert_agreement_message_payload(payload: dict) -> dict:
+    cache = load_agreement_messages(AGREEMENT_MESSAGES_PATH)
+    cache[payload["id"]] = payload
+    persist_agreement_messages(AGREEMENT_MESSAGES_PATH, cache)
+    return payload
+
+
+def list_agreement_change_orders(agreement_id: str) -> list[dict]:
+    cache = load_change_orders(AGREEMENT_CHANGE_ORDERS_PATH)
+    return [item.model_dump(mode="json") for item in list_change_orders_for_agreement(agreement_id, cache)]
+
+
+def upsert_change_order_payload(payload: dict) -> dict:
+    cache = load_change_orders(AGREEMENT_CHANGE_ORDERS_PATH)
+    cache[payload["id"]] = payload
+    persist_change_orders(AGREEMENT_CHANGE_ORDERS_PATH, cache)
+    return payload
+
+
+def create_agreement_audit_event(payload: dict) -> dict:
+    return append_audit_event(AGREEMENT_AUDIT_EVENTS_PATH, payload)
+
+
+def list_agreement_audit_events(agreement_id: str) -> list[dict]:
+    cache = load_audit_events(AGREEMENT_AUDIT_EVENTS_PATH)
+    return list_audit_events_for_agreement(agreement_id, cache)
+
+
+def list_labor_estimates(project_name: str) -> list[dict]:
+    cache = load_labor_estimates(LABOR_ESTIMATES_PATH)
+    return [item.model_dump(mode="json") for item in list_project_labor_estimates(project_name, cache)]
+
+
+def get_labor_estimate(estimate_id: str) -> dict | None:
+    cache = load_labor_estimates(LABOR_ESTIMATES_PATH)
+    return cache.get(estimate_id)
+
+
+def upsert_labor_estimate_payload(payload: dict) -> dict:
+    cache = load_labor_estimates(LABOR_ESTIMATES_PATH)
+    cache[payload["id"]] = payload
+    persist_labor_estimates(LABOR_ESTIMATES_PATH, cache)
+    return payload
+
+
+def list_secure_vault_files(project_name: str) -> list[dict]:
+    cache = load_secure_vault_files(SECURE_VAULT_FILES_PATH)
+    return [item.model_dump(mode="json") for item in list_project_secure_vault_files(project_name, cache)]
+
+
+def upsert_secure_vault_file_payload(payload: dict) -> dict:
+    cache = load_secure_vault_files(SECURE_VAULT_FILES_PATH)
+    cache[payload["id"]] = payload
+    persist_secure_vault_files(SECURE_VAULT_FILES_PATH, cache)
+    return payload
+
+
+def get_secure_vault_file_payload(file_id: str) -> dict | None:
+    cache = load_secure_vault_files(SECURE_VAULT_FILES_PATH)
+    return get_secure_vault_file(file_id, cache)
+
+
+def append_secure_vault_audit_event(payload: dict) -> dict:
+    cache = load_secure_vault_audit_events(SECURE_VAULT_AUDIT_EVENTS_PATH)
+    cache[payload["id"]] = payload
+    persist_secure_vault_audit_events(SECURE_VAULT_AUDIT_EVENTS_PATH, cache)
+    return payload
+
+
+def list_secure_vault_audit_events(file_id: str) -> list[dict]:
+    cache = load_secure_vault_audit_events(SECURE_VAULT_AUDIT_EVENTS_PATH)
+    return list_vault_audit_events_for_file(file_id, cache)
