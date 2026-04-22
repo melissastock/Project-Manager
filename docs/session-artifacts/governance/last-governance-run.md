@@ -1,6 +1,6 @@
 # Governance Run Summary
 
-- Generated at (UTC): 2026-04-22T08:04:49.578310+00:00
+- Generated at (UTC): 2026-04-22T08:10:57.876496+00:00
 - Profile: `fast`
 - Trigger reason: `manual`
 - Target repo: `- `

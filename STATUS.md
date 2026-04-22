@@ -1,15 +1,15 @@
 # Portfolio Status
 
-Generated: 2026-04-22 02:04:34 MDT
+Generated: 2026-04-22 02:10:46 MDT
 
 ## Summary
 
-- Managed repositories: 19
-- Clean repositories: 16
-- Repositories with local changes: 1
+- Managed repositories: 20
+- Clean repositories: 18
+- Repositories with local changes: 0
 - Repositories in onboarding: 2
 - Public repositories: 1
-- Restricted repositories: 18
+- Restricted repositories: 19
 
 ## Repository Snapshot
 
@@ -19,8 +19,9 @@ Generated: 2026-04-22 02:04:34 MDT
 | Aneumind and TC Structure | business-structure | core | private-client | legal-financial-restricted | client-invention-protected | no | active | codex/delivery-gates-baseline | clean | no-upstream | 353b41b | Add persona research scaffolds to project intake governance metadata. |
 | App Builder | platform-product | adjacent | private-internal | internal-ops | personal-os-protected | no | active | codex/readiness-checklist-compliance | clean | ahead:0 behind:0 | 9aa0b4f | Add intake process visibility and completion checks to portal UI. |
 | Archiavellian | archive-incubator | peripheral | private-internal | ip-restricted | personal-os-protected | no | active | codex/archiavellian-report-to-project-manager | clean | ahead:1 behind:0 | 6c41a6d | Add persona research scaffolds to project intake governance metadata.; GitHub archiavellian (private) |
-| Archiavellian-Archive | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | archive | codex/archive-readiness-annotation | unstaged:2, untracked:1 | ahead:1 behind:0 | ed842ee | Ignore local evidence drops; add portfolio delivery and GTM scaffold docs. |
+| Archiavellian-Archive | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | archive | codex/archive-readiness-annotation | clean | ahead:2 behind:0 | c1f9a1d | Add Case Files archive intake inventory |
 | Bankruptcy | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | unborn | unborn | - | - | Repository exists but has no commits yet |
+| Case Files | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | clean | no-upstream | 38d6b3f | Initialize Case Files project workspace |
 | Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | platform-product | adjacent | private-client | regulated-sensitive | client-invention-protected | no | active | main | clean | ahead:1 behind:0 | 44f8495 | Add persona research scaffolds to project intake governance metadata.; parent Project Manager; GitHub CIMPT (private) |
 | Divorce | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | clean | ahead:1 behind:0 | 5cca571 | Add persona research scaffolds to project intake governance metadata.; GitHub PLP (private) |
 | MJS Financial Dash | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | codex/finance-snapshot-onboarding | clean | ahead:1 behind:0 | 9c03a4b | Add persona research scaffolds to project intake governance metadata.; GitHub MJS-Financial-Dash (private) |
