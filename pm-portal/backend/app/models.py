@@ -7,6 +7,8 @@ from pydantic import BaseModel, Field
 
 ReadinessBand = Literal["ready", "monitor", "at-risk", "critical"]
 DecisionState = Literal["approved", "rejected", "defer", "pending"]
+RegistryStatus = Literal["registered", "unknown"]
+RuntimeStatus = Literal["ok", "path-missing", "git-unavailable", "unborn"]
 
 
 class Project(BaseModel):
@@ -77,6 +79,9 @@ class BranchHealth(BaseModel):
 
 class ProjectReadiness(BaseModel):
     project: Project
+    registry_status: RegistryStatus = "registered"
+    runtime_status: RuntimeStatus
+    runtime_note: str = ""
     score: int
     band: ReadinessBand
     dimensions: list[ReadinessDimensionScore]
@@ -89,3 +94,18 @@ class ProjectReadiness(BaseModel):
 class StandupRun(BaseModel):
     generated_at: datetime
     projects: list[ProjectReadiness]
+
+
+class RuntimeObservation(BaseModel):
+    project_name: str
+    project_path: str
+    intake_stage: str
+    registry_status: RegistryStatus
+    runtime_status: RuntimeStatus
+    runtime_note: str
+    exists: bool
+    is_git_repo: bool
+    branch: str
+    head: str
+    summary: str
+    observed_at: datetime

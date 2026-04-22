@@ -1,0 +1,42 @@
+.pm-scroll-pane {
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.pm-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.pm-card-block {
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.pm-flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pm-action-row {
+  display: flex;
+  gap: 8px;
+}
+
+.pm-score-badge {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pm-score-value {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 24px;
+  color: var(--mjsds-navy);
+}
+
+@media (max-width: 900px) {
+  .pm-shell {
+    grid-template-columns: 1fr;
+  }
+}

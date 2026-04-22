@@ -36,6 +36,19 @@
 !provider-access-hub/
 !Wayne Strain/
 !mjsds-website/
+!pm-portal/
+!pm-portal/frontend/
+!pm-portal/frontend/src/
+!pm-portal/frontend/src/styles/
+!pm-portal/frontend/src/styles/**
+!pm-portal/backend/
+!pm-portal/backend/config/
+!pm-portal/docs/
+!pm-portal/docs/mobile-compliance-governance.md
+!pm-portal/docs/mobile-privacy-and-disclosures.md
+!pm-portal/backend/config/mobile-compliance-governance.json
+!pm-portal/backend/config/mobile-store-disclosures.json
+pm-portal/frontend/.gitignore
 
 # This child repo exists locally but has no first commit yet, so the
 # top-level repo cannot stage it as a gitlink until it is initialized.

@@ -32,21 +32,21 @@ export function RecommendationPanel({ project, onRefresh }: { project: ProjectRe
 
   return (
     <div>
-      <h3>Recommended next steps</h3>
-      {error ? <p style={{ color: "crimson" }}>{error}</p> : null}
+      <h3 className="pm-section-title">Needs Decision</h3>
+      {error ? <p className="pm-error">{error}</p> : null}
       {project.recommendations.map((rec) => {
         const decision = decisionFor(project, rec.id);
         return (
-          <div key={rec.id} style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12, marginBottom: 10 }}>
+          <div key={rec.id} className="pm-card pm-card-block">
             <strong>{rec.action}</strong>
             <p><strong>Why now:</strong> {rec.why_now}</p>
             <p><strong>Risk if delayed:</strong> {rec.risk_if_delayed}</p>
             <p><strong>Alternatives considered:</strong> {rec.alternatives_considered}</p>
             <p><strong>Decision:</strong> {decision?.state ?? "pending"}</p>
-            <div style={{ display: "flex", gap: 8 }}>
-              <button disabled={busy === rec.id} onClick={() => decide(rec.id, "approved")}>Approve</button>
-              <button disabled={busy === rec.id} onClick={() => decide(rec.id, "defer")}>Defer</button>
-              <button disabled={busy === rec.id} onClick={() => decide(rec.id, "rejected")}>Reject</button>
+            <div className="pm-action-row">
+              <button className="pm-action-btn" disabled={busy === rec.id} onClick={() => decide(rec.id, "approved")}>Approve</button>
+              <button className="pm-action-btn secondary" disabled={busy === rec.id} onClick={() => decide(rec.id, "defer")}>Defer</button>
+              <button className="pm-action-btn secondary" disabled={busy === rec.id} onClick={() => decide(rec.id, "rejected")}>Reject</button>
             </div>
           </div>
         );

@@ -44,9 +44,29 @@ To skip prompts when supported: `npx skills add supabase/agent-skills --yes` (se
 
 Set `VITE_API_BASE_URL` if backend is not `http://localhost:8080`.
 
-## Supabase (recommendation decisions)
+## Supabase (decisions + runtime observations)
 
-1. In the Supabase dashboard, open **SQL** → **New query**, paste `backend/schema/recommendation_decisions.sql`, and run it.
+1. Ensure `recommendation_decisions` exists (decision state persistence).
+2. Add `project_runtime_observations` so runtime repo visibility can be compared across environments:
+
+```sql
+create table if not exists public.project_runtime_observations (
+  id bigint generated always as identity primary key,
+  project_name text not null,
+  project_path text not null,
+  intake_stage text not null default '',
+  registry_status text not null default 'registered',
+  runtime_status text not null,
+  runtime_note text not null default '',
+  exists boolean not null default false,
+  is_git_repo boolean not null default false,
+  branch text not null default '',
+  head text not null default '',
+  summary text not null default '',
+  source text not null default 'pm-portal-backend',
+  observed_at timestamptz not null default now()
+);
+```
 2. **Project Settings** → **API**: copy **Project URL** and **anon public** key into `backend/.env` as `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
 3. **Save** `backend/.env`, **restart** the API (reload alone may not reload env), then open `http://localhost:8080/health/supabase` — `status` should be `ok`. If it is `error`, read `detail` and cross-check [`docs/operator-friction-log.md`](../docs/operator-friction-log.md) (keys, rotation, URL vs JWT `ref`).
 
@@ -63,3 +83,14 @@ From the `pm-portal` directory, after [installing the Supabase CLI](https://supa
 `supabase init` has already been run here, so you only need login + link on your machine, then `db push` when you want schema changes applied remotely.
 
 If the CLI prints **`failed to scan line: expected newline`**, it is usually **interactive input** (not a bad SQL file): run `supabase login` / `supabase link` in a normal terminal window, complete the browser login, and answer prompts **one line at a time**—do not paste multi-line text into password prompts. Alternatively set a one-line **`SUPABASE_ACCESS_TOKEN`** from your Supabase account (Dashboard → Account → Access Tokens) in the environment before `supabase link`.
+
+## Mobile store governance (Apple + Android)
+
+For compliance before mobile submission, use:
+
+- Policy guide: `docs/mobile-compliance-governance.md`
+- Machine-readable gate config: `backend/config/mobile-compliance-governance.json`
+- Privacy/disclosure copy (mobile-adapted from website governance): `docs/mobile-privacy-and-disclosures.md`
+- Machine-readable store disclosures: `backend/config/mobile-store-disclosures.json`
+
+This governance separates shared controls (privacy/security/data handling) from platform-specific release gates for App Store and Google Play.

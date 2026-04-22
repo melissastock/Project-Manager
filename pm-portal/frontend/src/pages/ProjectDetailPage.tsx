@@ -7,12 +7,14 @@ import { ScoreBadge } from "../components/ScoreBadge";
 export function ProjectDetailPage({ project, onRefresh }: { project: ProjectReadiness; onRefresh: () => Promise<void> }) {
   return (
     <div>
-      <h2>{project.project.name}</h2>
-      <p>{project.project.role}</p>
+      <h2 className="pm-section-title">{project.project.name}</h2>
+      <p className="pm-subtitle">{project.project.role}</p>
       <ScoreBadge score={project.score} band={project.band} />
 
-      <h3 style={{ marginTop: 20 }}>Delivery snapshot</h3>
-      <ul>
+      <h3 className="pm-section-title pm-section-title-spaced">Operational Snapshot</h3>
+      <ul className="pm-inline-list">
+        <li>Registry onboarding: {project.registry_status} ({project.project.intake_stage || "unknown stage"})</li>
+        <li>Runtime access: {project.runtime_status} - {project.runtime_note}</li>
         <li>Branch: {project.snapshot.branch}</li>
         <li>Head: {project.snapshot.head || "n/a"}</li>
         <li>Summary: {project.snapshot.summary}</li>
@@ -20,36 +22,36 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
         <li>Sync: ahead {project.snapshot.ahead ?? "n/a"}, behind {project.snapshot.behind ?? "n/a"}</li>
       </ul>
 
-      <h3>Readiness dimensions</h3>
+      <h3 className="pm-section-title">Readiness Dimensions</h3>
       {project.dimensions.map((dimension) => <DimensionCard key={dimension.dimension} dimension={dimension} />)}
 
-      <h3 style={{ marginTop: 20 }}>Branch health</h3>
-      <div style={{ overflowX: "auto", marginBottom: 20 }}>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+      <h3 className="pm-section-title pm-section-title-spaced">Branch Health</h3>
+      <div className="pm-table-wrap">
+        <table className="pm-table">
           <thead>
             <tr>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Branch</th>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Score</th>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Band</th>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Age</th>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Ahead</th>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Behind</th>
-              <th style={{ borderBottom: "1px solid #ddd", textAlign: "left" }}>Recommendation</th>
+              <th>Branch</th>
+              <th>Score</th>
+              <th>Band</th>
+              <th>Age</th>
+              <th>Ahead</th>
+              <th>Behind</th>
+              <th>Recommendation</th>
             </tr>
           </thead>
           <tbody>
             {project.branch_health.map((row) => (
               <tr key={row.branch}>
-                <td style={{ borderBottom: "1px solid #f0f0f0", padding: "6px 0" }}>
+                <td>
                   <strong>{row.branch}</strong>
-                  <div style={{ fontSize: 12, color: "#555" }}>{row.head} - {row.subject}</div>
+                  <div className="pm-muted-metadata">{row.head} - {row.subject}</div>
                 </td>
-                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.score}</td>
-                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.band}</td>
-                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.age_days}d</td>
-                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.ahead ?? "n/a"}</td>
-                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.behind ?? "n/a"}</td>
-                <td style={{ borderBottom: "1px solid #f0f0f0" }}>{row.recommendation}</td>
+                <td>{row.score}</td>
+                <td>{row.band}</td>
+                <td>{row.age_days}d</td>
+                <td>{row.ahead ?? "n/a"}</td>
+                <td>{row.behind ?? "n/a"}</td>
+                <td>{row.recommendation}</td>
               </tr>
             ))}
           </tbody>

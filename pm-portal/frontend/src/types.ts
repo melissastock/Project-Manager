@@ -62,6 +62,9 @@ export interface ProjectReadiness {
     category: string;
     role: string;
   };
+  registry_status: "registered" | "unknown";
+  runtime_status: "ok" | "path-missing" | "git-unavailable" | "unborn";
+  runtime_note: string;
   score: number;
   band: "ready" | "monitor" | "at-risk" | "critical";
   dimensions: DimensionScore[];

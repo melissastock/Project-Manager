@@ -44,6 +44,13 @@ def fetch_recommendation_decisions() -> list[dict[str, Any]]:
     return response.data or []
 
 
+def insert_runtime_observations(rows: list[dict[str, Any]]) -> None:
+    if not rows:
+        return
+    client = get_supabase_client()
+    client.table("project_runtime_observations").insert(rows).execute()
+
+
 def ping_supabase() -> None:
     """Lightweight call to verify credentials, DNS, and table visibility."""
     client = get_supabase_client()

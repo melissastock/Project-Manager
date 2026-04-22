@@ -12,6 +12,18 @@ from .models import Recommendation, RecommendationDecision, SignalSnapshot
 def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, score: int, max_items: int) -> list[Recommendation]:
     recs: list[Recommendation] = []
     prefix = project["name"].lower().replace(" ", "-")
+    intake_stage = str(project.get("intake_stage", "")).strip().lower()
+
+    if intake_stage and not snapshot.is_git_repo:
+        recs.append(Recommendation(
+            id=f"{prefix}-runtime-access-validation",
+            project=project["name"],
+            action="Validate runtime repository access for this environment.",
+            why_now="Project is onboarded in portfolio metadata, but this runtime cannot read .git state.",
+            risk_if_delayed="Dashboards can incorrectly imply the project is not initialized.",
+            alternatives_considered="Treat as not onboarded (rejected: metadata already records onboarding).",
+            confidence="high",
+        ))
 
     if snapshot.untracked_count > 0:
         recs.append(Recommendation(
@@ -69,12 +81,16 @@ def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, sc
 
 def load_decisions(path: Path | None = None) -> dict[str, dict[str, Any]]:
     if supabase_configured():
-        rows = fetch_recommendation_decisions()
-        return {
-            row["recommendation_id"]: row
-            for row in rows
-            if row.get("recommendation_id")
-        }
+        try:
+            rows = fetch_recommendation_decisions()
+            return {
+                row["recommendation_id"]: row
+                for row in rows
+                if row.get("recommendation_id")
+            }
+        except Exception:
+            # Keep portal usable when Supabase is temporarily unavailable.
+            pass
     if path is not None and path.exists():
         return json.loads(path.read_text(encoding="utf-8"))
     return {}
@@ -82,9 +98,13 @@ def load_decisions(path: Path | None = None) -> dict[str, dict[str, Any]]:
 
 def persist_decisions(path: Path | None, decisions: dict[str, dict[str, Any]]) -> None:
     if supabase_configured():
-        for value in decisions.values():
-            upsert_recommendation_decision(value)
-        return
+        try:
+            for value in decisions.values():
+                upsert_recommendation_decision(value)
+            return
+        except Exception:
+            # Fall through to local persistence as a resilience path.
+            pass
     if path is None:
         raise RuntimeError("Decision path is required when Supabase is not configured")
     path.parent.mkdir(parents=True, exist_ok=True)

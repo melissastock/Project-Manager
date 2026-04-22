@@ -1,0 +1,51 @@
+{
+  "version": "2026-04-22",
+  "source_alignment": [
+    "mjsds-website/docs/visibility-policy.md",
+    "mjsds-website/docs/content-playbook.md",
+    "mjsds-website/docs/workspace-model.md"
+  ],
+  "app_purpose": "Portfolio operations readiness and decision tracking.",
+  "allowed_data_classes": [
+    "project_metadata",
+    "readiness_signals",
+    "recommendation_decisions",
+    "operational_timestamps"
+  ],
+  "prohibited_data_classes": [
+    "phi",
+    "client_sensitive_source_files",
+    "draft_legal_agreements",
+    "financial_internals",
+    "credentials_or_tokens"
+  ],
+  "user_disclosures": [
+    "This app collects only the project and decision data needed to run portfolio operations.",
+    "Protected legal, financial, client, and health-related materials are not intended for mobile exposure in this app.",
+    "If analytics or infrastructure providers are used, their data handling is disclosed in store privacy forms.",
+    "For privacy and data requests, contact the support channel listed in the app store listing."
+  ],
+  "apple_required_checks": [
+    "app_privacy_answers_match_runtime",
+    "privacy_policy_url_present",
+    "support_url_present",
+    "permissions_and_sdk_disclosures_complete"
+  ],
+  "google_required_checks": [
+    "data_safety_form_matches_runtime",
+    "permissions_have_declared_purpose",
+    "privacy_policy_url_present",
+    "sdk_disclosures_complete"
+  ],
+  "sdk_governance_rules": [
+    "no_new_sdk_without_privacy_review",
+    "document_each_sdk_purpose_and_data_classes",
+    "update_store_disclosures_before_release_if_sdk_behavior_changes"
+  ],
+  "release_blockers": [
+    "store_disclosure_runtime_mismatch",
+    "prohibited_data_class_exposed",
+    "missing_privacy_or_support_url",
+    "undisclosed_sdk_or_tracking_behavior"
+  ]
+}
