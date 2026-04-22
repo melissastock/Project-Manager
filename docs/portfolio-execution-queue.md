@@ -33,6 +33,7 @@ Then update the handoff addendum to point at the **new** timestamp.
 - Every change set needs a cascade scope tag: `all-repos`, `selected-lanes`, or `pm-portal-only` (see `docs/cascade-applicability-matrix.md`).
 - Drift containment comes before backlog, sprint, or feature work.
 - Do not bulk-commit untracked files from the parent repo; classify each item first.
+- Treat Google Drive `Case Files` as a governed two-track intake program. Use `docs/case-files-track-onboarding-2026-04-22.md` before routing files into legal or content creator repos.
 
 ## Batch shape (stable)
 
