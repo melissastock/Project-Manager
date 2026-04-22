@@ -19,6 +19,7 @@ from .db import (
     supabase_storage_configured,
 )
 from .models import ProjectTicket, RecommendationDecision, TeamAssignment
+from .config import SECURE_VAULT_DRIVE_CONNECTIONS_PATH
 from .service import (
     build_standup_view,
     create_agreement_audit_event,
@@ -230,6 +231,22 @@ class SecureVaultChecksumVerifyRequest(BaseModel):
     expected_checksum_sha256: str
 
 
+class SecureVaultDriveConnectRequest(BaseModel):
+    project: str
+    connected_by: str
+    actor_role: str = "business_owner"
+    drive_account_email: str
+    drive_folder_id: str
+    notes: str = ""
+
+
+class SecureVaultDriveDisconnectRequest(BaseModel):
+    project: str
+    disconnected_by: str
+    actor_role: str = "business_owner"
+    reason: str = ""
+
+
 def _project_manager_root() -> Path:
     return Path(__file__).resolve().parents[3]
 
@@ -341,6 +358,19 @@ def _secure_vault_bucket() -> str:
     return os.getenv("SUPABASE_SECURE_VAULT_BUCKET", "secure-client-vault").strip() or "secure-client-vault"
 
 
+def _load_drive_connections() -> dict:
+    path = SECURE_VAULT_DRIVE_CONNECTIONS_PATH
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _persist_drive_connections(payload: dict) -> None:
+    path = SECURE_VAULT_DRIVE_CONNECTIONS_PATH
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+
+
 def _slug(value: str) -> str:
     cleaned = "".join(ch.lower() if ch.isalnum() else "-" for ch in (value or "").strip())
     compact = "-".join(part for part in cleaned.split("-") if part)
@@ -365,6 +395,13 @@ def _require_vault_role(file_row: dict, actor_role: str) -> None:
     allowed = [str(x).strip() for x in (file_row.get("access_roles") or []) if str(x).strip()]
     if allowed and role not in allowed:
         raise HTTPException(status_code=403, detail=f"Role {role} is not allowed for this vault file")
+
+
+def _require_drive_connection_role(actor_role: str) -> None:
+    allowed_roles = {"business_owner", "portfolio_owner", "technical_owner"}
+    role = (actor_role or "").strip()
+    if role not in allowed_roles:
+        raise HTTPException(status_code=403, detail=f"Role {role} cannot manage Drive connections")
 
 
 def _summarize_non_labor(non_labor_costs: list[dict]) -> tuple[list[dict], float, float, float]:
@@ -836,6 +873,56 @@ def create_labor_estimate(payload: LaborEstimateCreate) -> dict:
 def get_secure_vault_files(project: str) -> dict:
     files = list_secure_vault_files(project)
     return {"project": project, "secure_vault_files": files}
+
+
+@app.get("/api/secure-vault/drive-connection")
+def get_secure_vault_drive_connection(project: str) -> dict:
+    cache = _load_drive_connections()
+    project_key = project.strip().lower()
+    return {"project": project, "drive_connection": cache.get(project_key)}
+
+
+@app.post("/api/secure-vault/drive-connection")
+def connect_secure_vault_drive(payload: SecureVaultDriveConnectRequest) -> dict:
+    _require_drive_connection_role(payload.actor_role)
+    now = _now_iso()
+    cache = _load_drive_connections()
+    project_key = payload.project.strip().lower()
+    record = {
+        "id": cache.get(project_key, {}).get("id", f"vault-drive-{uuid4().hex[:12]}"),
+        "project": payload.project,
+        "provider": "google_drive",
+        "status": "connected",
+        "drive_account_email": payload.drive_account_email.strip(),
+        "drive_folder_id": payload.drive_folder_id.strip(),
+        "connected_by": payload.connected_by,
+        "connected_at": now,
+        "last_verified_at": now,
+        "notes": payload.notes,
+        "updated_at": now,
+    }
+    cache[project_key] = record
+    _persist_drive_connections(cache)
+    return {"ok": True, "drive_connection": record}
+
+
+@app.post("/api/secure-vault/drive-connection/disconnect")
+def disconnect_secure_vault_drive(payload: SecureVaultDriveDisconnectRequest) -> dict:
+    _require_drive_connection_role(payload.actor_role)
+    cache = _load_drive_connections()
+    project_key = payload.project.strip().lower()
+    existing = cache.get(project_key)
+    if not existing:
+        raise HTTPException(status_code=404, detail="Drive connection not found for project")
+    now = _now_iso()
+    updated = dict(existing)
+    updated["status"] = "disconnected"
+    updated["disconnected_by"] = payload.disconnected_by
+    updated["disconnect_reason"] = payload.reason
+    updated["updated_at"] = now
+    cache[project_key] = updated
+    _persist_drive_connections(cache)
+    return {"ok": True, "drive_connection": updated}
 
 
 @app.post("/api/secure-vault/files")

@@ -10,6 +10,7 @@ import type {
   Ticket,
   LaborEstimate,
   SecureVaultFile,
+  SecureVaultDriveConnection,
 } from "./types";
 import {
   type AddScopesRequest,
@@ -356,6 +357,47 @@ export async function verifySecureVaultChecksum(
   if (!response.ok) throw new Error("Failed to verify checksum");
   const json = await response.json();
   return json.secure_vault_file as SecureVaultFile;
+}
+
+export async function fetchSecureVaultDriveConnection(project: string): Promise<SecureVaultDriveConnection | null> {
+  const response = await fetch(`${API_BASE}/api/secure-vault/drive-connection?project=${encodeURIComponent(project)}`);
+  if (!response.ok) throw new Error("Failed to load secure vault Drive connection");
+  const json = await response.json();
+  return (json.drive_connection ?? null) as SecureVaultDriveConnection | null;
+}
+
+export async function connectSecureVaultDrive(payload: {
+  project: string;
+  connected_by: string;
+  actor_role: string;
+  drive_account_email: string;
+  drive_folder_id: string;
+  notes?: string;
+}): Promise<SecureVaultDriveConnection> {
+  const response = await fetch(`${API_BASE}/api/secure-vault/drive-connection`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error("Failed to connect secure vault to Drive");
+  const json = await response.json();
+  return json.drive_connection as SecureVaultDriveConnection;
+}
+
+export async function disconnectSecureVaultDrive(payload: {
+  project: string;
+  disconnected_by: string;
+  actor_role: string;
+  reason?: string;
+}): Promise<SecureVaultDriveConnection> {
+  const response = await fetch(`${API_BASE}/api/secure-vault/drive-connection/disconnect`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error("Failed to disconnect secure vault Drive link");
+  const json = await response.json();
+  return json.drive_connection as SecureVaultDriveConnection;
 }
 
 export async function startGoogleConnect(payload: ConnectGoogleRequest): Promise<ConnectGoogleResponse> {

@@ -19,6 +19,7 @@ AGREEMENT_AUDIT_EVENTS_PATH = ROOT / "data" / "agreement_audit_events.json"
 LABOR_ESTIMATES_PATH = ROOT / "data" / "labor_estimates.json"
 SECURE_VAULT_FILES_PATH = ROOT / "data" / "secure_vault_files.json"
 SECURE_VAULT_AUDIT_EVENTS_PATH = ROOT / "data" / "secure_vault_audit_events.json"
+SECURE_VAULT_DRIVE_CONNECTIONS_PATH = ROOT / "data" / "secure_vault_drive_connections.json"
 
 # Portal root first, then backend (backend wins on duplicate keys).
 load_dotenv(ROOT / ".env")

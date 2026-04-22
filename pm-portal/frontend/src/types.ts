@@ -192,6 +192,22 @@ export interface SecureVaultFile {
   updated_at: string;
 }
 
+export interface SecureVaultDriveConnection {
+  id: string;
+  project: string;
+  provider: "google_drive";
+  status: "connected" | "disconnected";
+  drive_account_email: string;
+  drive_folder_id: string;
+  connected_by: string;
+  connected_at: string;
+  last_verified_at: string;
+  notes: string;
+  updated_at: string;
+  disconnected_by?: string;
+  disconnect_reason?: string;
+}
+
 export interface GovernanceCheckStatus {
   check: string;
   flag: string;

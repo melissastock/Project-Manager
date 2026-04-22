@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
+  connectSecureVaultDrive,
   createSecureVaultFile,
+  disconnectSecureVaultDrive,
+  fetchSecureVaultDriveConnection,
   fetchSecureVaultAudit,
   getSecureVaultSignedDownloadUrl,
   getSecureVaultSignedUploadUrl,
@@ -14,6 +17,18 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
   const [signedUrlOutput, setSignedUrlOutput] = useState("");
   const [auditOutput, setAuditOutput] = useState("");
   const [expectedChecksumByFile, setExpectedChecksumByFile] = useState<Record<string, string>>({});
+  const [driveStatus, setDriveStatus] = useState<null | {
+    status: "connected" | "disconnected";
+    drive_account_email: string;
+    drive_folder_id: string;
+    connected_at: string;
+    updated_at: string;
+  }>(null);
+  const [driveForm, setDriveForm] = useState({
+    drive_account_email: "",
+    drive_folder_id: "",
+    notes: "",
+  });
   const [form, setForm] = useState({
     client_name: "",
     file_name: "",
@@ -26,6 +41,33 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
     uploaded_by: "Melissa Stock",
     notes: "",
   });
+
+  useEffect(() => {
+    let active = true;
+    async function loadDrive() {
+      try {
+        const connection = await fetchSecureVaultDriveConnection(project.project.name);
+        if (!active) return;
+        if (!connection) {
+          setDriveStatus(null);
+          return;
+        }
+        setDriveStatus({
+          status: connection.status,
+          drive_account_email: connection.drive_account_email,
+          drive_folder_id: connection.drive_folder_id,
+          connected_at: connection.connected_at,
+          updated_at: connection.updated_at,
+        });
+      } catch {
+        if (active) setDriveStatus(null);
+      }
+    }
+    loadDrive();
+    return () => {
+      active = false;
+    };
+  }, [project.project.name]);
 
   async function registerFile() {
     if (!form.file_name.trim()) return;
@@ -154,6 +196,56 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
     }
   }
 
+  async function connectDrive() {
+    try {
+      setBusy(true);
+      setError("");
+      const connection = await connectSecureVaultDrive({
+        project: project.project.name,
+        connected_by: form.uploaded_by || "portal-user",
+        actor_role: "business_owner",
+        drive_account_email: driveForm.drive_account_email.trim(),
+        drive_folder_id: driveForm.drive_folder_id.trim(),
+        notes: driveForm.notes.trim(),
+      });
+      setDriveStatus({
+        status: connection.status,
+        drive_account_email: connection.drive_account_email,
+        drive_folder_id: connection.drive_folder_id,
+        connected_at: connection.connected_at,
+        updated_at: connection.updated_at,
+      });
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function disconnectDrive() {
+    try {
+      setBusy(true);
+      setError("");
+      const connection = await disconnectSecureVaultDrive({
+        project: project.project.name,
+        disconnected_by: form.uploaded_by || "portal-user",
+        actor_role: "business_owner",
+        reason: "manual disconnect from portal",
+      });
+      setDriveStatus({
+        status: connection.status,
+        drive_account_email: connection.drive_account_email,
+        drive_folder_id: connection.drive_folder_id,
+        connected_at: connection.connected_at,
+        updated_at: connection.updated_at,
+      });
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <div>
       <h3 className="pm-section-title pm-section-title-spaced">Secure Client Vault</h3>
@@ -161,6 +253,42 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
         Protected file register for IP, invention, financial, legal, medical, and other sensitive client materials.
       </p>
       {error ? <p className="pm-error">{error}</p> : null}
+      <div className="pm-card pm-card-block">
+        <div className="pm-meta-label">Google Drive Connection</div>
+        <p className="pm-muted-metadata">
+          Status: {driveStatus?.status ?? "not connected"}
+          {driveStatus?.drive_account_email ? ` | Account: ${driveStatus.drive_account_email}` : ""}
+          {driveStatus?.drive_folder_id ? ` | Folder: ${driveStatus.drive_folder_id}` : ""}
+        </p>
+        <div className="pm-action-row">
+          <input
+            className="pm-input"
+            placeholder="Drive account email"
+            value={driveForm.drive_account_email}
+            onChange={(e) => setDriveForm((p) => ({ ...p, drive_account_email: e.target.value }))}
+          />
+          <input
+            className="pm-input"
+            placeholder="Drive folder ID"
+            value={driveForm.drive_folder_id}
+            onChange={(e) => setDriveForm((p) => ({ ...p, drive_folder_id: e.target.value }))}
+          />
+        </div>
+        <div className="pm-action-row">
+          <input
+            className="pm-input"
+            placeholder="Connection notes (optional)"
+            value={driveForm.notes}
+            onChange={(e) => setDriveForm((p) => ({ ...p, notes: e.target.value }))}
+          />
+          <button className="pm-action-btn secondary" disabled={busy} onClick={connectDrive}>
+            Connect Drive
+          </button>
+          <button className="pm-action-btn secondary" disabled={busy} onClick={disconnectDrive}>
+            Disconnect Drive
+          </button>
+        </div>
+      </div>
       <div className="pm-card pm-card-block">
         <div className="pm-action-row">
           <input className="pm-input" placeholder="Client name" value={form.client_name} onChange={(e) => setForm((p) => ({ ...p, client_name: e.target.value }))} />

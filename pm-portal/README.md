@@ -154,6 +154,9 @@ API:
 - `POST /api/secure-vault/files/{vault_file_id}/signed-download-url`
 - `POST /api/secure-vault/files/{vault_file_id}/verify-checksum`
 - `GET /api/secure-vault/files/{vault_file_id}/audit`
+- `GET /api/secure-vault/drive-connection?project=<name>`
+- `POST /api/secure-vault/drive-connection`
+- `POST /api/secure-vault/drive-connection/disconnect`
 
 Required secure storage environment variables in `backend/.env`:
 
@@ -171,6 +174,10 @@ Notes:
   1) upload file via signed upload URL
   2) provide expected SHA256
   3) call checksum verification endpoint to compare expected vs actual bytes in storage.
+- Drive connection flow:
+  1) open Secure Vault panel
+  2) enter Google Drive account email + folder ID
+  3) connect/disconnect per project via the new Drive connection endpoints.
 
 ## Supabase CLI (optional)
 
