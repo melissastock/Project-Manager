@@ -41,7 +41,10 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - Run `python3 scripts/check_production_readiness.py --target "path/to/repo"` before opening PRs to enforce backlog, sprint, and testing gates.
 - Run `python3 scripts/validate_downstream_governance.py --target "path/to/repo"` to enforce project-type downstream governance intake gates.
 - Use `python3 scripts/validate_downstream_governance.py --target "path/to/repo" --fix` to auto-fill missing downstream governance intake fields when needed.
-- Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py` before scaling work.
+- Run `python3 scripts/validate_launch_readiness.py --target "path/to/repo"` to enforce launch-proximal commercialization, marketing, and SOP gates when applicable.
+- Use `python3 scripts/validate_launch_readiness.py --target "path/to/repo" --fix` to scaffold missing launch artifacts and Path 2 brand mode intake metadata when applicable.
+- Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py --target "path/to/repo"` for local validation before scaling work.
+- Use `python3 scripts/validate_architecture_scale_fit.py` for global changed-repo validation across the portfolio.
 - Commit the Project Manager updates.
 - Push both the child repo and the Project Manager repo.
 
@@ -81,5 +84,11 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - project-type escalation triggers defined
 - review cadence checkpoint created based on project type
 - downstream governance owner assigned
+
+### launch-proximal requirements (when launch window is committed)
+- commercialization plan documented (`templates/monetization/commercialization-plan-template.md`)
+- marketing plan documented (`templates/gtm/marketing-plan-template.md`)
+- operationalization SOP set documented (`templates/operations/operationalization-sop-template.md`)
+- Path 2 white-label identity selected and confirmed in command center admin when applicable
 
 Project is NOT onboarded until complete.

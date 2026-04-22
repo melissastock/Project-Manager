@@ -83,6 +83,11 @@ If intake is blocked by portfolio tooling (not the project itself), see **`docs/
 - GTM workflow needed:
 - If yes, GTM owner:
 - If yes, pilot window target:
+- Launch-proximal commercialization plan required:
+- Launch-proximal marketing plan required:
+- Launch-proximal operationalization SOP set required:
+- Path 2 white-label brand identity applicable:
+- If yes, selected brand identity mode:
 
 ## First Moves
 

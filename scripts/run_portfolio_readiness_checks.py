@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config" / "repos.json"
 READINESS_CHECK = ROOT / "scripts" / "check_production_readiness.py"
 DOWNSTREAM_GOVERNANCE_CHECK = ROOT / "scripts" / "validate_downstream_governance.py"
+LAUNCH_READINESS_CHECK = ROOT / "scripts" / "validate_launch_readiness.py"
 
 
 def _run_git(repo_path: Path, *args: str) -> subprocess.CompletedProcess[str]:
@@ -50,15 +51,29 @@ def _check_one(entry: dict, fix_downstream: bool) -> tuple[str, int, str]:
         capture_output=True,
         text=True,
     )
+    launch_cmd = ["python3", str(LAUNCH_READINESS_CHECK), "--target", str(repo_path)]
+    if fix_downstream:
+        launch_cmd.append("--fix")
+    launch_proc = subprocess.run(
+        launch_cmd,
+        capture_output=True,
+        text=True,
+    )
 
     combined_output = (
         "## Production Readiness\n"
         + (readiness_proc.stdout + "\n" + readiness_proc.stderr).strip()
         + "\n\n## Downstream Governance\n"
         + (downstream_proc.stdout + "\n" + downstream_proc.stderr).strip()
+        + "\n\n## Launch Readiness\n"
+        + (launch_proc.stdout + "\n" + launch_proc.stderr).strip()
     ).strip()
 
-    combined_code = 0 if readiness_proc.returncode == 0 and downstream_proc.returncode == 0 else 1
+    combined_code = 0 if (
+        readiness_proc.returncode == 0
+        and downstream_proc.returncode == 0
+        and launch_proc.returncode == 0
+    ) else 1
     return entry["name"], combined_code, combined_output
 
 
@@ -69,7 +84,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--fix",
         action="store_true",
-        help="Pass --fix to downstream governance validation to auto-remediate missing intake fields.",
+        help="Pass --fix to downstream and launch readiness validators to auto-remediate missing fields/artifacts.",
     )
     return parser.parse_args()
 
