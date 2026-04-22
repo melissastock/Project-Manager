@@ -178,6 +178,13 @@ export interface SecureVaultFile {
   client_name: string;
   file_name: string;
   storage_uri: string;
+  input_source: "google_drive" | "vault" | "local_upload";
+  file_category: "incident_record" | "investigation_record" | "charging_record" | "court_filing" | "correspondence" | "media" | "financial" | "medical" | "other";
+  procedural_stage: "incident" | "investigation" | "charging" | "pretrial" | "plea" | "trial" | "post_disposition" | "other";
+  usage_goal: string;
+  source_reference: string;
+  sorting_tags: string[];
+  next_action_hint: string;
   data_class: "ip_invention" | "financial" | "legal" | "medical" | "regulated" | "other";
   sensitivity_level: "restricted" | "highly_restricted";
   encryption_status: "encrypted_at_rest" | "encrypted_at_rest_and_transport";

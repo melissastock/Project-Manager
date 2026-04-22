@@ -213,6 +213,21 @@ class SecureVaultFileCreate(BaseModel):
     client_name: str = ""
     file_name: str
     storage_uri: str = ""
+    input_source: Literal["google_drive", "vault", "local_upload"] = "local_upload"
+    file_category: Literal[
+        "incident_record",
+        "investigation_record",
+        "charging_record",
+        "court_filing",
+        "correspondence",
+        "media",
+        "financial",
+        "medical",
+        "other",
+    ] = "other"
+    procedural_stage: Literal["incident", "investigation", "charging", "pretrial", "plea", "trial", "post_disposition", "other"] = "other"
+    usage_goal: str = ""
+    source_reference: str = ""
     data_class: Literal["ip_invention", "financial", "legal", "medical", "regulated", "other"] = "other"
     sensitivity_level: Literal["restricted", "highly_restricted"] = "restricted"
     encryption_status: Literal["encrypted_at_rest", "encrypted_at_rest_and_transport"] = "encrypted_at_rest_and_transport"
@@ -413,15 +428,47 @@ def _slug(value: str) -> str:
     return compact or "unknown"
 
 
-def _build_secure_vault_path(project: str, client_name: str, data_class: str, file_name: str, file_id: str) -> str:
+def _build_secure_vault_path(
+    project: str,
+    client_name: str,
+    data_class: str,
+    file_name: str,
+    file_id: str,
+    procedural_stage: str = "other",
+    file_category: str = "other",
+) -> str:
     project_slug = _slug(project)
     client_slug = _slug(client_name)
     class_slug = _slug(data_class)
+    stage_slug = _slug(procedural_stage)
+    category_slug = _slug(file_category)
     safe_name = _slug(file_name.rsplit(".", 1)[0])
     extension = ""
     if "." in file_name:
         extension = "." + file_name.rsplit(".", 1)[1].lower()
-    return f"{project_slug}/{client_slug}/{class_slug}/{file_id}/{safe_name}{extension}"
+    return f"{project_slug}/{client_slug}/{class_slug}/{stage_slug}/{category_slug}/{file_id}/{safe_name}{extension}"
+
+
+def _derive_vault_sorting_tags(payload: SecureVaultFileCreate) -> list[str]:
+    tags = {
+        f"source:{payload.input_source}",
+        f"class:{payload.data_class}",
+        f"stage:{payload.procedural_stage}",
+        f"category:{payload.file_category}",
+    }
+    if payload.usage_goal.strip():
+        tags.add(f"goal:{_slug(payload.usage_goal)[:40]}")
+    return sorted(tags)
+
+
+def _derive_next_action_hint(payload: SecureVaultFileCreate) -> str:
+    if payload.procedural_stage in {"incident", "investigation"}:
+        return "Attach this file to the procedural timeline and identify any missing investigative records."
+    if payload.procedural_stage == "charging":
+        return "Map charging statements to supporting evidence and flag unsupported assertions."
+    if payload.procedural_stage in {"pretrial", "plea", "trial"}:
+        return "Review for procedural defects and connect to active action items before disposition decisions."
+    return "Classify evidence linkage and assign a next action in the procedural action queue."
 
 
 def _require_vault_role(file_row: dict, actor_role: str) -> None:
@@ -1095,14 +1142,29 @@ def register_secure_vault_file(payload: SecureVaultFileCreate) -> dict:
     now = _now_iso()
     file_id = f"vault-{uuid4().hex[:12]}"
     storage_path = payload.storage_uri or _build_secure_vault_path(
-        payload.project, payload.client_name, payload.data_class, payload.file_name, file_id
+        payload.project,
+        payload.client_name,
+        payload.data_class,
+        payload.file_name,
+        file_id,
+        payload.procedural_stage,
+        payload.file_category,
     )
+    sorting_tags = _derive_vault_sorting_tags(payload)
+    next_action_hint = _derive_next_action_hint(payload)
     file_row = {
         "id": file_id,
         "project": payload.project,
         "client_name": payload.client_name,
         "file_name": payload.file_name,
         "storage_uri": storage_path,
+        "input_source": payload.input_source,
+        "file_category": payload.file_category,
+        "procedural_stage": payload.procedural_stage,
+        "usage_goal": payload.usage_goal,
+        "source_reference": payload.source_reference,
+        "sorting_tags": sorting_tags,
+        "next_action_hint": next_action_hint,
         "data_class": payload.data_class,
         "sensitivity_level": payload.sensitivity_level,
         "encryption_status": payload.encryption_status,
@@ -1125,7 +1187,15 @@ def register_secure_vault_file(payload: SecureVaultFileCreate) -> dict:
             "event_type": "file_registered",
             "actor_name": payload.uploaded_by or "system",
             "actor_role": "uploader",
-            "details": {"data_class": payload.data_class, "sensitivity": payload.sensitivity_level, "storage_path": storage_path},
+            "details": {
+                "data_class": payload.data_class,
+                "sensitivity": payload.sensitivity_level,
+                "storage_path": storage_path,
+                "input_source": payload.input_source,
+                "file_category": payload.file_category,
+                "procedural_stage": payload.procedural_stage,
+                "sorting_tags": sorting_tags,
+            },
             "created_at": _now_iso(),
         }
     )

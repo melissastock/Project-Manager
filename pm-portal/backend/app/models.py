@@ -250,6 +250,23 @@ class SecureVaultFile(BaseModel):
     client_name: str = ""
     file_name: str
     storage_uri: str = ""
+    input_source: Literal["google_drive", "vault", "local_upload"] = "local_upload"
+    file_category: Literal[
+        "incident_record",
+        "investigation_record",
+        "charging_record",
+        "court_filing",
+        "correspondence",
+        "media",
+        "financial",
+        "medical",
+        "other",
+    ] = "other"
+    procedural_stage: Literal["incident", "investigation", "charging", "pretrial", "plea", "trial", "post_disposition", "other"] = "other"
+    usage_goal: str = ""
+    source_reference: str = ""
+    sorting_tags: list[str] = Field(default_factory=list)
+    next_action_hint: str = ""
     data_class: Literal["ip_invention", "financial", "legal", "medical", "regulated", "other"]
     sensitivity_level: Literal["restricted", "highly_restricted"] = "restricted"
     encryption_status: Literal["encrypted_at_rest", "encrypted_at_rest_and_transport"] = "encrypted_at_rest_and_transport"

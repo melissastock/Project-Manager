@@ -33,6 +33,11 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
     client_name: "",
     file_name: "",
     storage_uri: "",
+    input_source: "local_upload" as "google_drive" | "vault" | "local_upload",
+    file_category: "other" as "incident_record" | "investigation_record" | "charging_record" | "court_filing" | "correspondence" | "media" | "financial" | "medical" | "other",
+    procedural_stage: "other" as "incident" | "investigation" | "charging" | "pretrial" | "plea" | "trial" | "post_disposition" | "other",
+    usage_goal: "",
+    source_reference: "",
     data_class: "other" as "ip_invention" | "financial" | "legal" | "medical" | "regulated" | "other",
     sensitivity_level: "restricted" as "restricted" | "highly_restricted",
     retention_policy: "retain-until-client-request-or-policy-expiry",
@@ -79,6 +84,11 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
         client_name: form.client_name,
         file_name: form.file_name,
         storage_uri: form.storage_uri,
+        input_source: form.input_source,
+        file_category: form.file_category,
+        procedural_stage: form.procedural_stage,
+        usage_goal: form.usage_goal,
+        source_reference: form.source_reference,
         data_class: form.data_class,
         sensitivity_level: form.sensitivity_level,
         encryption_status: "encrypted_at_rest_and_transport",
@@ -88,7 +98,14 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
         uploaded_by: form.uploaded_by,
         notes: form.notes,
       });
-      setForm((prev) => ({ ...prev, file_name: "", storage_uri: "", checksum_sha256: "", notes: "" }));
+      setForm((prev) => ({
+        ...prev,
+        file_name: "",
+        storage_uri: "",
+        source_reference: "",
+        checksum_sha256: "",
+        notes: "",
+      }));
       await onRefresh();
     } catch (err) {
       setError((err as Error).message);
@@ -301,6 +318,38 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
           <input className="pm-input" placeholder="File name with extension (e.g., Engagement-Letter.pdf)" value={form.file_name} onChange={(e) => setForm((p) => ({ ...p, file_name: e.target.value }))} />
         </div>
         <div className="pm-action-row">
+          <select className="pm-input" value={form.input_source} onChange={(e) => setForm((p) => ({ ...p, input_source: e.target.value as typeof form.input_source }))}>
+            <option value="local_upload">Source: local upload</option>
+            <option value="google_drive">Source: Google Drive</option>
+            <option value="vault">Source: existing vault transfer</option>
+          </select>
+          <select className="pm-input" value={form.procedural_stage} onChange={(e) => setForm((p) => ({ ...p, procedural_stage: e.target.value as typeof form.procedural_stage }))}>
+            <option value="incident">Stage: incident</option>
+            <option value="investigation">Stage: investigation</option>
+            <option value="charging">Stage: charging</option>
+            <option value="pretrial">Stage: pretrial</option>
+            <option value="plea">Stage: plea</option>
+            <option value="trial">Stage: trial</option>
+            <option value="post_disposition">Stage: post disposition</option>
+            <option value="other">Stage: other</option>
+          </select>
+          <select className="pm-input" value={form.file_category} onChange={(e) => setForm((p) => ({ ...p, file_category: e.target.value as typeof form.file_category }))}>
+            <option value="incident_record">Category: incident record</option>
+            <option value="investigation_record">Category: investigation record</option>
+            <option value="charging_record">Category: charging record</option>
+            <option value="court_filing">Category: court filing</option>
+            <option value="correspondence">Category: correspondence</option>
+            <option value="media">Category: media</option>
+            <option value="financial">Category: financial</option>
+            <option value="medical">Category: medical</option>
+            <option value="other">Category: other</option>
+          </select>
+        </div>
+        <div className="pm-action-row">
+          <input className="pm-input" placeholder="Usage goal (e.g., procedural timeline review, charging challenge)" value={form.usage_goal} onChange={(e) => setForm((p) => ({ ...p, usage_goal: e.target.value }))} />
+          <input className="pm-input" placeholder="Source reference (Drive link ID, vault ref, local note)" value={form.source_reference} onChange={(e) => setForm((p) => ({ ...p, source_reference: e.target.value }))} />
+        </div>
+        <div className="pm-action-row">
           <input className="pm-input" placeholder="Secure storage path (optional; auto-generated if blank)" value={form.storage_uri} onChange={(e) => setForm((p) => ({ ...p, storage_uri: e.target.value }))} />
           <select className="pm-input" value={form.data_class} onChange={(e) => setForm((p) => ({ ...p, data_class: e.target.value as typeof form.data_class }))}>
             <option value="ip_invention">IP / invention</option>
@@ -336,7 +385,13 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
               URI: {file.storage_uri || "not set"} | Access: {file.access_roles.join(", ") || "none"}
             </p>
             <p className="pm-muted-metadata">
-              Retention: {file.retention_policy} | Checksum status: {file.checksum_status}
+              Source: {file.input_source} | Stage: {file.procedural_stage} | Category: {file.file_category}
+            </p>
+            <p className="pm-muted-metadata">
+              Retention: {file.retention_policy} | Checksum status: {file.checksum_status} | Goal: {file.usage_goal || "not set"}
+            </p>
+            <p className="pm-muted-metadata">
+              Sorting tags: {(file.sorting_tags ?? []).join(", ") || "none"} | Next action: {file.next_action_hint || "none"}
             </p>
             <div className="pm-action-row">
               <input
