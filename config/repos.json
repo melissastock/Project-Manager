@@ -138,6 +138,8 @@
       "path": "Divorce",
       "category": "legal",
       "role": "post-divorce litigation evidence and filing-support workspace",
+      "github_repo_slug": "PLP",
+      "github_repo_url": "https://github.com/melissastock/PLP.git",
       "intake_stage": "active",
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",

@@ -5,6 +5,12 @@
 Run from `Project Manager` root:
 
 ```bash
+./scripts/run_pm_governance_sweep.sh
+```
+
+Or stepwise:
+
+```bash
 python3 scripts/portfolio_status.py
 python3 scripts/check_remote_collisions.py
 python3 scripts/review_gate.py
@@ -28,11 +34,12 @@ If any command fails:
 
 ## Pre-Send/Pre-Release
 
-1. Run delivery/readiness checks for target repo.
-2. Confirm review gates:
+1. Complete [docs/pm-sending-checklist.md](pm-sending-checklist.md).
+2. Run delivery/readiness checks for target repo.
+3. Confirm review gates:
    - code review
    - QC/validation
    - governance/legal/privacy
-3. Confirm recipient class and data class compatibility.
-4. Record release decision and approver in handoff notes.
+4. Confirm recipient class and data class compatibility.
+5. Record release decision and approver in handoff notes.
 

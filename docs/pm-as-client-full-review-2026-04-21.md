@@ -24,11 +24,11 @@ Top gaps to close for a true PM-as-client operating standard:
 
 ### What is strong
 
-- Manifest now includes policy-critical fields (`visibility_tier`, `data_class`, `ip_class`, `public_sync_allowed`) in [config/repos.json](/Users/melissastock/Desktop/Project Manager/config/repos.json).
-- Status generation surfaces governance class and sync posture in [STATUS.md](/Users/melissastock/Desktop/Project Manager/STATUS.md) via [scripts/portfolio_status.py](/Users/melissastock/Desktop/Project Manager/scripts/portfolio_status.py).
+- Manifest now includes policy-critical fields (`visibility_tier`, `data_class`, `ip_class`, `public_sync_allowed`) in [config/repos.json](config/repos.json).
+- Status generation surfaces governance class and sync posture in [STATUS.md](STATUS.md) via [scripts/portfolio_status.py](scripts/portfolio_status.py).
 - Public/private architecture and operating doctrine are now explicit in:
-  - [docs/pm-public-private-git-architecture.md](/Users/melissastock/Desktop/Project Manager/docs/pm-public-private-git-architecture.md)
-  - [docs/git-operating-model-policy.md](/Users/melissastock/Desktop/Project Manager/docs/git-operating-model-policy.md)
+  - [docs/pm-public-private-git-architecture.md](docs/pm-public-private-git-architecture.md)
+  - [docs/git-operating-model-policy.md](docs/git-operating-model-policy.md)
 - Backup remote collision risk has technical controls (`canonical-readonly`, blocked push path, collision script).
 
 ### Material gaps
@@ -62,9 +62,9 @@ Strengths:
 - Properly lane-assigned and classified in manifest (`recovery-core`, `private-client`, restricted classes).
 - Delivery scaffold files exist (`docs/delivery/*`, intake present).
 
-Gaps:
-- Intake still shows `Remote created: not yet`, which is likely stale relative to current intent.
-- Workflow flags (`Investor-book workflow needed: yes`, `GTM workflow needed: yes`) may be misfit for a litigation evidence workspace.
+Resolved (post-review execution):
+- Intake updated for remote created, role ownership, and disabled non-applicable GTM/investor defaults for litigation posture.
+- Remote recorded as `https://github.com/melissastock/PLP.git` (manifest + git).
 
 ### B) `MJS Financial Dash` (legal/financial restricted)
 
@@ -72,18 +72,16 @@ Strengths:
 - Correctly marked as canonical recovery-core finance repository.
 - Onboarding/delivery docs exist.
 
-Gaps:
-- Intake metadata appears templated and partially placeholder (`TBD` sections, remote status stale).
-- Packaging/sending role owner is not explicit.
+Resolved (post-review execution):
+- `docs/project-intake.md` added/aligned with remote created, role ownership, and workflow flags appropriate to recovery-core finance work.
 
 ### C) `provider-access-hub` (regulated-sensitive)
 
 Strengths:
 - Delivery scaffolds exist and PM-managed structure is in place.
 
-Gaps:
-- Intake says `Sensitive data involved: none identified`, but manifest class is `regulated-sensitive`; this is a policy mismatch.
-- Intake misses explicit lane/priority class fields used in PM doctrine.
+Resolved (post-review execution):
+- Intake aligned to `regulated-sensitive` and manifest lane/priority/classification fields; role ownership recorded.
 
 ### D) `MJSDS Dashboard` (public-facing)
 
@@ -109,13 +107,13 @@ Gaps:
 
 Current process artifacts exist but are distributed:
 
-- Intake: [docs/new-project-intake-template.md](/Users/melissastock/Desktop/Project Manager/docs/new-project-intake-template.md)
-- Onboarding: [docs/new-project-onboarding-checklist.md](/Users/melissastock/Desktop/Project Manager/docs/new-project-onboarding-checklist.md)
-- Delivery standards: [docs/agile-production-process.md](/Users/melissastock/Desktop/Project Manager/docs/agile-production-process.md)
-- Review gates: [docs/REVIEW_GATES.md](/Users/melissastock/Desktop/Project Manager/docs/REVIEW_GATES.md)
+- Intake: [docs/new-project-intake-template.md](docs/new-project-intake-template.md)
+- Onboarding: [docs/new-project-onboarding-checklist.md](docs/new-project-onboarding-checklist.md)
+- Delivery standards: [docs/agile-production-process.md](docs/agile-production-process.md)
+- Review gates: [docs/REVIEW_GATES.md](docs/REVIEW_GATES.md)
 - GTM/Investor packaging (conditional):
-  - [docs/gtm-repeatable-workflow.md](/Users/melissastock/Desktop/Project Manager/docs/gtm-repeatable-workflow.md)
-  - [docs/investor-book-repeatable-workflow.md](/Users/melissastock/Desktop/Project Manager/docs/investor-book-repeatable-workflow.md)
+  - [docs/gtm-repeatable-workflow.md](docs/gtm-repeatable-workflow.md)
+  - [docs/investor-book-repeatable-workflow.md](docs/investor-book-repeatable-workflow.md)
 
 ### Flow breakpoints
 
@@ -172,7 +170,7 @@ Core PM service functions and proposed role ownership:
 - **Automation Maintainer (R):** scripts, validators, CI hooks, failure triage.
 - **Principal Owner (A):** final exception approval and risk acceptance.
 
-Current-state gap: these roles exist implicitly, not explicitly assigned per lane/project in manifest or intake.
+Resolved (post-review execution): explicit role fields are now present in manifest defaults and intake template; child intakes for sampled high-risk repos were updated accordingly.
 
 ---
 
@@ -240,16 +238,16 @@ Exit criteria:
 ## 9) Once-and-Done Deliverables (This Engagement)
 
 1. This review document.
-2. PM-as-client implementation backlog (next artifact to produce).
-3. PM daily/weekly governance runbook with exact command sequence.
-4. Role assignment register (owner by lane/service function).
+2. PM-as-client implementation backlog: [docs/pm-as-client-implementation-backlog-2026-04-21.md](docs/pm-as-client-implementation-backlog-2026-04-21.md).
+3. PM daily/weekly governance runbook: [docs/pm-governance-runbook.md](docs/pm-governance-runbook.md) plus sweep script [scripts/run_pm_governance_sweep.sh](scripts/run_pm_governance_sweep.sh).
+4. Role assignment register: [docs/manifests/pm-role-register-2026-04-21.csv](docs/manifests/pm-role-register-2026-04-21.csv).
 
 ---
 
 ## 10) Recommended Immediate Next Actions
 
-1. Correct sampled intake drifts (`provider-access-hub`, `Divorce`, `MJS Financial Dash`) to reflect manifest truth.
-2. Add explicit role owner fields to intake template and manifest (governance steward, compliance reviewer, packaging owner).
-3. Introduce one command wrapper for daily PM governance checks.
-4. Create outbound sending checklist with policy-based release classification.
+1. Enforce branch protection/rulesets on canonical default branches for all managed GitHub repos.
+2. Implement intake-vs-manifest drift validator (script + optional CI hook).
+3. Add outbound sending checklist and wire it into pre-send runbook section.
+4. Expand representative sample checks to full portfolio in Phase 3 of the 90-day program.
 
