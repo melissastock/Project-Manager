@@ -6,6 +6,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from .db import ping_supabase, supabase_configured
 from .models import RecommendationDecision
 from .service import build_standup_view, set_decision
 
@@ -30,6 +31,20 @@ class DecisionUpdate(BaseModel):
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/health/supabase")
+def health_supabase() -> dict[str, str]:
+    if not supabase_configured():
+        return {
+            "status": "skipped",
+            "detail": "SUPABASE_URL / SUPABASE_ANON_KEY not set; decisions use local JSON.",
+        }
+    try:
+        ping_supabase()
+        return {"status": "ok"}
+    except Exception as exc:  # noqa: BLE001 — surface connectivity errors to operators
+        return {"status": "error", "detail": str(exc)}
 
 
 @app.get("/api/standup")

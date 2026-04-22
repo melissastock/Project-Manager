@@ -1,3 +1,4 @@
+# Conda CI for this repo. If this job fails on missing files or branch mismatch, see docs/operator-friction-log.md (Git / CI section).
 name: Python Package using Conda
 
 on: [push]

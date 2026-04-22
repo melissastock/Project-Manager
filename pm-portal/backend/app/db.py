@@ -3,15 +3,25 @@ from __future__ import annotations
 import os
 from typing import Any
 
-from supabase import create_client, Client
+from supabase import Client, create_client
+
+
+def supabase_configured() -> bool:
+    url = os.getenv("SUPABASE_URL", "").strip()
+    key = os.getenv("SUPABASE_ANON_KEY", "").strip()
+    return bool(url and key)
 
 
 def get_supabase_client() -> Client:
-    url = os.getenv("SUPABASE_URL", "").strip()
+    url = os.getenv("SUPABASE_URL", "").strip().rstrip("/")
     key = os.getenv("SUPABASE_ANON_KEY", "").strip()
 
     if not url or not key:
-        raise RuntimeError("SUPABASE_URL and SUPABASE_ANON_KEY must be set")
+        raise RuntimeError(
+            "Supabase is not configured. Copy pm-portal/backend/.env.example to "
+            "pm-portal/backend/.env and set SUPABASE_URL and SUPABASE_ANON_KEY from "
+            "Project Settings -> API in the Supabase dashboard."
+        )
 
     return create_client(url, key)
 
@@ -32,3 +42,9 @@ def fetch_recommendation_decisions() -> list[dict[str, Any]]:
     client = get_supabase_client()
     response = client.table("recommendation_decisions").select("*").execute()
     return response.data or []
+
+
+def ping_supabase() -> None:
+    """Lightweight call to verify credentials, DNS, and table visibility."""
+    client = get_supabase_client()
+    client.table("recommendation_decisions").select("recommendation_id").limit(1).execute()

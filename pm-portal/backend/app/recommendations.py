@@ -1,11 +1,12 @@
 from __future__ import annotations
 
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from .db import fetch_recommendation_decisions, supabase_configured, upsert_recommendation_decision
 from .models import Recommendation, RecommendationDecision, SignalSnapshot
-from .db import fetch_recommendation_decisions, upsert_recommendation_decision
 
 
 def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, score: int, max_items: int) -> list[Recommendation]:
@@ -66,18 +67,28 @@ def build_recommendations(project: dict, snapshot: SignalSnapshot, band: str, sc
     return recs[:max_items]
 
 
-def load_decisions(_path: Path | None = None) -> dict[str, dict[str, Any]]:
-    rows = fetch_recommendation_decisions()
-    return {
-        row["recommendation_id"]: row
-        for row in rows
-        if row.get("recommendation_id")
-    }
+def load_decisions(path: Path | None = None) -> dict[str, dict[str, Any]]:
+    if supabase_configured():
+        rows = fetch_recommendation_decisions()
+        return {
+            row["recommendation_id"]: row
+            for row in rows
+            if row.get("recommendation_id")
+        }
+    if path is not None and path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    return {}
 
 
-def persist_decisions(_path: Path | None, decisions: dict[str, dict[str, Any]]) -> None:
-    for value in decisions.values():
-        upsert_recommendation_decision(value)
+def persist_decisions(path: Path | None, decisions: dict[str, dict[str, Any]]) -> None:
+    if supabase_configured():
+        for value in decisions.values():
+            upsert_recommendation_decision(value)
+        return
+    if path is None:
+        raise RuntimeError("Decision path is required when Supabase is not configured")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(decisions, indent=2, default=str), encoding="utf-8")
 
 
 def decisions_for_recommendations(rec_ids: list[str], cache: dict[str, dict]) -> list[RecommendationDecision]:

@@ -11,7 +11,9 @@ REPOS_PATH = PROJECT_MANAGER_ROOT / "config" / "repos.json"
 POLICY_PATH = ROOT / "backend" / "config" / "pm-standup-policy.json"
 DECISIONS_PATH = ROOT / "data" / "decisions.json"
 
-load_dotenv(ROOT / "backend" / ".env")
+# Portal root first, then backend (backend wins on duplicate keys).
+load_dotenv(ROOT / ".env")
+load_dotenv(ROOT / "backend" / ".env", override=True)
 
 
 def load_json(path: Path) -> dict:

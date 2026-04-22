@@ -1,5 +1,7 @@
 # New Project Intake
 
+If intake is blocked by portfolio tooling (not the project itself), see **`docs/operator-friction-log.md`**.
+
 ## Basic Identity
 
 - Project name:
