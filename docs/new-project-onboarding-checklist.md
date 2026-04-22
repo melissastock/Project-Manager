@@ -43,6 +43,10 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - Use `python3 scripts/validate_downstream_governance.py --target "path/to/repo" --fix` to auto-fill missing downstream governance intake fields when needed.
 - Run `python3 scripts/validate_launch_readiness.py --target "path/to/repo"` to enforce launch-proximal commercialization, marketing, and SOP gates when applicable.
 - Use `python3 scripts/validate_launch_readiness.py --target "path/to/repo" --fix` to scaffold missing launch artifacts and Path 2 brand mode intake metadata when applicable.
+- Run `python3 scripts/validate_lifecycle_state.py --target "path/to/repo"` to enforce lifecycle state consistency with governance/execution/launch gates.
+- Use `python3 scripts/validate_lifecycle_state.py --target "path/to/repo" --fix` to auto-correct lifecycle state when it exceeds gate-valid readiness.
+- Run `python3 scripts/validate_persona_research_layer.py --target "path/to/repo"` to enforce persona/modular/orientation and user-research evidence quality.
+- Use `python3 scripts/validate_persona_research_layer.py --target "path/to/repo" --fix` to scaffold missing persona-research metadata and evidence notes.
 - Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py --target "path/to/repo"` for local validation before scaling work.
 - Use `python3 scripts/validate_architecture_scale_fit.py` for global changed-repo validation across the portfolio.
 - Commit the Project Manager updates.
@@ -54,6 +58,7 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - compliance profile assigned
 - governance docs created
 - repo visibility verified
+- lifecycle state assigned using `docs/governance/project-lifecycle-states.md`
 
 ### regulated-sensitive
 - privacy boundaries doc exists
@@ -78,6 +83,13 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - KPI owner assigned
 - reporting cadence defined
 - financial KPIs selected based on project type
+
+### persona and modular-instance requirements
+- primary user persona assigned (`docs/governance/project-persona-framework.md`)
+- modular instance type documented (`templates/portfolio-modules/modular-instance-template.md`)
+- portfolio orientation declared (`horizontal` or `vertical`)
+- persona validation and research layer documented (`docs/governance/persona-validation-and-user-research-policy.md`)
+- persona research evidence linked and confidence recorded
 
 ### downstream governance requirements
 - downstream governance profile mapped in `docs/governance/project-type-downstream-governance-rules.md`

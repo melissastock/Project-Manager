@@ -27,6 +27,17 @@ If intake is blocked by portfolio tooling (not the project itself), see **`docs/
 - Downstream governance profile:
 - Downstream governance owner:
 - Project-type escalation triggers:
+- Primary user persona:
+- Secondary user persona(s):
+- Modular instance type(s):
+- Portfolio orientation (`horizontal` / `vertical`):
+- Persona validation status (`pending` / `validated`):
+- Persona research evidence path:
+- Persona research confidence (`low` / `medium` / `high`):
+- Last persona validation date:
+- Enabled modules (`core-readiness`, `lifecycle-state`, `downstream-governance`, `persona-research`, `launch-readiness`):
+- Module activation source (`classification` / `project_type` / `manual` / `mixed`):
+- Module states (module -> `pending` / `active` / `waived`):
 - Main deliverables:
 - Required tools or platforms:
 - Primary language/runtime:
@@ -63,6 +74,7 @@ If intake is blocked by portfolio tooling (not the project itself), see **`docs/
 - IP class:
 - Public sync allowed:
 - Intake stage:
+- Lifecycle state (`not-onboarded` / `governed` / `execution-ready` / `launch-ready` / `scaled`):
 - Priority:
 - Status cadence:
 - Notes for dashboard:
