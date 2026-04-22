@@ -13,7 +13,13 @@ Or stepwise:
 ```bash
 python3 scripts/portfolio_status.py
 python3 scripts/check_remote_collisions.py
-python3 scripts/review_gate.py
+python3 scripts/validate_cascade_scope.py
+python3 scripts/run_portfolio_readiness_checks.py
+python3 scripts/validate_mobile_governance.py
+python3 scripts/check_runtime_disclosure_drift.py
+python3 scripts/validate_architecture_scale_fit.py
+# optional publication-review coupling check:
+# python3 scripts/review_gate.py
 ```
 
 If any command fails:

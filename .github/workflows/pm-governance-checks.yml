@@ -35,4 +35,6 @@ jobs:
           RUN_SCOPE_CHECK=1 \
           RUN_PORTFOLIO_READINESS_CHECK=1 \
           RUN_MOBILE_GOVERNANCE_CHECK=1 \
+          RUN_RUNTIME_DISCLOSURE_DRIFT_CHECK=1 \
+          RUN_ARCH_SCALE_FIT_CHECK=1 \
           bash scripts/run_pm_governance_sweep.sh

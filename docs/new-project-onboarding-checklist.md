@@ -39,5 +39,6 @@ Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports
 - Confirm the top-level Project Manager repo sees the child repo correctly.
 - Use `python3 scripts/sync_child_repo_pointers.py` to inspect child repo commit drift.
 - Run `python3 scripts/check_production_readiness.py --target "path/to/repo"` before opening PRs to enforce backlog, sprint, and testing gates.
+- Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py` before scaling work.
 - Commit the Project Manager updates.
 - Push both the child repo and the Project Manager repo.

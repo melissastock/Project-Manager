@@ -95,6 +95,10 @@ Store-facing disclosure sources:
 
 These must be reviewed and updated when runtime data behavior, permissions, or SDK usage changes.
 
+Automated drift check:
+
+- `python3 scripts/check_runtime_disclosure_drift.py`
+
 ## Stop-Ship Conditions
 
 Do not ship if any of the following is true:

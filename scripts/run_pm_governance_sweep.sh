@@ -32,4 +32,16 @@ else
   echo "Skipping validate_mobile_governance.py (set RUN_MOBILE_GOVERNANCE_CHECK=1 to enable)."
 fi
 
+if [[ "${RUN_RUNTIME_DISCLOSURE_DRIFT_CHECK:-1}" == "1" ]]; then
+  python3 scripts/check_runtime_disclosure_drift.py
+else
+  echo "Skipping check_runtime_disclosure_drift.py (set RUN_RUNTIME_DISCLOSURE_DRIFT_CHECK=1 to enable)."
+fi
+
+if [[ "${RUN_ARCH_SCALE_FIT_CHECK:-1}" == "1" ]]; then
+  python3 scripts/validate_architecture_scale_fit.py
+else
+  echo "Skipping validate_architecture_scale_fit.py (set RUN_ARCH_SCALE_FIT_CHECK=1 to enable)."
+fi
+
 echo "== Sweep complete =="

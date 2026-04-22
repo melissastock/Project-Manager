@@ -10,6 +10,7 @@
     "project_metadata",
     "readiness_signals",
     "recommendation_decisions",
+    "runtime_observations",
     "operational_timestamps"
   ],
   "prohibited_data_classes": [
@@ -21,7 +22,7 @@
   ],
   "user_disclosures": [
     "This app collects only the project and decision data needed to run portfolio operations.",
-    "Protected legal, financial, client, and health-related materials are not intended for mobile exposure in this app.",
+    "Sensitive legal, financial, client, and health-related materials are not intended for mobile exposure in this app.",
     "If analytics or infrastructure providers are used, their data handling is disclosed in store privacy forms.",
     "For privacy and data requests, contact the support channel listed in the app store listing."
   ],

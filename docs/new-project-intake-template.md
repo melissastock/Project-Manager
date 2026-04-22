@@ -22,8 +22,21 @@ If intake is blocked by portfolio tooling (not the project itself), see **`docs/
 - Project type:
 - Main deliverables:
 - Required tools or platforms:
+- Primary language/runtime:
+- Primary framework(s):
+- Service model (`monolith` / `modular-monolith` / `microservices`):
 - Sensitive data involved:
 - External dependencies:
+
+## Architecture And Scale Fit
+
+- Mandate summary:
+- Why this stack fits the mandate:
+- Database model summary (core entities + boundaries):
+- Hooks/connections needed (events, webhooks, external systems):
+- Hosting target (dev/staging/prod):
+- Scale triggers (when architecture must change):
+- Architecture-fit doc path (`docs/architecture-scale-fit.md`):
 
 ## Git And Workspace Setup
 
