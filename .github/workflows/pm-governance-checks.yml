@@ -1,0 +1,38 @@
+name: PM Governance Checks
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "scripts/**"
+      - "docs/**"
+      - "config/**"
+      - "pm-portal/**"
+      - ".github/workflows/pm-governance-checks.yml"
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "docs/**"
+      - "config/**"
+      - "pm-portal/**"
+      - ".github/workflows/pm-governance-checks.yml"
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run governance sweep
+        run: |
+          RUN_REVIEW_GATE=0 \
+          RUN_SCOPE_CHECK=1 \
+          RUN_PORTFOLIO_READINESS_CHECK=1 \
+          RUN_MOBILE_GOVERNANCE_CHECK=1 \
+          bash scripts/run_pm_governance_sweep.sh

@@ -14,4 +14,22 @@ else
   echo "Skipping review_gate.py (set RUN_REVIEW_GATE=1 to enable)."
 fi
 
+if [[ "${RUN_SCOPE_CHECK:-1}" == "1" ]]; then
+  python3 scripts/validate_cascade_scope.py
+else
+  echo "Skipping validate_cascade_scope.py (set RUN_SCOPE_CHECK=1 to enable)."
+fi
+
+if [[ "${RUN_PORTFOLIO_READINESS_CHECK:-1}" == "1" ]]; then
+  python3 scripts/run_portfolio_readiness_checks.py
+else
+  echo "Skipping run_portfolio_readiness_checks.py (set RUN_PORTFOLIO_READINESS_CHECK=1 to enable)."
+fi
+
+if [[ "${RUN_MOBILE_GOVERNANCE_CHECK:-1}" == "1" ]]; then
+  python3 scripts/validate_mobile_governance.py
+else
+  echo "Skipping validate_mobile_governance.py (set RUN_MOBILE_GOVERNANCE_CHECK=1 to enable)."
+fi
+
 echo "== Sweep complete =="
