@@ -48,6 +48,8 @@ For recurring session workflow (Draft/Apply mode, commit sequencing, and push or
 - Use `python3 scripts/validate_lifecycle_state.py --target "path/to/repo" --fix` to auto-correct lifecycle state when it exceeds gate-valid readiness.
 - Run `python3 scripts/validate_persona_research_layer.py --target "path/to/repo"` to enforce persona/modular/orientation and user-research evidence quality.
 - Use `python3 scripts/validate_persona_research_layer.py --target "path/to/repo" --fix` to scaffold missing persona-research metadata and evidence notes.
+- Run `python3 scripts/validate_cognitive_profile_alignment.py --target "path/to/repo"` to enforce self-imposed cognitive profile workflow metadata and artifacts.
+- Use `python3 scripts/validate_cognitive_profile_alignment.py --target "path/to/repo" --fix` to scaffold missing profile metadata and creator workflow artifacts.
 - Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py --target "path/to/repo"` for local validation before scaling work.
 - Use `python3 scripts/validate_architecture_scale_fit.py` for global changed-repo validation across the portfolio.
 - Commit the Project Manager updates.
@@ -91,6 +93,12 @@ For recurring session workflow (Draft/Apply mode, commit sequencing, and push or
 - portfolio orientation declared (`horizontal` or `vertical`)
 - persona validation and research layer documented (`docs/governance/persona-validation-and-user-research-policy.md`)
 - persona research evidence linked and confidence recorded
+
+### cognitive profile requirements
+- creator cognitive profile assigned (`adhd`, `audhd`, `autistic`, or `neurotypical`)
+- creator focus plan documented (`docs/process/creator-focus-plan.md`)
+- creator closeout rhythm documented (`docs/process/creator-closeout-rhythm.md`)
+- cognitive profile governance documented (`docs/governance/cognitive-profile-modules.md`)
 
 ### downstream governance requirements
 - downstream governance profile mapped in `docs/governance/project-type-downstream-governance-rules.md`

@@ -35,7 +35,11 @@ If intake is blocked by portfolio tooling (not the project itself), see **`docs/
 - Persona research evidence path:
 - Persona research confidence (`low` / `medium` / `high`):
 - Last persona validation date:
-- Enabled modules (`core-readiness`, `lifecycle-state`, `downstream-governance`, `persona-research`, `launch-readiness`):
+- Creator cognitive profile (`adhd` / `audhd` / `autistic` / `neurotypical`):
+- Creator workflow preferences:
+- Focus plan artifact path:
+- Closeout rhythm artifact path:
+- Enabled modules (`core-readiness`, `lifecycle-state`, `downstream-governance`, `persona-research`, `launch-readiness`, `cognitive-profile`):
 - Module activation source (`classification` / `project_type` / `manual` / `mixed`):
 - Module states (module -> `pending` / `active` / `waived`):
 - Main deliverables:

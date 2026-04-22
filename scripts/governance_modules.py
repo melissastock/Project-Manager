@@ -9,9 +9,10 @@ MODULE_LIFECYCLE = "lifecycle-state"
 MODULE_DOWNSTREAM = "downstream-governance"
 MODULE_PERSONA = "persona-research"
 MODULE_LAUNCH = "launch-readiness"
+MODULE_COGNITIVE = "cognitive-profile"
 
 ALWAYS_ENABLED_MODULES = {MODULE_CORE_READINESS, MODULE_LIFECYCLE}
-KNOWN_MODULES = ALWAYS_ENABLED_MODULES | {MODULE_DOWNSTREAM, MODULE_PERSONA, MODULE_LAUNCH}
+KNOWN_MODULES = ALWAYS_ENABLED_MODULES | {MODULE_DOWNSTREAM, MODULE_PERSONA, MODULE_LAUNCH, MODULE_COGNITIVE}
 
 LAUNCH_FLAGS = [
     "Launch-proximal commercialization plan required",
@@ -73,6 +74,9 @@ def infer_modules(entry: dict, intake_text: str) -> set[str]:
         intake_text, "Portfolio orientation (`horizontal` / `vertical`)"
     ):
         modules.add(MODULE_PERSONA)
+
+    if extract_field(intake_text, "Creator cognitive profile (`adhd` / `audhd` / `autistic` / `neurotypical`)"):
+        modules.add(MODULE_COGNITIVE)
 
     if launch_required(intake_text):
         modules.add(MODULE_LAUNCH)

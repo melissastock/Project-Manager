@@ -30,6 +30,9 @@ Core modules are mandatory for every managed repository:
 - `launch-readiness`
   - Enforces commercialization, marketing, and operationalization artifacts when launch-proximal.
   - Validator: `scripts/validate_launch_readiness.py`
+- `cognitive-profile`
+  - Enforces self-imposed cognitive workflow profile metadata and creator focus/closeout rhythm artifacts.
+  - Validator: `scripts/validate_cognitive_profile_alignment.py`
 
 ---
 
@@ -50,6 +53,7 @@ If `enabled_modules` is missing, auto-rules infer modules from intake signals an
 - `downstream-governance` is auto-enabled when `Project type` or `Downstream governance profile` is present.
 - `persona-research` is auto-enabled when persona/orientation fields are present.
 - `launch-readiness` is auto-enabled when any launch-proximal required flag is true.
+- `cognitive-profile` is auto-enabled when a creator cognitive profile is specified in intake.
 
 ---
 

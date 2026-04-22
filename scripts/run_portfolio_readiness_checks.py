@@ -9,6 +9,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from governance_modules import (
+    MODULE_COGNITIVE,
     MODULE_CORE_READINESS,
     MODULE_DOWNSTREAM,
     MODULE_LAUNCH,
@@ -26,6 +27,7 @@ DOWNSTREAM_GOVERNANCE_CHECK = ROOT / "scripts" / "validate_downstream_governance
 LAUNCH_READINESS_CHECK = ROOT / "scripts" / "validate_launch_readiness.py"
 LIFECYCLE_STATE_CHECK = ROOT / "scripts" / "validate_lifecycle_state.py"
 PERSONA_RESEARCH_CHECK = ROOT / "scripts" / "validate_persona_research_layer.py"
+COGNITIVE_PROFILE_CHECK = ROOT / "scripts" / "validate_cognitive_profile_alignment.py"
 
 
 def _run_git(repo_path: Path, *args: str) -> subprocess.CompletedProcess[str]:
@@ -84,6 +86,13 @@ def _check_one(entry: dict, fix_downstream: bool) -> tuple[str, int, str, list[s
         )
         sections.append("## Persona Research Layer\n" + (persona_proc.stdout + "\n" + persona_proc.stderr).strip())
         codes.append(persona_proc.returncode)
+
+    if MODULE_COGNITIVE in active_modules:
+        cognitive_proc = _run_check(
+            ["python3", str(COGNITIVE_PROFILE_CHECK), "--target", str(repo_path), *fix_suffix]
+        )
+        sections.append("## Cognitive Profile Alignment\n" + (cognitive_proc.stdout + "\n" + cognitive_proc.stderr).strip())
+        codes.append(cognitive_proc.returncode)
 
     if MODULE_LIFECYCLE in active_modules:
         lifecycle_proc = _run_check(["python3", str(LIFECYCLE_STATE_CHECK), "--target", str(repo_path), *fix_suffix])

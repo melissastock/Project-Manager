@@ -8,6 +8,7 @@ import subprocess
 from pathlib import Path
 
 from governance_modules import (
+    MODULE_COGNITIVE,
     MODULE_DOWNSTREAM,
     MODULE_LAUNCH,
     MODULE_PERSONA,
@@ -35,6 +36,7 @@ PRODUCTION_SCRIPT = ROOT / "scripts" / "check_production_readiness.py"
 ARCH_SCRIPT = ROOT / "scripts" / "validate_architecture_scale_fit.py"
 LAUNCH_SCRIPT = ROOT / "scripts" / "validate_launch_readiness.py"
 PERSONA_SCRIPT = ROOT / "scripts" / "validate_persona_research_layer.py"
+COGNITIVE_SCRIPT = ROOT / "scripts" / "validate_cognitive_profile_alignment.py"
 
 
 def _read(path: Path) -> str:
@@ -74,16 +76,18 @@ def _recommended_state(target: Path, intake_text: str) -> tuple[str, dict[str, b
 
     downstream_required = MODULE_DOWNSTREAM in active_modules
     persona_required = MODULE_PERSONA in active_modules
+    cognitive_required = MODULE_COGNITIVE in active_modules
     launch_module_enabled = MODULE_LAUNCH in active_modules
 
     downstream_ok = (_run(DOWNSTREAM_SCRIPT, target) == 0) if downstream_required else True
     production_ok = _run(PRODUCTION_SCRIPT, target) == 0
     arch_ok = _run(ARCH_SCRIPT, target) == 0
     persona_ok = (_run(PERSONA_SCRIPT, target) == 0) if persona_required else True
+    cognitive_ok = (_run(COGNITIVE_SCRIPT, target) == 0) if cognitive_required else True
     launch_required_gate = launch_module_enabled and launch_required(intake_text)
     launch_ok = (_run(LAUNCH_SCRIPT, target) == 0) if launch_required_gate else True
 
-    execution_ok = production_ok and arch_ok and downstream_ok and persona_ok
+    execution_ok = production_ok and arch_ok and downstream_ok and persona_ok and cognitive_ok
 
     if not downstream_ok:
         state = "not-onboarded"
@@ -104,6 +108,8 @@ def _recommended_state(target: Path, intake_text: str) -> tuple[str, dict[str, b
         "arch_ok": arch_ok,
         "persona_required": persona_required,
         "persona_ok": persona_ok,
+        "cognitive_required": cognitive_required,
+        "cognitive_ok": cognitive_ok,
         "launch_required": launch_required_gate,
         "launch_ok": launch_ok,
         "execution_ok": execution_ok,
