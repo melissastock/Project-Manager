@@ -250,7 +250,7 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
     <div>
       <h3 className="pm-section-title pm-section-title-spaced">Secure Client Vault</h3>
       <p className="pm-subtitle">
-        Protected file register for IP, invention, financial, legal, medical, and other sensitive client materials.
+        Secure file handling for privileged or sensitive client records (IP, legal, financial, medical, and regulated materials).
       </p>
       {error ? <p className="pm-error">{error}</p> : null}
       <div className="pm-card pm-card-block">
@@ -259,6 +259,9 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
           Status: {driveStatus?.status ?? "not connected"}
           {driveStatus?.drive_account_email ? ` | Account: ${driveStatus.drive_account_email}` : ""}
           {driveStatus?.drive_folder_id ? ` | Folder: ${driveStatus.drive_folder_id}` : ""}
+        </p>
+        <p className="pm-muted-metadata">
+          Connect the approved client Drive destination once per project so files are routed to the correct legal archive location.
         </p>
         <div className="pm-action-row">
           <input
@@ -269,7 +272,7 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
           />
           <input
             className="pm-input"
-            placeholder="Drive folder ID"
+            placeholder="Drive folder ID (approved legal folder)"
             value={driveForm.drive_folder_id}
             onChange={(e) => setDriveForm((p) => ({ ...p, drive_folder_id: e.target.value }))}
           />
@@ -277,25 +280,28 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
         <div className="pm-action-row">
           <input
             className="pm-input"
-            placeholder="Connection notes (optional)"
+            placeholder="Connection notes (optional, visible in audit context)"
             value={driveForm.notes}
             onChange={(e) => setDriveForm((p) => ({ ...p, notes: e.target.value }))}
           />
           <button className="pm-action-btn secondary" disabled={busy} onClick={connectDrive}>
-            Connect Drive
+            Connect Drive Folder
           </button>
           <button className="pm-action-btn secondary" disabled={busy} onClick={disconnectDrive}>
-            Disconnect Drive
+            Disconnect Drive Folder
           </button>
         </div>
       </div>
       <div className="pm-card pm-card-block">
+        <p className="pm-muted-metadata">
+          Step 1: register the file metadata. Step 2: upload. Step 3: verify checksum and review audit log.
+        </p>
         <div className="pm-action-row">
           <input className="pm-input" placeholder="Client name" value={form.client_name} onChange={(e) => setForm((p) => ({ ...p, client_name: e.target.value }))} />
-          <input className="pm-input" placeholder="File name" value={form.file_name} onChange={(e) => setForm((p) => ({ ...p, file_name: e.target.value }))} />
+          <input className="pm-input" placeholder="File name with extension (e.g., Engagement-Letter.pdf)" value={form.file_name} onChange={(e) => setForm((p) => ({ ...p, file_name: e.target.value }))} />
         </div>
         <div className="pm-action-row">
-          <input className="pm-input" placeholder="Secure storage URI (vault path)" value={form.storage_uri} onChange={(e) => setForm((p) => ({ ...p, storage_uri: e.target.value }))} />
+          <input className="pm-input" placeholder="Secure storage path (optional; auto-generated if blank)" value={form.storage_uri} onChange={(e) => setForm((p) => ({ ...p, storage_uri: e.target.value }))} />
           <select className="pm-input" value={form.data_class} onChange={(e) => setForm((p) => ({ ...p, data_class: e.target.value as typeof form.data_class }))}>
             <option value="ip_invention">IP / invention</option>
             <option value="financial">financial</option>
@@ -310,10 +316,10 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
           </select>
         </div>
         <div className="pm-action-row">
-          <input className="pm-input" placeholder="Access roles (comma-separated)" value={form.access_roles} onChange={(e) => setForm((p) => ({ ...p, access_roles: e.target.value }))} />
-          <input className="pm-input" placeholder="SHA256 checksum (optional)" value={form.checksum_sha256} onChange={(e) => setForm((p) => ({ ...p, checksum_sha256: e.target.value }))} />
+          <input className="pm-input" placeholder="Allowed roles (comma-separated, e.g., business_owner,portfolio_owner)" value={form.access_roles} onChange={(e) => setForm((p) => ({ ...p, access_roles: e.target.value }))} />
+          <input className="pm-input" placeholder="SHA256 checksum (optional at registration)" value={form.checksum_sha256} onChange={(e) => setForm((p) => ({ ...p, checksum_sha256: e.target.value }))} />
         </div>
-        <textarea className="pm-input pm-textarea" placeholder="Retention policy / notes" value={form.notes} onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))} />
+        <textarea className="pm-input pm-textarea" placeholder="Retention policy and legal notes" value={form.notes} onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))} />
         <button className="pm-action-btn" disabled={busy} onClick={registerFile}>Register Secure File</button>
       </div>
 
@@ -342,19 +348,19 @@ export function SecureVaultPanel({ project, onRefresh }: { project: ProjectReadi
                 }}
               />
               <button className="pm-action-btn secondary" disabled={busy} onClick={() => issueSignedUrl(file.id, "upload")}>
-                Issue Signed Upload URL
+                Show Signed Upload Link
               </button>
               <button className="pm-action-btn secondary" disabled={busy} onClick={() => downloadFileDirect(file.id)}>
-                Download Secure File
+                Open Secure Download
               </button>
               <button className="pm-action-btn secondary" disabled={busy} onClick={() => loadAudit(file.id)}>
-                View Vault Audit
+                View Access Audit
               </button>
             </div>
             <div className="pm-action-row">
               <input
                 className="pm-input"
-                placeholder="Expected SHA256 checksum"
+                placeholder="Expected SHA256 checksum (from original source file)"
                 value={expectedChecksumByFile[file.id] || ""}
                 onChange={(e) => setExpectedChecksumByFile((prev) => ({ ...prev, [file.id]: e.target.value }))}
               />

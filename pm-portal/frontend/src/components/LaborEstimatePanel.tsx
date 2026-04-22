@@ -242,23 +242,23 @@ export function LaborEstimatePanel({ project, onRefresh }: { project: ProjectRea
     <div>
       <h3 className="pm-section-title pm-section-title-spaced">Labor Estimate (Post-Intake, Pre-Onboarding)</h3>
       <p className="pm-subtitle">
-        End-to-end modular load estimate for strategy, development, operationalization, governance, marketing, and GTM.
+        End-to-end estimate for expected effort and cost before onboarding. Use this with the client and legal counsel to review assumptions, budget impact, and change risk.
       </p>
       {error ? <p className="pm-error">{error}</p> : null}
       <div className="pm-card pm-card-block">
         <div className="pm-action-row">
-          <input className="pm-input" value={createdBy} onChange={(e) => setCreatedBy(e.target.value)} placeholder="Estimator name" />
+          <input className="pm-input" value={createdBy} onChange={(e) => setCreatedBy(e.target.value)} placeholder="Prepared by" />
           <input
             className="pm-input"
             type="number"
             value={hourlyRate}
             onChange={(e) => setHourlyRate(Number(e.target.value || "0"))}
-            placeholder="Hourly rate"
+            placeholder="Hourly rate (USD)"
           />
           <select className="pm-input" value={confidence} onChange={(e) => setConfidence(e.target.value as "low" | "medium" | "high")}>
-            <option value="low">low confidence</option>
-            <option value="medium">medium confidence</option>
-            <option value="high">high confidence</option>
+            <option value="low">Low confidence</option>
+            <option value="medium">Medium confidence</option>
+            <option value="high">High confidence</option>
           </select>
           <select className="pm-input" value={costPreset} onChange={(e) => applyPreset(e.target.value as CostPreset)}>
             <option value="lean">Lean preset</option>
@@ -275,18 +275,18 @@ export function LaborEstimatePanel({ project, onRefresh }: { project: ProjectRea
 
         {MODULES.map((moduleKey) => (
           <div key={moduleKey} className="pm-card pm-card-block">
-            <div className="pm-meta-label">{moduleKey}</div>
+            <div className="pm-meta-label">{moduleKey.charAt(0).toUpperCase() + moduleKey.slice(1)}</div>
             <div className="pm-action-row">
               <input
                 className="pm-input"
                 type="number"
-                placeholder="Estimated hours"
+                placeholder="Estimated hours for this module"
                 value={hours[moduleKey]}
                 onChange={(e) => setHours((prev) => ({ ...prev, [moduleKey]: e.target.value }))}
               />
               <input
                 className="pm-input"
-                placeholder="Notes"
+                placeholder="Client-facing notes (assumptions, exclusions, legal constraints)"
                 value={notes[moduleKey]}
                 onChange={(e) => setNotes((prev) => ({ ...prev, [moduleKey]: e.target.value }))}
               />
@@ -295,10 +295,10 @@ export function LaborEstimatePanel({ project, onRefresh }: { project: ProjectRea
         ))}
 
         <p className="pm-muted-metadata">
-          Labor preview: {estimatedTotalHours} hours | ${estimatedTotalCost.toLocaleString()}
+          Labor preview: {estimatedTotalHours} hours | ${estimatedTotalCost.toLocaleString()} estimated labor cost
         </p>
         <div className="pm-card pm-card-block">
-          <div className="pm-meta-label">Non-labor cost envelope</div>
+          <div className="pm-meta-label">Non-labor costs (infrastructure and operating costs)</div>
           <div className="pm-action-row">
             <input className="pm-input" type="number" placeholder="Hosting one-time" value={nonLabor.hosting_one_time} onChange={(e) => setNonLabor((p) => ({ ...p, hosting_one_time: e.target.value }))} />
             <input className="pm-input" type="number" placeholder="Hosting monthly" value={nonLabor.hosting_monthly} onChange={(e) => setNonLabor((p) => ({ ...p, hosting_monthly: e.target.value }))} />
@@ -324,7 +324,7 @@ export function LaborEstimatePanel({ project, onRefresh }: { project: ProjectRea
             <input className="pm-input" type="number" placeholder="Contingency monthly" value={nonLabor.contingency_monthly} onChange={(e) => setNonLabor((p) => ({ ...p, contingency_monthly: e.target.value }))} />
           </div>
           <p className="pm-muted-metadata">
-            Build cost (labor + one-time non-labor): ${buildCost.toLocaleString()} | Monthly run-rate: ${nonLaborMonthly.toLocaleString()} | 12m TCO: ${tco12m.toLocaleString()}
+            Build cost (labor + one-time costs): ${buildCost.toLocaleString()} | Monthly run cost: ${nonLaborMonthly.toLocaleString()} | 12-month total cost (TCO): ${tco12m.toLocaleString()}
           </p>
         </div>
         <button className="pm-action-btn" disabled={busy} onClick={submitEstimate}>

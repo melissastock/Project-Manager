@@ -210,6 +210,9 @@ export function ClientAgreementPanel({ project, onRefresh }: { project: ProjectR
   return (
     <div>
       <h3 className="pm-section-title pm-section-title-spaced">Client Intake and Contract Lock</h3>
+      <p className="pm-subtitle">
+        Use this section to capture plain-language agreement terms with the client, then lock the agreement so future scope or price changes are tracked through formal change orders.
+      </p>
       {error ? <p className="pm-error">{error}</p> : null}
       <div className="pm-card pm-card-block">
         <div className="pm-meta-label">Client and owner</div>
@@ -219,20 +222,20 @@ export function ClientAgreementPanel({ project, onRefresh }: { project: ProjectR
         </div>
         {!agreement ? (
           <>
-            <input className="pm-input" placeholder="Package" value={agreementDraft.package_name} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, package_name: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Product brief" value={agreementDraft.product_brief} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, product_brief: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Scope definition" value={agreementDraft.scope_definition} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, scope_definition: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Agreed deliverables" value={agreementDraft.deliverables_summary} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, deliverables_summary: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder='Price terms JSON, e.g. {"fixed":12000,"retainer":1500}' value={agreementDraft.price_terms_json} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, price_terms_json: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Client goals (intake)" value={agreementDraft.client_goals} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, client_goals: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Success criteria (intake)" value={agreementDraft.success_criteria} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, success_criteria: e.target.value }))} />
-            <input className="pm-input" placeholder="Primary contact email/name" value={agreementDraft.primary_contact} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, primary_contact: e.target.value }))} />
-            <input className="pm-input" placeholder="Client communication preferences" value={agreementDraft.communication_preferences} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, communication_preferences: e.target.value }))} />
-            <input className="pm-input" placeholder="Business owner budget range (USD)" value={agreementDraft.budget_range_usd} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, budget_range_usd: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Business owner scope boundaries (in/out)" value={agreementDraft.scope_boundaries} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, scope_boundaries: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Business owner compliance requirements" value={agreementDraft.compliance_requirements} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, compliance_requirements: e.target.value }))} />
-            <input className="pm-input" placeholder="Business owner approval authority" value={agreementDraft.approval_authority} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, approval_authority: e.target.value }))} />
-            <textarea className="pm-input pm-textarea" placeholder="Business owner risk assumptions" value={agreementDraft.risk_assumptions} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, risk_assumptions: e.target.value }))} />
+            <input className="pm-input" placeholder="Service package or engagement type" value={agreementDraft.package_name} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, package_name: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Project overview (what you are hiring us to do)" value={agreementDraft.product_brief} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, product_brief: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Scope of work (what is included and excluded)" value={agreementDraft.scope_definition} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, scope_definition: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Deliverables (what the client will receive)" value={agreementDraft.deliverables_summary} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, deliverables_summary: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder='Pricing terms (structured JSON), e.g. {"fixed":12000,"retainer":1500}' value={agreementDraft.price_terms_json} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, price_terms_json: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Client goals and desired outcomes" value={agreementDraft.client_goals} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, client_goals: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Success criteria (how both parties define success)" value={agreementDraft.success_criteria} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, success_criteria: e.target.value }))} />
+            <input className="pm-input" placeholder="Primary contact (name and email)" value={agreementDraft.primary_contact} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, primary_contact: e.target.value }))} />
+            <input className="pm-input" placeholder="Communication preferences (email, cadence, key participants)" value={agreementDraft.communication_preferences} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, communication_preferences: e.target.value }))} />
+            <input className="pm-input" placeholder="Budget range (USD)" value={agreementDraft.budget_range_usd} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, budget_range_usd: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Scope boundaries (in scope vs out of scope)" value={agreementDraft.scope_boundaries} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, scope_boundaries: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Compliance or legal requirements" value={agreementDraft.compliance_requirements} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, compliance_requirements: e.target.value }))} />
+            <input className="pm-input" placeholder="Final approval authority (name/role)" value={agreementDraft.approval_authority} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, approval_authority: e.target.value }))} />
+            <textarea className="pm-input pm-textarea" placeholder="Risk assumptions and legal constraints" value={agreementDraft.risk_assumptions} onChange={(e) => setAgreementDraft((prev) => ({ ...prev, risk_assumptions: e.target.value }))} />
             <button className="pm-action-btn" disabled={busy === "create-agreement"} onClick={createAgreement}>Create Agreement</button>
           </>
         ) : (
@@ -241,16 +244,16 @@ export function ClientAgreementPanel({ project, onRefresh }: { project: ProjectR
               Status: {agreement.agreement_status} {agreement.is_locked ? `| Locked by ${agreement.locked_by}` : "| Unlocked"}
             </p>
             <p className="pm-muted-metadata">
-              Intake ownership split: Client {"->"} goals/success/contact/preferences; Business Owner {"->"} budget/scope/compliance/approval/risk.
+              Intake ownership split: Client {"->"} goals, success criteria, contact, communication preferences. Business owner {"->"} budget, scope boundaries, compliance, approvals, risk.
             </p>
-            {agreement.is_locked ? <p className="pm-meta-label">Agreement is locked after intake completion. Use change orders for scope/price edits.</p> : null}
+            {agreement.is_locked ? <p className="pm-meta-label">Agreement is locked after intake completion. Any scope, price, or timeline change must go through a formal change order.</p> : null}
             <textarea className="pm-input pm-textarea" placeholder="Product brief" defaultValue={agreement.product_brief} onBlur={(e) => setAgreementDraft((prev) => ({ ...prev, product_brief: e.target.value }))} disabled={agreement.is_locked} />
             <textarea className="pm-input pm-textarea" placeholder="Scope definition" defaultValue={agreement.scope_definition} onBlur={(e) => setAgreementDraft((prev) => ({ ...prev, scope_definition: e.target.value }))} disabled={agreement.is_locked} />
             <textarea className="pm-input pm-textarea" placeholder="Agreed deliverables" defaultValue={agreement.deliverables_summary} onBlur={(e) => setAgreementDraft((prev) => ({ ...prev, deliverables_summary: e.target.value }))} disabled={agreement.is_locked} />
             {!agreement.is_locked ? (
               <div className="pm-action-row">
-                <button className="pm-action-btn secondary" disabled={busy === "save-agreement"} onClick={saveAgreementUpdate}>Save Agreement Edits</button>
-                <button className="pm-action-btn" disabled={busy === "lock-agreement"} onClick={lockAfterIntake}>Complete Intake and Lock</button>
+                <button className="pm-action-btn secondary" disabled={busy === "save-agreement"} onClick={saveAgreementUpdate}>Save Draft Updates</button>
+                <button className="pm-action-btn" disabled={busy === "lock-agreement"} onClick={lockAfterIntake}>Complete Intake and Lock Agreement</button>
               </div>
             ) : null}
           </>
@@ -260,10 +263,10 @@ export function ClientAgreementPanel({ project, onRefresh }: { project: ProjectR
       {agreement ? (
         <>
           <div className="pm-card pm-card-block">
-            <div className="pm-meta-label">Communication</div>
+            <div className="pm-meta-label">Client Communication Log</div>
             <div className="pm-action-row">
-              <input className="pm-input" placeholder="Message to client/team" value={messageText} onChange={(e) => setMessageText(e.target.value)} />
-              <button className="pm-action-btn" disabled={busy === "send-message"} onClick={sendMessage}>Send</button>
+              <input className="pm-input" placeholder="Message visible to client and legal counsel" value={messageText} onChange={(e) => setMessageText(e.target.value)} />
+              <button className="pm-action-btn" disabled={busy === "send-message"} onClick={sendMessage}>Send Message</button>
             </div>
             {messages.length === 0 ? <p className="pm-muted-metadata">No messages yet.</p> : messages.map((msg) => (
               <p key={msg.id} className="pm-muted-metadata">
@@ -273,17 +276,17 @@ export function ClientAgreementPanel({ project, onRefresh }: { project: ProjectR
           </div>
 
           <div className="pm-card pm-card-block">
-            <div className="pm-meta-label">Change Orders</div>
+            <div className="pm-meta-label">Formal Change Orders</div>
             {!agreement.is_locked ? (
-              <p className="pm-muted-metadata">Change orders unlock once intake is completed and agreement is locked.</p>
+              <p className="pm-muted-metadata">Change orders become available after the agreement is locked.</p>
             ) : (
               <>
-                <textarea className="pm-input pm-textarea" placeholder="Requested scope change" value={changeScope} onChange={(e) => setChangeScope(e.target.value)} />
+                <textarea className="pm-input pm-textarea" placeholder="Requested scope change (what changes and why)" value={changeScope} onChange={(e) => setChangeScope(e.target.value)} />
                 <div className="pm-action-row">
-                  <input className="pm-input" placeholder="Price delta" value={changePrice} onChange={(e) => setChangePrice(e.target.value)} />
-                  <input className="pm-input" placeholder="Timeline delta" value={changeTimeline} onChange={(e) => setChangeTimeline(e.target.value)} />
+                  <input className="pm-input" placeholder="Pricing impact (USD)" value={changePrice} onChange={(e) => setChangePrice(e.target.value)} />
+                  <input className="pm-input" placeholder="Timeline impact (days/weeks)" value={changeTimeline} onChange={(e) => setChangeTimeline(e.target.value)} />
                 </div>
-                <button className="pm-action-btn" disabled={busy === "create-change-order"} onClick={submitChangeOrder}>Submit Change Order</button>
+                <button className="pm-action-btn" disabled={busy === "create-change-order"} onClick={submitChangeOrder}>Submit Change Order for Approval</button>
               </>
             )}
             {changeOrders.map((co) => (
@@ -291,7 +294,7 @@ export function ClientAgreementPanel({ project, onRefresh }: { project: ProjectR
                 <p><strong>{co.status.toUpperCase()}</strong> - {co.requested_scope_delta}</p>
                 <p className="pm-muted-metadata">Price: {co.requested_price_delta || "n/a"} | Timeline: {co.requested_timeline_delta || "n/a"}</p>
                 {co.status === "requested" ? (
-                  <button className="pm-action-btn secondary" disabled={busy === co.id} onClick={() => approveChangeOrder(co.id)}>Approve</button>
+                  <button className="pm-action-btn secondary" disabled={busy === co.id} onClick={() => approveChangeOrder(co.id)}>Approve Change Order</button>
                 ) : null}
               </div>
             ))}
