@@ -30,6 +30,7 @@ Then update the handoff addendum to point at the **new** timestamp.
 - Security work first, then drift containment, then planning and packaging gaps, then readiness and release gates.
 - Cap concurrent execution at **three** active projects unless the owner explicitly expands capacity.
 - Every proposed action needs owner status: `approved`, `rejected`, or `defer`.
+- Every change set needs a cascade scope tag: `all-repos`, `selected-lanes`, or `pm-portal-only` (see `docs/cascade-applicability-matrix.md`).
 - Drift containment comes before backlog, sprint, or feature work.
 - Do not bulk-commit untracked files from the parent repo; classify each item first.
 
