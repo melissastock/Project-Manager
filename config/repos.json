@@ -161,6 +161,8 @@
       "intake_stage": "active",
       "lane": "recovery-core",
       "priority_class": "core",
+      "github_repo_slug": "MJS-Financial-Dash",
+      "github_repo_url": "https://github.com/melissastock/MJS-Financial-Dash.git",
       "visibility_tier": "private-client",
       "data_class": "legal-financial-restricted",
       "ip_class": "client-invention-protected",
