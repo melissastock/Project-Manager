@@ -20,6 +20,8 @@ LABOR_ESTIMATES_PATH = ROOT / "data" / "labor_estimates.json"
 SECURE_VAULT_FILES_PATH = ROOT / "data" / "secure_vault_files.json"
 SECURE_VAULT_AUDIT_EVENTS_PATH = ROOT / "data" / "secure_vault_audit_events.json"
 SECURE_VAULT_DRIVE_CONNECTIONS_PATH = ROOT / "data" / "secure_vault_drive_connections.json"
+CASE_PROCEDURAL_TIMELINES_PATH = ROOT / "data" / "case_procedural_timelines.json"
+CASE_PROCEDURAL_ACTIONS_PATH = ROOT / "data" / "case_procedural_actions.json"
 
 # Portal root first, then backend (backend wins on duplicate keys).
 load_dotenv(ROOT / ".env")

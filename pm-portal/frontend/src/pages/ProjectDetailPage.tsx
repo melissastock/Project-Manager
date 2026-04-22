@@ -6,6 +6,7 @@ import { ScoreBadge } from "../components/ScoreBadge";
 import { ClientAgreementPanel } from "../components/ClientAgreementPanel";
 import { LaborEstimatePanel } from "../components/LaborEstimatePanel";
 import { SecureVaultPanel } from "../components/SecureVaultPanel";
+import { CaseProceduralAnalysisPanel } from "../components/CaseProceduralAnalysisPanel";
 import { TeamStructurePanel } from "../components/TeamStructurePanel";
 import { TicketPanel } from "../components/TicketPanel";
 
@@ -83,6 +84,7 @@ export function ProjectDetailPage({ project, onRefresh }: { project: ProjectRead
       <ClientAgreementPanel project={project} onRefresh={onRefresh} />
       <LaborEstimatePanel project={project} onRefresh={onRefresh} />
       <SecureVaultPanel project={project} onRefresh={onRefresh} />
+      <CaseProceduralAnalysisPanel project={project} />
       <TeamStructurePanel project={project} onRefresh={onRefresh} />
       <TicketPanel project={project} onRefresh={onRefresh} />
     </div>

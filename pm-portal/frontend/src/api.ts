@@ -11,6 +11,8 @@ import type {
   LaborEstimate,
   SecureVaultFile,
   SecureVaultDriveConnection,
+  CaseTimelineEvent,
+  CaseActionItem,
 } from "./types";
 import {
   type AddScopesRequest,
@@ -398,6 +400,78 @@ export async function disconnectSecureVaultDrive(payload: {
   if (!response.ok) throw new Error("Failed to disconnect secure vault Drive link");
   const json = await response.json();
   return json.drive_connection as SecureVaultDriveConnection;
+}
+
+export async function fetchCaseProceduralTimeline(project: string): Promise<CaseTimelineEvent[]> {
+  const response = await fetch(`${API_BASE}/api/case-procedural/timeline?project=${encodeURIComponent(project)}`);
+  if (!response.ok) throw new Error("Failed to load case timeline");
+  const json = await response.json();
+  return (json.events ?? []) as CaseTimelineEvent[];
+}
+
+export async function createCaseProceduralTimelineEvent(payload: {
+  project: string;
+  event_date: string;
+  stage: "incident" | "investigation" | "charging" | "pretrial" | "plea" | "trial" | "post_disposition" | "other";
+  title: string;
+  summary?: string;
+  actor?: string;
+  source_reference?: string;
+  evidence_status?: "supported" | "conflicted" | "missing";
+  procedural_status?: "compliant" | "potential_issue" | "unknown";
+  legal_significance?: string;
+}): Promise<CaseTimelineEvent> {
+  const response = await fetch(`${API_BASE}/api/case-procedural/timeline`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error("Failed to create case timeline event");
+  const json = await response.json();
+  return json.event as CaseTimelineEvent;
+}
+
+export async function fetchCaseProceduralActions(project: string): Promise<CaseActionItem[]> {
+  const response = await fetch(`${API_BASE}/api/case-procedural/actions?project=${encodeURIComponent(project)}`);
+  if (!response.ok) throw new Error("Failed to load case actions");
+  const json = await response.json();
+  return (json.actions ?? []) as CaseActionItem[];
+}
+
+export async function createCaseProceduralAction(payload: {
+  project: string;
+  title: string;
+  objective: string;
+  priority?: "urgent" | "high" | "normal";
+  due_date?: string;
+  owner?: string;
+  status?: "open" | "in_progress" | "done" | "blocked";
+  evidence_required?: string[];
+  related_timeline_event_id?: string;
+  notes?: string;
+}): Promise<CaseActionItem> {
+  const response = await fetch(`${API_BASE}/api/case-procedural/actions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error("Failed to create case action");
+  const json = await response.json();
+  return json.action as CaseActionItem;
+}
+
+export async function bootstrapIncidentCaseTemplate(payload: {
+  project: string;
+  loaded_by?: string;
+  overwrite_existing?: boolean;
+}): Promise<{ ok: boolean; created_events: number; created_actions: number; detail?: string }> {
+  const response = await fetch(`${API_BASE}/api/case-procedural/bootstrap-incident-template`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error("Failed to load incident template");
+  return (await response.json()) as { ok: boolean; created_events: number; created_actions: number; detail?: string };
 }
 
 export async function startGoogleConnect(payload: ConnectGoogleRequest): Promise<ConnectGoogleResponse> {

@@ -208,6 +208,38 @@ export interface SecureVaultDriveConnection {
   disconnect_reason?: string;
 }
 
+export interface CaseTimelineEvent {
+  id: string;
+  project: string;
+  event_date: string;
+  stage: "incident" | "investigation" | "charging" | "pretrial" | "plea" | "trial" | "post_disposition" | "other";
+  title: string;
+  summary: string;
+  actor: string;
+  source_reference: string;
+  evidence_status: "supported" | "conflicted" | "missing";
+  procedural_status: "compliant" | "potential_issue" | "unknown";
+  legal_significance: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CaseActionItem {
+  id: string;
+  project: string;
+  title: string;
+  objective: string;
+  priority: "urgent" | "high" | "normal";
+  due_date: string;
+  owner: string;
+  status: "open" | "in_progress" | "done" | "blocked";
+  evidence_required: string[];
+  related_timeline_event_id: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface GovernanceCheckStatus {
   check: string;
   flag: string;

@@ -44,6 +44,10 @@ from .service import (
     append_secure_vault_audit_event,
     upsert_team_assignment_payload,
     upsert_ticket,
+    list_case_timeline_events,
+    upsert_case_timeline_event,
+    list_case_actions,
+    upsert_case_action,
 )
 
 app = FastAPI(title="PM Portal API", version="0.1.0")
@@ -229,6 +233,38 @@ class SecureVaultChecksumVerifyRequest(BaseModel):
     actor_name: str
     actor_role: str
     expected_checksum_sha256: str
+
+
+class CaseTimelineEventCreate(BaseModel):
+    project: str
+    event_date: str
+    stage: Literal["incident", "investigation", "charging", "pretrial", "plea", "trial", "post_disposition", "other"]
+    title: str
+    summary: str = ""
+    actor: str = ""
+    source_reference: str = ""
+    evidence_status: Literal["supported", "conflicted", "missing"] = "missing"
+    procedural_status: Literal["compliant", "potential_issue", "unknown"] = "unknown"
+    legal_significance: str = ""
+
+
+class CaseActionCreate(BaseModel):
+    project: str
+    title: str
+    objective: str
+    priority: Literal["urgent", "high", "normal"] = "normal"
+    due_date: str = ""
+    owner: str = ""
+    status: Literal["open", "in_progress", "done", "blocked"] = "open"
+    evidence_required: list[str] = []
+    related_timeline_event_id: str = ""
+    notes: str = ""
+
+
+class CaseTemplateBootstrapRequest(BaseModel):
+    project: str
+    loaded_by: str = "system"
+    overwrite_existing: bool = False
 
 
 class SecureVaultDriveConnectRequest(BaseModel):
@@ -873,6 +909,135 @@ def create_labor_estimate(payload: LaborEstimateCreate) -> dict:
 def get_secure_vault_files(project: str) -> dict:
     files = list_secure_vault_files(project)
     return {"project": project, "secure_vault_files": files}
+
+
+@app.get("/api/case-procedural/timeline")
+def get_case_procedural_timeline(project: str) -> dict:
+    events = list_case_timeline_events(project)
+    return {"project": project, "events": events}
+
+
+@app.post("/api/case-procedural/timeline")
+def create_case_procedural_timeline_event(payload: CaseTimelineEventCreate) -> dict:
+    now = _now_iso()
+    event = {
+        "id": f"timeline-{uuid4().hex[:12]}",
+        "project": payload.project,
+        "event_date": payload.event_date,
+        "stage": payload.stage,
+        "title": payload.title,
+        "summary": payload.summary,
+        "actor": payload.actor,
+        "source_reference": payload.source_reference,
+        "evidence_status": payload.evidence_status,
+        "procedural_status": payload.procedural_status,
+        "legal_significance": payload.legal_significance,
+        "created_at": now,
+        "updated_at": now,
+    }
+    saved = upsert_case_timeline_event(event)
+    return {"ok": True, "event": saved}
+
+
+@app.get("/api/case-procedural/actions")
+def get_case_procedural_actions(project: str) -> dict:
+    actions = list_case_actions(project)
+    return {"project": project, "actions": actions}
+
+
+@app.post("/api/case-procedural/actions")
+def create_case_procedural_action(payload: CaseActionCreate) -> dict:
+    now = _now_iso()
+    action = {
+        "id": f"case-action-{uuid4().hex[:12]}",
+        "project": payload.project,
+        "title": payload.title,
+        "objective": payload.objective,
+        "priority": payload.priority,
+        "due_date": payload.due_date,
+        "owner": payload.owner,
+        "status": payload.status,
+        "evidence_required": payload.evidence_required,
+        "related_timeline_event_id": payload.related_timeline_event_id,
+        "notes": payload.notes,
+        "created_at": now,
+        "updated_at": now,
+    }
+    saved = upsert_case_action(action)
+    return {"ok": True, "action": saved}
+
+
+@app.post("/api/case-procedural/bootstrap-incident-template")
+def bootstrap_case_procedural_template(payload: CaseTemplateBootstrapRequest) -> dict:
+    existing_events = list_case_timeline_events(payload.project)
+    existing_actions = list_case_actions(payload.project)
+    if (existing_events or existing_actions) and not payload.overwrite_existing:
+        return {
+            "ok": False,
+            "reason": "existing_data",
+            "detail": "Timeline/actions already exist. Pass overwrite_existing=true to append template anyway.",
+            "created_events": 0,
+            "created_actions": 0,
+        }
+
+    now = _now_iso()
+    event_specs = [
+        ("incident", "Incident occurred", "Capture first-known facts and immediate context."),
+        ("investigation", "Initial investigation actions", "Record who investigated, what evidence was collected, and by what process."),
+        ("charging", "Charging decision and basis", "Document how charges were issued and by whom."),
+        ("pretrial", "Early procedural review", "Identify potential due-process/procedural issues before plea strategy."),
+    ]
+
+    created_events: list[dict] = []
+    for stage, title, significance in event_specs:
+        row = {
+            "id": f"timeline-{uuid4().hex[:12]}",
+            "project": payload.project,
+            "event_date": "",
+            "stage": stage,
+            "title": title,
+            "summary": "",
+            "actor": "",
+            "source_reference": "",
+            "evidence_status": "missing",
+            "procedural_status": "unknown",
+            "legal_significance": significance,
+            "created_at": now,
+            "updated_at": now,
+        }
+        created_events.append(upsert_case_timeline_event(row))
+
+    created_actions: list[dict] = []
+    action_specs = [
+        ("Build incident-to-charges chronology", "Create a verified timeline before evaluating plea options.", "urgent"),
+        ("Request investigative record set", "Obtain reports, recordings, and chain-of-custody materials.", "urgent"),
+        ("Map charging basis to evidence", "Check whether charging facts are supported, conflicted, or missing.", "high"),
+        ("Run procedural issue review", "Identify potential due-process/procedural defects for counsel review.", "high"),
+    ]
+    for title, objective, priority in action_specs:
+        row = {
+            "id": f"case-action-{uuid4().hex[:12]}",
+            "project": payload.project,
+            "title": title,
+            "objective": objective,
+            "priority": priority,
+            "due_date": "",
+            "owner": payload.loaded_by,
+            "status": "open",
+            "evidence_required": [],
+            "related_timeline_event_id": "",
+            "notes": "Template-generated starter task.",
+            "created_at": now,
+            "updated_at": now,
+        }
+        created_actions.append(upsert_case_action(row))
+
+    return {
+        "ok": True,
+        "template": "incident-to-charges",
+        "created_events": len(created_events),
+        "created_actions": len(created_actions),
+    }
 
 
 @app.get("/api/secure-vault/drive-connection")

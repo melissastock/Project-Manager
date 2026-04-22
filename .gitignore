@@ -65,6 +65,7 @@
 !pm-portal/frontend/src/components/ClientAgreementPanel.tsx
 !pm-portal/frontend/src/components/LaborEstimatePanel.tsx
 !pm-portal/frontend/src/components/SecureVaultPanel.tsx
+!pm-portal/frontend/src/components/CaseProceduralAnalysisPanel.tsx
 !pm-portal/frontend/src/pages/
 !pm-portal/frontend/src/pages/ProjectDetailPage.tsx
 !pm-portal/frontend/src/api.ts

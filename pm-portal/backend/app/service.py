@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
 import subprocess
+import json
 
 from .agreements import (
     append_audit_event,
@@ -30,6 +31,8 @@ from .config import (
     REPOS_PATH,
     SECURE_VAULT_FILES_PATH,
     SECURE_VAULT_AUDIT_EVENTS_PATH,
+    CASE_PROCEDURAL_TIMELINES_PATH,
+    CASE_PROCEDURAL_ACTIONS_PATH,
     TEAM_ASSIGNMENTS_PATH,
     TICKETS_PATH,
     load_json,
@@ -282,3 +285,42 @@ def append_secure_vault_audit_event(payload: dict) -> dict:
 def list_secure_vault_audit_events(file_id: str) -> list[dict]:
     cache = load_secure_vault_audit_events(SECURE_VAULT_AUDIT_EVENTS_PATH)
     return list_vault_audit_events_for_file(file_id, cache)
+
+
+def _load_case_records(path: Path) -> dict[str, dict]:
+    if not path.exists():
+        return {}
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _persist_case_records(path: Path, payload: dict[str, dict]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, default=str), encoding="utf-8")
+
+
+def list_case_timeline_events(project_name: str) -> list[dict]:
+    cache = _load_case_records(CASE_PROCEDURAL_TIMELINES_PATH)
+    rows = [item for item in cache.values() if str(item.get("project", "")).lower() == project_name.lower()]
+    rows.sort(key=lambda item: str(item.get("event_date", "")))
+    return rows
+
+
+def upsert_case_timeline_event(payload: dict) -> dict:
+    cache = _load_case_records(CASE_PROCEDURAL_TIMELINES_PATH)
+    cache[payload["id"]] = payload
+    _persist_case_records(CASE_PROCEDURAL_TIMELINES_PATH, cache)
+    return payload
+
+
+def list_case_actions(project_name: str) -> list[dict]:
+    cache = _load_case_records(CASE_PROCEDURAL_ACTIONS_PATH)
+    rows = [item for item in cache.values() if str(item.get("project", "")).lower() == project_name.lower()]
+    rows.sort(key=lambda item: str(item.get("due_date", "")))
+    return rows
+
+
+def upsert_case_action(payload: dict) -> dict:
+    cache = _load_case_records(CASE_PROCEDURAL_ACTIONS_PATH)
+    cache[payload["id"]] = payload
+    _persist_case_records(CASE_PROCEDURAL_ACTIONS_PATH, cache)
+    return payload
