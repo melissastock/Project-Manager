@@ -1,6 +1,6 @@
 # Developer Session Handoff
 
-Date: 2026-04-23 (evening)
+Date: 2026-04-23 (evening, refreshed after GitHub cleanup)
 Developer: Cursor Agent
 Repo(s): [melissastock/Project-Manager](https://github.com/melissastock/Project-Manager)
 Branch(es): `main` (all work landed here)
@@ -19,19 +19,18 @@ Branch(es): `main` (all work landed here)
 ## Current State
 
 - **Project status:** Portfolio repo is reorganized; automation expects paths relative to **portfolio root** (sibling of `Project-Manager/`).
-- **Phase:** Post-merge cleanup (GitHub PR list vs `main` reality).
+- **Phase:** Post-merge; superseded draft PRs **#2, #4, #8, #9** are **closed manually** on GitHub (owner).
 - **Priority shift:** Operators must use **`python3 Project-Manager/scripts/...`** from repo root; clone **`bg-legal/`** at portfolio root for engagement work (see `Project-Manager/docs/bg-legal-folder-migration.md`).
 
 ## Blockers / Risks
 
-- **GitHub:** Draft PRs **#2, #4, #8, #9** may still show **open**; API could not close them from this environment. **Close manually** (or mark superseded) to avoid accidental merges of stale branches.
 - **Local:** If `bg-legal/` is missing, scripts that target it will fail until clone exists.
 - **`.gitmodules` vs gitlinks:** `sync_child_repo_pointers.py --check-metadata` can fail if tracked gitlinks lack matching `.gitmodules` entries (by design).
 
 ## Top Next Actions
 
-1. Close superseded PRs **#2, #4, #8, #9** on GitHub; optionally delete remote branches after review.
-2. From portfolio root: `git clone` **`melissastock/bg-legal`** into **`bg-legal/``** if not present; run `python3 Project-Manager/scripts/sync_repo_remotes.py --apply` as needed.
+1. Optionally **delete stale remote branches** tied to closed PRs (`codex/review-and-pr-20260420`, `codex/pointer-sync-and-status-refresh`, `cursor/master-consulting-operator-workflow-9336`, `cursor/bg-legal-consolidate-readiness-gates-9336`) if you no longer need them for reference.
+2. From portfolio root: `git clone` **`melissastock/bg-legal`** into **`bg-legal/`** if not present; run `python3 Project-Manager/scripts/sync_repo_remotes.py --apply` as needed.
 3. Re-run `python3 Project-Manager/scripts/portfolio_status.py` after any manifest or clone changes (already run once after `repos.json` bg-legal rename).
 
 ---
@@ -58,6 +57,7 @@ Branch(es): `main` (all work landed here)
 - `python3 -m py_compile Project-Manager/scripts/*.py`
 - `python3 -m pytest` in `Project-Manager/` (5 passed)
 - `python3 Project-Manager/scripts/portfolio_status.py` (after `repos.json` change)
+- **Owner (outside agent):** closed GitHub draft PRs **#2**, **#4**, **#8**, **#9** manually (superseded by `main`).
 
 ---
 
@@ -65,9 +65,9 @@ Branch(es): `main` (all work landed here)
 
 ## Facts (Verifiable Only)
 
-- `origin/main` includes `d233d13` as of end of session.
+- `origin/main` includes `d233d13` and follow-up commits (`b9bb8b4` handoff, this refresh).
 - PR #7 shows **MERGED** in `gh pr list --state merged`.
-- `gh pr close` failed with **Resource not accessible by integration** for PRs #2, #4, #8, #9.
+- **Owner closed** draft PRs **#2, #4, #8, #9** on GitHub (confirmed by user; agent API could not close them earlier).
 
 ## Interpretations (Clearly Marked)
 
@@ -75,7 +75,7 @@ Branch(es): `main` (all work landed here)
 
 ## Opinions (Explicitly Labeled)
 
-- **Opinion:** Close stale PRs before the next automation pass so contributors do not open conflicts against old paths (`scripts/` at root).
+- **Opinion:** Prune stale remote branches when convenient so contributors do not resurrect old path layouts (`scripts/` at portfolio root vs `Project-Manager/scripts/`).
 
 ---
 
@@ -110,10 +110,11 @@ Branch(es): `main` (all work landed here)
 - #10 adoption + follow-up path model (ROOT/PM_ROOT)
 - PR #7, #8 content on `main`
 - Port batch `d233d13` (PR #2 / #4 / #9 intent)
+- **GitHub:** draft PRs **#2, #4, #8, #9** closed manually (superseded by `main`)
 
 ## In Progress
 
-- None in repo; **GitHub hygiene** (closing PRs) is external.
+- None.
 
 ## Not Started (but relevant)
 
@@ -139,7 +140,7 @@ Branch(es): `main` (all work landed here)
 
 ## Suspected / Unverified
 
-- Whether PR #8 shows **MERGED** in GitHub UI (merged via local merge commit; may still appear open).
+- None for PR state (owner confirmed closure of #2, #4, #8, #9).
 
 ---
 
@@ -151,7 +152,7 @@ Branch(es): `main` (all work landed here)
 
 # Issues / Challenges
 
-- GitHub API from agent: could not **close** draft PRs.
+- ~~GitHub API from agent could not close draft PRs~~ — **resolved:** owner closed **#2, #4, #8, #9** manually.
 
 ---
 
