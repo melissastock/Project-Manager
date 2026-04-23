@@ -1,0 +1,47 @@
+{
+  "clients": [
+    {
+      "name": "MJS Financial Dash Pilot",
+      "sku": "SKU A",
+      "stage": 3,
+      "overall_status": "Yellow",
+      "current_milestone": "Kickoff and intake complete",
+      "next_meeting": "2026-04-24 14:00 ET",
+      "waiting_on": [
+        {
+          "item": "Client to confirm final source folder list",
+          "owner": "Client decision owner",
+          "due_date": "2026-04-24",
+          "status": "open",
+          "impact": "Cannot finalize full workflow map without this."
+        }
+      ],
+      "tasks": [
+        {
+          "task": "Finalize communication charter and approval path",
+          "owner": "Melissa",
+          "due_date": "2026-04-24",
+          "status": "in_progress",
+          "priority": "high",
+          "blocking_item": ""
+        },
+        {
+          "task": "Complete intake inventory matrix",
+          "owner": "Melissa",
+          "due_date": "2026-04-25",
+          "status": "todo",
+          "priority": "high",
+          "blocking_item": "Waiting on source folder list"
+        },
+        {
+          "task": "Send first weekly status packet",
+          "owner": "Melissa",
+          "due_date": "2026-04-26",
+          "status": "todo",
+          "priority": "medium",
+          "blocking_item": ""
+        }
+      ]
+    }
+  ]
+}
