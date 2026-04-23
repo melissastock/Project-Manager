@@ -17,3 +17,5 @@ python3 Project-Manager/scripts/portfolio_status.py
 Paths in `Project-Manager/config/repos.json` are relative to this **repository root** (the portfolio workspace), not relative to `Project-Manager/`. Clone or symlink managed child repositories next to `Project-Manager/` as those paths describe.
 
 For friction with Git, CI, Conda, or environment wiring, see **`Project-Manager/docs/operator-friction-log.md`**.
+
+Consulting-first operator workflow (offers, stage gates, payments, web/portal): **`Project-Manager/docs/master-consulting-operator-workflow.md`**.
