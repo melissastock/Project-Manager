@@ -1,7 +1,0 @@
-# Public mirror export allowlist (relative paths)
-README.md
-STATUS.md
-docs/new-project-intake-template.md
-docs/portfolio-operating-system-architecture-map-plan.md
-docs/pm-public-private-git-architecture.md
-docs/public-mirror-redaction-pipeline.md

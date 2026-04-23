@@ -1,2 +1,0 @@
-path,category,risk_level,decision,target_repo,template_candidate,redaction_required,pm_use_case,notes
-<absolute-or-relative-path>,operational|gtm|compliance|financial|legal|credentials|client-data,low|medium|high,PUSH|LOCAL-ONLY|TEMPLATE-CANDIDATE,Project Manager|PAH|Momentum-OS|MJS Financial Dash|Divorce|Archiavellian,yes|no,yes|no,status-tracking|onboarding|governance|readiness|gates,<free text>
