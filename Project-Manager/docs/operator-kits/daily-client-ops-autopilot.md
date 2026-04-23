@@ -11,17 +11,55 @@ This is the automation layer that tells you:
 ## What powers it
 
 - Tracker data: `config/client-ops-tracker.json`
+- Optional PM-portal merge: `scripts/sync_client_ops_from_pm_portal.py` (tickets → `tasks[]`)
 - Generator script: `scripts/generate_client_ops_brief.py`
-- Runner script: `scripts/run_client_ops_brief.sh`
+- Runner script: `scripts/run_client_ops_brief.sh` (runs sync then brief)
 - Daily output: `docs/client-engagements/client-ops-daily-brief.md`
+
+## PM-portal sync (optional)
+
+For each client entry you can enable automatic task import from PM-portal tickets.
+
+1. In `config/client-ops-tracker.json`, add:
+
+```json
+"portal_sync": {
+  "enabled": true,
+  "portal_project": "MJS Financial Dash",
+  "merge_blocked_as_waiting": true
+}
+```
+
+- `portal_project` must match the **project** field on tickets in PM-portal (same string as in `config/repos.json` / portal UI).
+
+2. Data source order (per client):
+
+- **HTTP**: `GET {PM_PORTAL_URL}/api/tickets?project=<portal_project>` when the portal API is reachable.
+- **Fallback**: `pm-portal/data/tickets.json` (local JSON cache used when Supabase is off).
+
+3. Environment variables:
+
+- `PM_PORTAL_URL` — default `http://127.0.0.1:8080` if unset.
+- `SKIP_PORTAL_SYNC=1` — run only the brief generator (no HTTP / no merge).
+- `FILE_ONLY_SYNC=1` — skip HTTP; merge from `pm-portal/data/tickets.json` only.
+
+4. Manual sync (without running the full brief):
+
+```bash
+cd Project-Manager
+python3 scripts/sync_client_ops_from_pm_portal.py
+```
+
+When sync runs, the brief includes a **PM-portal sync** line under each merged client (project, ticket count, source).
 
 ## Daily operating sequence (5 minutes)
 
-1. Update `config/client-ops-tracker.json`:
+1. Update `config/client-ops-tracker.json` for fields **not** supplied by the portal:
    - stage per client (`1-8`)
    - current milestone
-   - waiting-on items
-   - task statuses and due dates
+   - next meeting
+   - waiting-on items (manual dependencies; portal can append blocked-ticket rows if `merge_blocked_as_waiting` is true)
+   - if `portal_sync` is off, also maintain task statuses and due dates
 2. Run:
 
 ```bash
@@ -44,7 +82,7 @@ crontab -e
 Add:
 
 ```cron
-0 8 * * 1-5 cd /workspace/Project-Manager && /bin/bash scripts/run_client_ops_brief.sh
+0 8 * * 1-5 cd /path/to/Project-Manager && /bin/bash scripts/run_client_ops_brief.sh
 ```
 
 ## Tracker rules (keep this strict)

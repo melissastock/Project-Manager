@@ -171,6 +171,17 @@ def build_client_section(client: dict[str, Any], today: date) -> tuple[str, dict
             lines.append(f"- {task.task} | owner: {task.owner}")
         lines.append("")
 
+    portal_meta = client.get("_portal_sync")
+    if isinstance(portal_meta, dict) and portal_meta:
+        lines.append("### PM-portal sync")
+        lines.append("")
+        lines.append(
+            f"- Project: {portal_meta.get('project', '-')}"
+            f" | tickets: {portal_meta.get('ticket_count', '-')}"
+            f" | source: {portal_meta.get('source', '-')}"
+        )
+        lines.append("")
+
     return "\n".join(lines), {
         "open_waiting": len(open_waiting),
         "blocked": len(blocked),

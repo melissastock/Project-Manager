@@ -2,6 +2,11 @@
   "clients": [
     {
       "name": "MJS Financial Dash Pilot",
+      "portal_sync": {
+        "enabled": true,
+        "portal_project": "MJS Financial Dash",
+        "merge_blocked_as_waiting": true
+      },
       "sku": "SKU A",
       "stage": 3,
       "overall_status": "Yellow",
