@@ -74,3 +74,4 @@ If Git, CI, Conda, or environment wiring keeps fighting you, skim **`docs/operat
 - Investor-book repeatable process: `docs/investor-book-repeatable-workflow.md`
 - Agile production process standard: `docs/agile-production-process.md`
 - GTM repeatable process: `docs/gtm-repeatable-workflow.md`
+- Consulting operator workflow (offers, stage gates, payments, web/portal): `docs/master-consulting-operator-workflow.md`
