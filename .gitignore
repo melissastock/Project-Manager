@@ -1,100 +1,58 @@
-# Ignore everything by default in this top-level portfolio repo.
+# Portfolio operating system root: ignore everything except the domain shell,
+# the nested control plane, and CI metadata.
 *
 
-# Keep manager metadata.
 !.gitignore
 !README.md
-!environment.yml
+!SYSTEM_MAP.md
 !.github/
 !.github/**
-!config/
-!config/**
-!docs/
-!docs/**
-!scripts/
-!scripts/**
-!STATUS.md
 
-# Keep selected child repositories as gitlinks.
+# Domain folders (extend this list when new top-level domains are added)
+!archive/
+!archive/**
+!execution-finance/
+!execution-finance/**
+!execution-legal/
+!execution-legal/**
+!narrative-output/
+!narrative-output/**
+!platform-os/
+!platform-os/**
+!product-lab/
+!product-lab/**
+!recovery-core/
+!recovery-core/**
+
+# Nested Project Manager control plane (scripts, config, docs, pm-portal, gitlinks, …)
+!Project-Manager/
+!Project-Manager/**
+
+# Managed child repositories and nested trees (paths relative to repository root; match config/repos.json)
 !Aneumind and TC Structure/
 !App Builder/
-!App Builder/App Builder/
-!App Builder/Teach/
-!App Builder/Teach/home-learning-playbook/
-!App Builder/Teach/zahmeir-learning-system/
-!GitHub/
-!GitHub/mjsds_dashboard/
-!MJS Financial Dash/
-!MJS Financial Dash backup 20260310_153810/
-!Momentum-OS/
+!App Builder/**
 !Archiavellian-Archive/
 !Case Files/
 !Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System/
 !Divorce/
+!GitHub/
+!GitHub/**
+!mjsds-website/
+!MJS Financial Dash/
+!MJS Financial Dash backup 20260310_153810/
+!Momentum-OS/
 !Producer/
+!provider-access-hub/
 !Resume Builder/
 !TuneFab/
-!provider-access-hub/
 !Wayne Strain/
-!mjsds-website/
-!pm-portal/
-!pm-portal/frontend/
-!pm-portal/frontend/src/
-!pm-portal/frontend/src/styles/
-!pm-portal/frontend/src/styles/**
-!pm-portal/backend/
-!pm-portal/backend/config/
-!pm-portal/docs/
-!pm-portal/docs/mobile-compliance-governance.md
-!pm-portal/docs/mobile-privacy-and-disclosures.md
-!pm-portal/backend/config/mobile-compliance-governance.json
-!pm-portal/backend/config/mobile-store-disclosures.json
-!pm-portal/backend/app/
-!pm-portal/backend/app/main.py
-!pm-portal/backend/app/config.py
-!pm-portal/backend/app/db.py
-!pm-portal/backend/app/models.py
-!pm-portal/backend/app/service.py
-!pm-portal/backend/app/agreements.py
-!pm-portal/backend/app/secure_vault.py
-!pm-portal/backend/app/tickets.py
-!pm-portal/backend/app/team_assignments.py
-!pm-portal/frontend/src/components/
-!pm-portal/frontend/src/components/TicketPanel.tsx
-!pm-portal/frontend/src/components/TeamStructurePanel.tsx
-!pm-portal/frontend/src/components/ClientAgreementPanel.tsx
-!pm-portal/frontend/src/components/LaborEstimatePanel.tsx
-!pm-portal/frontend/src/components/SecureVaultPanel.tsx
-!pm-portal/frontend/src/components/CaseProceduralAnalysisPanel.tsx
-!pm-portal/frontend/src/pages/
-!pm-portal/frontend/src/pages/ProjectDetailPage.tsx
-!pm-portal/frontend/src/api.ts
-!pm-portal/frontend/src/types.ts
-!pm-portal/frontend/src/clientAgreementContracts.ts
-!pm-portal/frontend/src/config/
-!pm-portal/frontend/src/config/laborPresetRules.json
-!pm-portal/frontend/src/integrationsContracts.ts
-!pm-portal/frontend/prisma/
-!pm-portal/frontend/prisma/schema.prisma
-!pm-portal/frontend/prisma/migrations/
-!pm-portal/frontend/prisma/migrations/20260422120000_google_oauth_secure_integration/
-!pm-portal/frontend/prisma/migrations/20260422120000_google_oauth_secure_integration/migration.sql
-!pm-portal/frontend/package-lock.json
-!pm-portal/supabase/
-!pm-portal/supabase/migrations/
-!pm-portal/supabase/migrations/20260422103000_project_tickets.sql
-!pm-portal/supabase/migrations/20260422113000_project_team_assignments.sql
-!pm-portal/supabase/migrations/20260422133000_client_agreements_intake_lock.sql
-pm-portal/frontend/.gitignore
 
-# This child repo exists locally but has no first commit yet, so the
-# top-level repo cannot stage it as a gitlink until it is initialized.
-2024 Taxes/
+# Child repo exists locally but has no first commit yet; cannot stage as gitlink until initialized.
+**/2024 Taxes/
 
-# Local-only: never commit or push from here to public remotes. Use for
-# mirrors of legal, archive/DAM intake, iCloud-derived indexes, and other
-# session artifacts; retain originals only in restricted private storage.
-private-only/
+# Local-only mirrors and session artifacts; never push to public remotes.
+**/private-only/
 
 # macOS folder metadata
 **/.DS_Store

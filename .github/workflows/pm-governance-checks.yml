@@ -30,17 +30,17 @@ on:
     - cron: "20 11 * * *"
   push:
     paths:
-      - "scripts/**"
-      - "docs/**"
-      - "config/**"
-      - "pm-portal/**"
+      - "Project-Manager/scripts/**"
+      - "Project-Manager/docs/**"
+      - "Project-Manager/config/**"
+      - "Project-Manager/pm-portal/**"
       - ".github/workflows/pm-governance-checks.yml"
   pull_request:
     paths:
-      - "scripts/**"
-      - "docs/**"
-      - "config/**"
-      - "pm-portal/**"
+      - "Project-Manager/scripts/**"
+      - "Project-Manager/docs/**"
+      - "Project-Manager/config/**"
+      - "Project-Manager/pm-portal/**"
       - ".github/workflows/pm-governance-checks.yml"
 
 jobs:
@@ -95,23 +95,23 @@ jobs:
           RUN_PORTFOLIO_STATUS=0
           RUN_PORTFOLIO_READINESS=0
 
-          if has_match '^docs/session-handoffs/.*(handoff|addendum).*\.md$'; then
+          if has_match '^Project-Manager/docs/session-handoffs/.*(handoff|addendum).*\.md$'; then
             RUN_SCOPE_CHECK=1
           fi
-          if has_match '^pm-portal/docs/mobile-compliance-governance\.md$|^pm-portal/docs/mobile-privacy-and-disclosures\.md$|^pm-portal/backend/config/mobile-compliance-governance\.json$|^pm-portal/backend/config/mobile-store-disclosures\.json$'; then
+          if has_match '^Project-Manager/pm-portal/docs/mobile-compliance-governance\.md$|^Project-Manager/pm-portal/docs/mobile-privacy-and-disclosures\.md$|^Project-Manager/pm-portal/backend/config/mobile-compliance-governance\.json$|^Project-Manager/pm-portal/backend/config/mobile-store-disclosures\.json$'; then
             RUN_MOBILE_GOV=1
             RUN_RUNTIME_DRIFT=1
           fi
-          if has_match '^pm-portal/|^docs/new-project-intake-template\.md$|^docs/new-project-onboarding-checklist\.md$|^scripts/validate_architecture_scale_fit\.py$'; then
+          if has_match '^Project-Manager/pm-portal/|^Project-Manager/docs/new-project-intake-template\.md$|^Project-Manager/docs/new-project-onboarding-checklist\.md$|^Project-Manager/scripts/validate_architecture_scale_fit\.py$'; then
             RUN_ARCH_SCALE=1
           fi
-          if has_match '^config/repos\.json$|^scripts/check_remote_collisions\.py$'; then
+          if has_match '^Project-Manager/config/repos\.json$|^Project-Manager/scripts/check_remote_collisions\.py$'; then
             RUN_REMOTE_COLLISIONS=1
           fi
-          if has_match '^config/repos\.json$|^scripts/portfolio_status\.py$'; then
+          if has_match '^Project-Manager/config/repos\.json$|^Project-Manager/scripts/portfolio_status\.py$'; then
             RUN_PORTFOLIO_STATUS=1
           fi
-          if has_match '^docs/delivery/|^scripts/run_portfolio_readiness_checks\.py$|^scripts/check_production_readiness\.py$'; then
+          if has_match '^Project-Manager/docs/delivery/|^Project-Manager/scripts/run_portfolio_readiness_checks\.py$|^Project-Manager/scripts/check_production_readiness\.py$'; then
             RUN_PORTFOLIO_READINESS=1
           fi
 
@@ -129,6 +129,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: detect
     if: github.event_name == 'pull_request' || github.event_name == 'push'
+    defaults:
+      run:
+        working-directory: Project-Manager
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -158,13 +161,16 @@ jobs:
         with:
           name: governance-summary-selective
           path: |
-            docs/session-artifacts/governance/last-governance-run.json
-            docs/session-artifacts/governance/last-governance-run.md
+            Project-Manager/docs/session-artifacts/governance/last-governance-run.json
+            Project-Manager/docs/session-artifacts/governance/last-governance-run.md
           if-no-files-found: warn
 
   governance-manual-or-nightly:
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    defaults:
+      run:
+        working-directory: Project-Manager
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -195,6 +201,6 @@ jobs:
         with:
           name: governance-summary-manual-or-nightly
           path: |
-            docs/session-artifacts/governance/last-governance-run.json
-            docs/session-artifacts/governance/last-governance-run.md
+            Project-Manager/docs/session-artifacts/governance/last-governance-run.json
+            Project-Manager/docs/session-artifacts/governance/last-governance-run.md
           if-no-files-found: warn

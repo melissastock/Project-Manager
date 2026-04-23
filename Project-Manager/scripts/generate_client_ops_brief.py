@@ -12,9 +12,9 @@ from pathlib import Path
 from typing import Any
 
 
-ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_INPUT = ROOT / "config" / "client-ops-tracker.json"
-DEFAULT_OUTPUT = ROOT / "docs" / "client-engagements" / "client-ops-daily-brief.md"
+PM_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_INPUT = PM_ROOT / "config" / "client-ops-tracker.json"
+DEFAULT_OUTPUT = PM_ROOT / "docs" / "client-engagements" / "client-ops-daily-brief.md"
 
 DONE_STATUSES = {"done", "completed", "resolved", "received", "paid"}
 OPEN_WAITING_STATUSES = {"open", "pending", "awaiting", "blocked"}

@@ -1,0 +1,86 @@
+path,risk_categories,action
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/ARV W-9 SIGNED.pdf,tax_or_credit,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/BrandonDewayneGarner-InteliusReport.pdf,identity_or_legal_pii,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/Children consent for ZG.pdf,medical_or_health,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/Complete_with_DocuSign_JR_med_agreement_1pd.pdf,identity_or_legal_pii,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/Form W-9.pdf,tax_or_credit,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/IND_IRS 1095A Tax Form-4001166271-18-Jan-2024.pdf,tax_or_credit,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/Jason_ClinicalSummary.zip,medical_or_health,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/Release form English.PDF,medical_or_health,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Aneumind/There With Care Liability Release English.pdf,medical_or_health,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Archiavellian/ARCHIAVELLIAN/01_north_star/authorship_and_consent_anchor.md.docx,medical_or_health,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Business Breakup/04_Melissa_Contribution_Distribution_Loan_Schedule.md.docx,identity_or_legal_pii,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Business Breakup/05_Tripp_Retroactive_Loan_Agreement_Draft.md.docx,identity_or_legal_pii,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Divorce/investigator_1_family_loan_report_20260412.md.docx,identity_or_legal_pii,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Divorce/petitioners_damages_ledger_23DR30686.md.docx,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Divorce/remaining_overstatement_risks_before_filing.md.docx,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Extreme Reach/Extreme Reach 401k 2020 Statement.pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Financial & Tax/Melissa Stock Credit Report.docx,tax_or_credit,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Jason Richards/Jason_ClinicalSummary.zip,medical_or_health,unstaged_for_security_review
+"inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Journey to Self Love 3 part series MP3 - Self Talk, Self Care, & Self Celebration - email signup/mjs_digital_strategy_bank_ledger_2025_onward.xlsx",bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Maybe Comcast/Bank statements 24-25-20260309T201637Z-1-001.zip,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Maybe Comcast/Entity User Taxonomy 2018-02-06(1).xlsx,tax_or_credit,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Maybe Comcast/Entity User Taxonomy 2018-02-06.xlsx,tax_or_credit,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/Personal Finance/id-card.jpeg,identity_or_legal_pii,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_012726 WellsFargo.pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_021825 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_031725 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_041524 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_051524 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_051525 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_061625 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_061724 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_091625 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_101624 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_101625 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_111824 WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_111825 WellsFargo (2).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_121525 WellsFargo (2).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_20011625_20WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_20011626_20WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_20011724_20WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_20021524_20WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/google-drive/2026-04/ingest-2026-04-20-net-new/_20021726_20WellsFargo (1).pdf,bank_statement_like,unstaged_for_security_review
+inbox/to-check-misc-2026-04-20/Authorization-for-Release-and-Exchange-of-Information-2022.pdf,medical_or_health,unstaged_for_security_review
+inbox/to-check-misc-2026-04-20/COA-Care-Management-Referral-Form ZG.pdf,medical_or_health,unstaged_for_security_review
+inbox/to-check-misc-2026-04-20/COA-Care-Management-Referral-Form.pdf,medical_or_health,unstaged_for_security_review
+inbox/to-check-misc-2026-04-20/Kelly Paystub 1.16.pdf,tax_or_credit,unstaged_for_security_review
+inbox/to-check-misc-2026-04-20/Student Health History Form ZG.pdf,medical_or_health,unstaged_for_security_review
+inbox/to-check-misc-2026-04-20/TCC Referral Form 2025.pdf,medical_or_health,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/ANM Dec 25.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/ANM Feb26.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/ANM Jan 26.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/ANM Nov 25.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/ANM Sept 25.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/SSFCU Jan 2025.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/aneumind/ViewStatement (4).pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz April.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz Checking Transactions.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz June.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz May.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz Savings - August.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz Savings - July.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Biz Savings - September.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Checking April.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Checking June.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Personal Savings - August.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Personal Savings - July.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/historic_ssfcu_business/SSFCU Personal Savings - September.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/mjsds/April.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/mjsds/December.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/mjsds/MJSDS Biz Acct 10-24.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/mjsds/March.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/mjsds/May24 (1).pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/mjsds/November.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/tripp_consulting/SSFCU TC Statement June 2024.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/tripp_consulting/TC Statement 2-2025.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/01_originals/bank_statements/tripp_consulting/TC Statement 3-2025.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/aneumind/aneumind_ssfcu_business_savings_2025-09_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/aneumind/aneumind_ssfcu_business_savings_2025-11_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/aneumind/aneumind_ssfcu_business_savings_2025-12_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/aneumind/aneumind_ssfcu_business_savings_2026-01_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/aneumind/aneumind_ssfcu_business_savings_2026-02_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/mjsds/mjsds_ssfcu_business_savings_2025-03_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/mjsds/mjsds_ssfcu_business_savings_2025-04_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/mjsds/mjsds_ssfcu_business_savings_2025-11_statement.pdf,bank_statement_like,unstaged_for_security_review
+reference/pm_managed_dam/2026-04-02_legal_financial_intake/02_working/normalized_statement_names/mjsds/mjsds_ssfcu_business_savings_2025-12_statement.pdf,bank_statement_like,unstaged_for_security_review

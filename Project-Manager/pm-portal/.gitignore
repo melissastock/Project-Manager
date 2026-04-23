@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.venv/
+backend/data/standup-snapshot-*.json
+frontend/node_modules/
+frontend/dist/

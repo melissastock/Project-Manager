@@ -23,9 +23,9 @@ from urllib.error import URLError
 from urllib.request import Request, urlopen
 
 
-ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_TRACKER = ROOT / "config" / "client-ops-tracker.json"
-DEFAULT_PORTAL_ROOT = ROOT / "pm-portal"
+PM_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_TRACKER = PM_ROOT / "config" / "client-ops-tracker.json"
+DEFAULT_PORTAL_ROOT = PM_ROOT / "pm-portal"
 LOCAL_TICKETS = DEFAULT_PORTAL_ROOT / "data" / "tickets.json"
 
 
