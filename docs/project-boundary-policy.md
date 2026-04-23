@@ -40,3 +40,10 @@ If a document answers "how do we prioritize, supervise, classify, or sequence pr
 - Client isolation is repository-based (repo-per-client/project), not branch-based.
 - Branches are lifecycle tools (`feature/*`, `release/*`, `hotfix/*`), not long-term client partitions.
 - Backup/archive clones must use separate remotes from canonical production repositories.
+
+
+## Shared Data Registry Boundary
+
+- `os-registry` is the canonical source for cross-product shared metadata (skills, product models, portfolio metadata, and shared structured profile data).
+- `Project Manager` remains the control plane for intake, sequencing, and governance decisions across repositories.
+- During migration, `config/repos.json` is treated as a derived mirror from `os-registry`, not an independent source.

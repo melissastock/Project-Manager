@@ -138,3 +138,10 @@ Option B is preferred for clean separation and easier access control.
 - Update status generator to surface visibility and data class in `STATUS.md`.
 - Create security audit artifact and remediation checklist.
 
+
+## 9) Registry Migration Note
+
+- Shared metadata canonical source is `os-registry` (private).
+- `Project Manager/config/repos.json` remains operational as a derived mirror until migration completes.
+- Dual-write updates across registry and mirror are disallowed; update registry first, then sync/export.
+- Product repos should consume registry data via API contract or synced snapshots.

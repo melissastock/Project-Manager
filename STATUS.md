@@ -1,12 +1,12 @@
 # Portfolio Status
 
-Generated: 2026-04-22 02:10:46 MDT
+Generated: 2026-04-22 09:32:20 MDT
 
 ## Summary
 
 - Managed repositories: 20
-- Clean repositories: 18
-- Repositories with local changes: 0
+- Clean repositories: 17
+- Repositories with local changes: 1
 - Repositories in onboarding: 2
 - Public repositories: 1
 - Restricted repositories: 19
@@ -21,7 +21,7 @@ Generated: 2026-04-22 02:10:46 MDT
 | Archiavellian | archive-incubator | peripheral | private-internal | ip-restricted | personal-os-protected | no | active | codex/archiavellian-report-to-project-manager | clean | ahead:1 behind:0 | 6c41a6d | Add persona research scaffolds to project intake governance metadata.; GitHub archiavellian (private) |
 | Archiavellian-Archive | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | archive | codex/archive-readiness-annotation | clean | ahead:2 behind:0 | c1f9a1d | Add Case Files archive intake inventory |
 | Bankruptcy | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | unborn | unborn | - | - | Repository exists but has no commits yet |
-| Case Files | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | clean | no-upstream | 38d6b3f | Initialize Case Files project workspace |
+| Case Files | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | unstaged:4, untracked:1 | no-upstream | 38d6b3f | Initialize Case Files project workspace |
 | Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | platform-product | adjacent | private-client | regulated-sensitive | client-invention-protected | no | active | main | clean | ahead:1 behind:0 | 44f8495 | Add persona research scaffolds to project intake governance metadata.; parent Project Manager; GitHub CIMPT (private) |
 | Divorce | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | main | clean | ahead:1 behind:0 | 5cca571 | Add persona research scaffolds to project intake governance metadata.; GitHub PLP (private) |
 | MJS Financial Dash | recovery-core | core | private-client | legal-financial-restricted | client-invention-protected | no | active | codex/finance-snapshot-onboarding | clean | ahead:1 behind:0 | 9c03a4b | Add persona research scaffolds to project intake governance metadata.; GitHub MJS-Financial-Dash (private) |
