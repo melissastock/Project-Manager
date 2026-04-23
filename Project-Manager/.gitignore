@@ -1,0 +1,16 @@
+# Ignore rules for the control-plane subtree only (portfolio root has its own .gitignore).
+
+# Dependencies and build output
+pm-portal/frontend/node_modules/
+pm-portal/frontend/.next/
+pm-portal/frontend/dist/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local env and secrets (never commit)
+.env
+.env.*
+!.env.example

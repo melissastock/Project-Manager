@@ -1,4 +1,4 @@
-# Conda CI for this repo. If this job fails on missing files or branch mismatch, see docs/operator-friction-log.md (Git / CI section).
+# Conda CI for this repo. If this job fails on missing files or branch mismatch, see Project-Manager/docs/operator-friction-log.md (Git / CI section).
 name: Python Package using Conda
 
 on: [push]
@@ -9,6 +9,7 @@ jobs:
     defaults:
       run:
         shell: bash -el {0}
+        working-directory: Project-Manager
 
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +25,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        conda env update -n base --file "${{ github.workspace }}/environment.yml" --prune
+        conda env update -n base --file "${{ github.workspace }}/Project-Manager/environment.yml" --prune
 
     - name: Lint with flake8
       run: |

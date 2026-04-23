@@ -1,4 +1,4 @@
-# Scheduled standup artifact upload. If Actions env or secrets confuse you, see docs/operator-friction-log.md.
+# Scheduled standup artifact upload. If Actions env or secrets confuse you, see Project-Manager/docs/operator-friction-log.md.
 name: PM Standup Loop
 
 on:
@@ -9,6 +9,9 @@ on:
 jobs:
   standup:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Project-Manager
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pm-standup-artifacts
-          path: docs/session-artifacts/standup/
+          path: Project-Manager/docs/session-artifacts/standup/
