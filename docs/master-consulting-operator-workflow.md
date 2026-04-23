@@ -4,17 +4,24 @@ Single source of truth for how to sell, deliver, package, secure, and get paid f
 
 **Posture:** consulting-first. The client is not expected to self-operate the system.
 
+### Terminology (avoid mixing two meanings of “SKU”)
+
+- **Consulting SKU A / B** (this document): paid offers you sell and deliver — **Clarity Sprint Diagnostic** (A) and **Execution OS Build Sprint** (B). Pilot sequencing for a client repo such as `bg-legal` is in `docs/bg-legal-consulting-pilot-playbook.md`.
+- **Portfolio / PM “checks”** (optional automation in this repo): scripts such as `check_production_readiness.py` and `validate_downstream_governance.py` validate *documentation and governance artifacts* in a git repo. Those are **not** the consulting SKUs; they do not replace SOW, billing, or delivery for Clarity vs Execution OS.
+
 ---
 
 ## 1) Offer architecture (what you sell)
 
 ### SKU A — Clarity Sprint Diagnostic
 
-| | |
-| --- | --- |
-| **Standard** | $3,500 |
-| **Fast-track** | $5,000 |
-| **Timeline** | 7–10 business days |
+
+|                |                    |
+| -------------- | ------------------ |
+| **Standard**   | $3,500             |
+| **Fast-track** | $5,000             |
+| **Timeline**   | 7–10 business days |
+
 
 **Promise:** turn fragmented legal, financial, and operational work into a decision-ready 30-day action plan.
 
@@ -28,10 +35,12 @@ Single source of truth for how to sell, deliver, package, secure, and get paid f
 
 ### SKU B — Execution OS Build Sprint
 
-| | |
-| --- | --- |
-| **Price** | $12,000–$25,000 (scope-based) |
-| **Timeline** | 90 days (phased) |
+
+|              |                               |
+| ------------ | ----------------------------- |
+| **Price**    | $12,000–$25,000 (scope-based) |
+| **Timeline** | 90 days (phased)              |
+
 
 **Promise:** install repeatable execution workflow, reporting, and governance cadence.
 

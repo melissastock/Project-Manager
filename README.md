@@ -75,3 +75,4 @@ If Git, CI, Conda, or environment wiring keeps fighting you, skim **`docs/operat
 - Agile production process standard: `docs/agile-production-process.md`
 - GTM repeatable process: `docs/gtm-repeatable-workflow.md`
 - Consulting operator workflow (offers, stage gates, payments, web/portal): `docs/master-consulting-operator-workflow.md`
+- Pilot both consulting SKUs on bg-legal (sequencing + repo mapping): `docs/bg-legal-consulting-pilot-playbook.md`
