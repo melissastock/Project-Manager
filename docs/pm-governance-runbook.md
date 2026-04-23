@@ -8,6 +8,22 @@ Run from `Project Manager` root:
 PROFILE=fast ./scripts/run_governance_profile.sh
 ```
 
+## Start-of-Day Reliability Gate (P0)
+
+Run before product execution:
+
+```bash
+python3 scripts/run_start_of_day_gate.py
+```
+
+This enforces:
+
+- remote audit pass via `scripts/sync_repo_remotes.py` (no missing bindings or remote-key drift),
+- fresh standup artifact refresh for the current session,
+- drift classification against `config/drift-baseline.json` for `provider-access-hub`, `Momentum-OS`, and `bg-legal`.
+
+If this gate fails, do not continue with multi-repo commit/push until drift is classified and baseline-reviewed.
+
 This runs only lightweight checks by default. Use env flags to force specific checks for a small chunk:
 
 ```bash
