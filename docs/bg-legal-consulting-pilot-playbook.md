@@ -9,11 +9,11 @@ This playbook pilots **both consulting SKUs** from `docs/master-consulting-opera
 | Concept | Detail |
 | --- | --- |
 | **Git remote** | `melissastock/bg-legal` (`config/repo-remotes.json`) |
-| **Local folder name** | Prefer a clone at **`bg-legal/`** under the Project Manager workspace root (same pattern as `provider-access-hub`, `Momentum-OS`). |
-| **`Case Files` alias** | `Case Files` is bound to the **same** remote as `bg-legal` for sync purposes. Your **working tree** may still be named `Case Files/` until you rename or re-clone; pick **one** canonical folder for engagement work and stay consistent. |
-| **`config/repos.json`** | Today the managed entry is **`Case Files`** with path `Case Files`. For this pilot, treat **`bg-legal`** as the canonical repo path once it exists locally, or keep `Case Files` as the path but align the remote to `bg-legal` only — avoid two divergent folders for the same engagement. |
+| **Local folder name** | **Only** **`bg-legal/`** under the Project Manager workspace root (portfolio manifest path in `config/repos.json`). |
+| **Google Drive “Case Files”** | Intake source name only — **not** a second git working tree. Raw exports and bulk evidence stay in **`Archiavellian-Archive`** per `docs/case-files-track-onboarding-2026-04-22.md`. |
+| **`config/repos.json`** | Managed entry is **`bg-legal`** with path **`bg-legal`**. If you still have an old **`Case Files/`** folder, migrate then remove it: `docs/bg-legal-folder-migration.md`. |
 
-**Practical rule:** one git repo, one folder name on disk, one SOW. If the remote is `bg-legal`, cloning into `bg-legal/` keeps naming aligned with weekly ops scripts that use `--target bg-legal`.
+**Practical rule:** one git repo, one folder on disk (`bg-legal/`), one SOW. Remote sync scripts still accept the binding name **Case Files** → `bg-legal` in `config/repo-remotes.json` for `sync_repo_remotes.py`.
 
 ---
 
@@ -70,13 +70,14 @@ When `bg-legal/` exists and is the engagement repo:
 
 ---
 
-## 6) If you meant “run checks on bg-legal”
+## 6) If you meant “run internal portfolio gates on bg-legal”
 
-If the goal is only to run **portfolio** validators on the `bg-legal` folder (readiness + downstream governance), from Project Manager root after the repo exists:
+If the goal is only to run **portfolio** validators on the `bg-legal` folder (not consulting SKUs), from Project Manager root after the repo exists:
 
 ```bash
-python3 scripts/check_production_readiness.py --target bg-legal
-python3 scripts/validate_downstream_governance.py --target bg-legal
+python3 scripts/run_repo_readiness_gates.py --target bg-legal
 ```
+
+Equivalent individual commands: `check_production_readiness.py` and `validate_downstream_governance.py` with `--target` set to the absolute or `bg-legal` path.
 
 That is **orthogonal** to selling and delivering consulting SKU A and SKU B; use the checklists above for the actual pilot.

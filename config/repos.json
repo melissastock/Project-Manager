@@ -209,10 +209,10 @@
       "overdue_ar_usd": 5400.0
     },
     {
-      "name": "Case Files",
-      "path": "Case Files",
+      "name": "bg-legal",
+      "path": "bg-legal",
       "category": "legal-content",
-      "role": "two-track legal case and content-creator governance workspace for Case Files operating docs, routing decisions, and reviewed derivatives",
+      "role": "Git working copy for the Case Files program (melissastock/bg-legal): governed operating docs, routing, timeline evidence, and reviewed derivatives. Google Drive folder Case Files remains intake-only per docs/case-files-track-onboarding-2026-04-22.md; raw evidence stays in Archiavellian-Archive",
       "intake_stage": "active",
       "lane": "recovery-core",
       "priority_class": "core",

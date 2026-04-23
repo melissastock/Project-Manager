@@ -42,8 +42,10 @@ Options:
 Run the full weekly reliability cycle with one command:
 
 ```bash
-python3 scripts/run_weekly_ops_cycle.py --auto-scaffold-bg-legal
+python3 scripts/run_weekly_ops_cycle.py --auto-scaffold-engagement-repo
 ```
+
+(`--auto-scaffold-bg-legal` is still accepted as a deprecated alias.)
 
 This orchestrator performs:
 

@@ -51,16 +51,17 @@ def _run_product_hardening() -> tuple[bool, str]:
     tasks = []
     with ThreadPoolExecutor(max_workers=6) as pool:
         for target in TARGETS:
+            target_path = str(ROOT / target)
             tasks.append(
                 pool.submit(
                     _run,
-                    ["python3", "scripts/check_production_readiness.py", "--target", target],
+                    ["python3", "scripts/check_production_readiness.py", "--target", target_path],
                 )
             )
             tasks.append(
                 pool.submit(
                     _run,
-                    ["python3", "scripts/validate_downstream_governance.py", "--target", target],
+                    ["python3", "scripts/validate_downstream_governance.py", "--target", target_path],
                 )
             )
 
@@ -101,7 +102,12 @@ def main() -> int:
     parser.add_argument(
         "--auto-scaffold-bg-legal",
         action="store_true",
-        help="Scaffold bg-legal delivery docs before hardening checks.",
+        help="Deprecated alias for --auto-scaffold-engagement-repo.",
+    )
+    parser.add_argument(
+        "--auto-scaffold-engagement-repo",
+        action="store_true",
+        help="Scaffold delivery docs for bg-legal before hardening checks.",
     )
     args = parser.parse_args()
 
@@ -126,6 +132,8 @@ def main() -> int:
             "scripts/generate_weekly_ops_memo.py",
             "scripts/scaffold_delivery_docs.py",
             "scripts/run_weekly_ops_cycle.py",
+            "scripts/run_repo_readiness_gates.py",
+            "scripts/bg_legal_paths.py",
         ]
     )
     steps.append(
@@ -157,7 +165,7 @@ def main() -> int:
         )
     )
 
-    if args.auto_scaffold_bg_legal:
+    if args.auto_scaffold_bg_legal or args.auto_scaffold_engagement_repo:
         scaffold = _run(
             [
                 "python3",
@@ -168,7 +176,7 @@ def main() -> int:
         )
         steps.append(
             StepResult(
-                name="bg_legal_delivery_scaffold",
+                name="engagement_repo_delivery_scaffold",
                 ok=scaffold.returncode == 0,
                 command="python3 scripts/scaffold_delivery_docs.py --target bg-legal",
                 output=scaffold.stdout + scaffold.stderr,

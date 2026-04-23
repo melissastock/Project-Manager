@@ -30,9 +30,10 @@ If Git, CI, Conda, or environment wiring keeps fighting you, skim **`docs/operat
 12. Use `python3 scripts/scaffold_investor_book.py --target "path/to/repo" --project-name "Project Name"` when a project needs a repeatable investor-book template and section-coverage checklist.
 13. Use `python3 scripts/scaffold_production_delivery.py --target "path/to/repo"` to add standardized backlog/sprint/test/PR-readiness docs.
 14. Before any PR, run `python3 scripts/check_production_readiness.py --target "path/to/repo"` to enforce agile planning + testing evidence gates.
-15. Use `python3 scripts/scaffold_gtm_pack.py --target "path/to/repo"` when a project needs repeatable GTM hypothesis and pilot outreach docs.
-16. Use `python3 scripts/rollout_pm_backbone.py` to roll out the latest production/GTM/investor scaffolds across managed projects.
-17. Commit the portfolio updates from this top-level repo.
+15. To run production readiness and downstream governance together on one repo: `python3 scripts/run_repo_readiness_gates.py --target "path/to/repo"` (internal portfolio gates; not consulting SKUs).
+16. Use `python3 scripts/scaffold_gtm_pack.py --target "path/to/repo"` when a project needs repeatable GTM hypothesis and pilot outreach docs.
+17. Use `python3 scripts/rollout_pm_backbone.py` to roll out the latest production/GTM/investor scaffolds across managed projects.
+18. Commit the portfolio updates from this top-level repo.
 
 ## Managed Repositories
 
@@ -46,7 +47,7 @@ If Git, CI, Conda, or environment wiring keeps fighting you, skim **`docs/operat
 - `MJS Financial Dash backup 20260310_153810`
 - `Momentum-OS`
 - `Archiavellian-Archive`
-- `Case Files`
+- `bg-legal` (Case Files program — see `docs/bg-legal-folder-migration.md`)
 - `Producer`
 - `Resume Builder`
 - `TuneFab`
@@ -65,7 +66,7 @@ If Git, CI, Conda, or environment wiring keeps fighting you, skim **`docs/operat
 - `2024 Taxes` is not yet tracked as a child gitlink because that repo has no first commit yet.
 - Child repos remain the source of truth for their own code and history.
 - This repo is the source of truth for portfolio visibility, intake, and onboarding.
-- `Case Files` is the governed two-track legal/content workspace for Case Files operating docs and reviewed derivatives. Raw evidence remains in `Archiavellian-Archive` archive intake/index storage.
+- **`bg-legal/`** is the single git working copy for the Case Files program (`melissastock/bg-legal`): operating docs, routing, timeline evidence, reviewed derivatives. The Google Drive folder **Case Files** is intake-only; raw evidence stays in `Archiavellian-Archive` per `docs/case-files-track-onboarding-2026-04-22.md`. Migration from an old `Case Files/` folder: `docs/bg-legal-folder-migration.md`.
 - `MJS Financial Dash` is the canonical finance repository. `MJS Financial Dash backup 20260310_153810` is retained only as a deprecated archive-only snapshot until final removal is explicitly approved.
 - `provider-access-hub` is now the active PAH codebase; `TuneFab` is being transitioned toward archive status.
 - Operator friction (Git, CI, Supabase keys, ports, CLI): `docs/operator-friction-log.md`

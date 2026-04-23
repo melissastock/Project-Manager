@@ -6,8 +6,8 @@ Owner: portfolio-owner
 ## 1) What Moved Today
 
 - Pipeline runs completed: `sync_docket_events.py`, `link_case_dependencies.py`, `build_portal_session.py`, `update_portal_session.py`, `set_portal_compliance.py`, and `advance_portal_state.py`.
-- Docket sync status: `added=0`, `updated=2`, `total=2` in `Case Files/docs/timeline-evidence/docket-events.csv`.
-- Dependency sync status: `generated=2`, `added=0`, `total=2` in `Case Files/docs/timeline-evidence/case-dependencies.csv`.
+- Docket sync status: `added=0`, `updated=2`, `total=2` in `bg-legal/docs/timeline-evidence/docket-events.csv`.
+- Dependency sync status: `generated=2`, `added=0`, `total=2` in `bg-legal/docs/timeline-evidence/case-dependencies.csv`.
 - Session/workflow advanced: `SESSION-2026-04-22-A` moved to `strategy-ranking` on route `RTR-0004` (`pro-se-urgent`).
 - Portfolio dashboard refresh completed: `STATUS.md` regenerated at `2026-04-22 09:32:20 MDT`.
 
@@ -30,5 +30,5 @@ Owner: portfolio-owner
 
 - Must-do: fill `top_events` and `top_sources` in active sessions before ranking strategy options.
 - Must-do: complete legal/privacy review flag for sessions targeting filing readiness paths.
-- Nice-to-have: add a lightweight daily runbook command sequence in `Case Files/docs/timeline-evidence/README.md` for one-command operator use.
+- Nice-to-have: add a lightweight daily runbook command sequence in `bg-legal/docs/timeline-evidence/README.md` for one-command operator use.
 

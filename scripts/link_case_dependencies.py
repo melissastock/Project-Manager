@@ -5,13 +5,18 @@ from __future__ import annotations
 
 import argparse
 import csv
+import sys
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
 
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
 
-ROOT = Path("/Users/melissastock/Desktop/Project Manager")
-DOCKET_EVENTS = ROOT / "Case Files" / "docs" / "timeline-evidence" / "docket-events.csv"
-DEPENDENCIES = ROOT / "Case Files" / "docs" / "timeline-evidence" / "case-dependencies.csv"
+from bg_legal_paths import BG_LEGAL_DIR
+
+DOCKET_EVENTS = BG_LEGAL_DIR / "docs" / "timeline-evidence" / "docket-events.csv"
+DEPENDENCIES = BG_LEGAL_DIR / "docs" / "timeline-evidence" / "case-dependencies.csv"
 
 DEP_HEADERS = [
     "dependency_id",

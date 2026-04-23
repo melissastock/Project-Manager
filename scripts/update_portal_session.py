@@ -7,12 +7,17 @@ import argparse
 import csv
 import json
 from datetime import datetime, timezone
+import sys
 from pathlib import Path
 from typing import Dict, List
 
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
 
-ROOT = Path("/Users/melissastock/Desktop/Project Manager")
-TIMELINE_DIR = ROOT / "Case Files" / "docs" / "timeline-evidence"
+from bg_legal_paths import ROOT, TIMELINE_EVIDENCE_DIR
+
+TIMELINE_DIR = TIMELINE_EVIDENCE_DIR
 ROUTING_CSV = TIMELINE_DIR / "intake-routing.csv"
 
 ALLOWED_STATES = {
