@@ -164,4 +164,3 @@ Outputs by end of Day 14:
 - Escalation contact:
 - Escalation trigger (time/impact):
 - Response expectation:
-

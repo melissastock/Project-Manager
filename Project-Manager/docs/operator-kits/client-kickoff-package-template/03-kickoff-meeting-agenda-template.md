@@ -30,10 +30,10 @@ Script:
 ## 0:10-0:20 — Delivery Method and Timeline
 
 1. Review stage-gated workflow:
-   - intake complete
-   - sprint execution
-   - package and readout
-   - acceptance and close
+  - intake complete
+  - sprint execution
+  - package and readout
+  - acceptance and close
 2. Review timeline and milestone dates.
 3. Confirm any hard deadlines and constraints.
 
@@ -43,9 +43,9 @@ Script:
 
 1. Confirm single decision owner.
 2. Confirm project-side owners for:
-   - business decisions
-   - data access
-   - legal/compliance signoff
+  - business decisions
+  - data access
+  - legal/compliance signoff
 3. Confirm escalation path and response SLA.
 
 ---
@@ -85,9 +85,8 @@ Script:
 
 ## Post-Meeting Checklist
 
-- [ ] Kickoff notes sent within 24 hours.
-- [ ] First tasks assigned with owner and due date.
-- [ ] First update date and agenda sent.
-- [ ] Open risks and dependencies logged.
-- [ ] Client confirmation received on notes.
-
+- Kickoff notes sent within 24 hours.
+- First tasks assigned with owner and due date.
+- First update date and agenda sent.
+- Open risks and dependencies logged.
+- Client confirmation received on notes.

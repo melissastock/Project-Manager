@@ -57,4 +57,3 @@ No hidden work, no scope drift, no ambiguity on ownership.
 - Client lead:
 - Delivery lead:
 - Date:
-

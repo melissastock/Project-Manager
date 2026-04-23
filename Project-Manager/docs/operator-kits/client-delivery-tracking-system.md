@@ -64,19 +64,19 @@ Subject line:
 Body:
 
 1. **Current stage**
-   - Example: `Active Delivery`
+  - Example: `Active Delivery`
 2. **What was completed this week**
-   - 3-5 bullet points
+  - 3-5 bullet points
 3. **Current blockers**
-   - include owner and decision needed
+  - include owner and decision needed
 4. **Decisions needed from client**
-   - explicit owner + due date
+  - explicit owner + due date
 5. **Next milestone**
-   - milestone + exact date
+  - milestone + exact date
 6. **Commercial status**
-   - invoice status + due date (if applicable)
+  - invoice status + due date (if applicable)
 7. **Confidence**
-   - `green`, `yellow`, or `red`
+  - `green`, `yellow`, or `red`
 
 ## 5) Milestone Acceptance Template
 
@@ -139,4 +139,3 @@ Every week for every active client:
 5. escalate unresolved blockers
 
 If this rhythm runs, engagements remain predictable and close faster.
-

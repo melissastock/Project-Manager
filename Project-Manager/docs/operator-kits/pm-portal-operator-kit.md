@@ -19,23 +19,20 @@ PM-portal is not the source of legal/financial truth. Truth remains in `recovery
 From `Project-Manager/pm-portal`:
 
 1. Backend setup
-   - `cd backend`
-   - `python3 -m venv .venv && source .venv/bin/activate`
-   - `pip install -r requirements.txt`
-   - `cp .env.example .env` and populate required keys
-
+  - `cd backend`
+  - `python3 -m venv .venv && source .venv/bin/activate`
+  - `pip install -r requirements.txt`
+  - `cp .env.example .env` and populate required keys
 2. Frontend setup
-   - `cd ../frontend`
-   - `npm install`
-   - `cp .env.example .env` if Prisma workflows are needed
-
+  - `cd ../frontend`
+  - `npm install`
+  - `cp .env.example .env` if Prisma workflows are needed
 3. Local run
-   - backend: `uvicorn app.main:app --reload --port 8080`
-   - frontend: `npm run dev`
-
+  - backend: `uvicorn app.main:app --reload --port 8080`
+  - frontend: `npm run dev`
 4. Health check
-   - open `http://localhost:8080/health/supabase`
-   - confirm `status: ok` when Supabase keys are configured
+  - open `http://localhost:8080/health/supabase`
+  - confirm `status: ok` when Supabase keys are configured
 
 ## 3) Required Runtime Config
 
@@ -60,9 +57,9 @@ If unset, some features fall back to local JSON (reduced governance fidelity).
 3. Review project list and runtime observations.
 4. Process new client agreements and intake completion states.
 5. Triage new tickets by:
-   - state (`new` -> `triaged`)
-   - priority (`P0`..`P3`)
-   - owner assignment
+  - state (`new` -> `triaged`)
+  - priority (`P0`..`P3`)
+  - owner assignment
 6. Review secure-vault events and unresolved checksum/verifications.
 
 ### Midday control check (10-15 min)
@@ -83,22 +80,19 @@ If unset, some features fall back to local JSON (reduced governance fidelity).
 Run once per week per active client:
 
 1. **Agreement integrity**
-   - validate accepted scope/package and lock status
-   - review all approved/rejected change orders
-
+  - validate accepted scope/package and lock status
+  - review all approved/rejected change orders
 2. **Execution throughput**
-   - ticket cycle review (created vs done)
-   - blockers by category (data, legal, integration, owner availability)
-
+  - ticket cycle review (created vs done)
+  - blockers by category (data, legal, integration, owner availability)
 3. **Governance and trust**
-   - team assignment approval status
-   - secure-vault access/audit anomalies
-   - unresolved high-severity risks
-
+  - team assignment approval status
+  - secure-vault access/audit anomalies
+  - unresolved high-severity risks
 4. **Decision packet update**
-   - summarize what changed
-   - rank next actions
-   - link outputs in `execution-*` and truth references in `recovery-core`
+  - summarize what changed
+  - rank next actions
+  - link outputs in `execution-`* and truth references in `recovery-core`
 
 ## 6) Core Endpoints To Use Operationally
 
@@ -131,10 +125,10 @@ Before work starts:
 2. Verify required data access.
 3. Register initial sensitive artifacts in secure vault if needed.
 4. Open initial ticket set:
-   - discovery/intake
-   - workflow map
-   - risk register
-   - decision packet
+  - discovery/intake
+  - workflow map
+  - risk register
+  - decision packet
 5. Assign roles and capture approval.
 6. Mark intake complete to lock core fields.
 
@@ -175,4 +169,3 @@ If portal instability appears:
 - Decision owner: client-side authority for approvals
 
 Keep one accountable owner per role per active client.
-

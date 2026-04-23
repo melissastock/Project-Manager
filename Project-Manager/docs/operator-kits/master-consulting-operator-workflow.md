@@ -67,19 +67,19 @@ Move through these stages in order. Do not skip gates.
 ### Stage 0 — Setup (one-time)
 
 1. Keep these templates ready:
-   - fit call script
-   - SOW
-   - kickoff checklist
-   - weekly status update
-   - final package checklist
-   - invoice template
+  - fit call script
+  - SOW
+  - kickoff checklist
+  - weekly status update
+  - final package checklist
+  - invoice template
 2. Set payment policy:
-   - SKU A: 100% upfront
-   - SKU B: 50% kickoff, 30% midpoint, 20% final handoff
+  - SKU A: 100% upfront
+  - SKU B: 50% kickoff, 30% midpoint, 20% final handoff
 3. Set stop rules:
-   - no signed SOW -> no work
-   - no payment milestone -> no milestone delivery
-   - no scope change without change order
+  - no signed SOW -> no work
+  - no payment milestone -> no milestone delivery
+  - no scope change without change order
 
 Exit gate:
 
@@ -89,15 +89,15 @@ Exit gate:
 
 1. Run 30-minute fit call.
 2. Score Yes/No:
-   - urgent pain now
-   - decision owner present
-   - data visibility available
-   - weekly cadence commitment
-   - scoped objective is clear
+  - urgent pain now
+  - decision owner present
+  - data visibility available
+  - weekly cadence commitment
+  - scoped objective is clear
 3. Decide:
-   - 4-5 Yes -> proceed
-   - 3 Yes -> constrained scope only
-   - 0-2 Yes -> defer/decline
+  - 4-5 Yes -> proceed
+  - 3 Yes -> constrained scope only
+  - 0-2 Yes -> defer/decline
 
 Exit gate:
 
@@ -107,12 +107,12 @@ Exit gate:
 
 1. Send scoped offer (SKU A or B).
 2. Send SOW with:
-   - objective
-   - scope in/out
-   - deliverables
-   - timeline
-   - payment milestones
-   - change-order terms
+  - objective
+  - scope in/out
+  - deliverables
+  - timeline
+  - payment milestones
+  - change-order terms
 3. Run one live SOW review.
 4. Send signature and kickoff invoice.
 5. Confirm payment receipt.
@@ -126,10 +126,10 @@ Exit gate:
 1. Create client engagement record.
 2. Set communication channel and decision owner.
 3. Classify sensitivity:
-   - legal
-   - financial
-   - medical
-   - IP/confidential
+  - legal
+  - financial
+  - medical
+  - IP/confidential
 4. Configure secure storage path and access roles.
 5. Register intake artifacts and source systems.
 6. Lock baseline scope after intake complete.
@@ -142,17 +142,17 @@ Exit gate:
 
 1. Execute sprint plan.
 2. Weekly updates to client:
-   - work completed
-   - risks/blockers
-   - decisions needed
-   - next week plan
+  - work completed
+  - risks/blockers
+  - decisions needed
+  - next week plan
 3. Track requests:
-   - in-scope -> schedule
-   - out-of-scope -> change order
+  - in-scope -> schedule
+  - out-of-scope -> change order
 4. Enforce data placement:
-   - source truth -> `recovery-core`
-   - processing workflows -> `execution-*`
-   - sanitized outputs -> `narrative-output`
+  - source truth -> `recovery-core`
+  - processing workflows -> `execution-*`
+  - sanitized outputs -> `narrative-output`
 
 Exit gate:
 
@@ -161,11 +161,11 @@ Exit gate:
 ### Stage 5 — Packaging and Readout
 
 1. Build final package:
-   - executive summary
-   - deliverables index
-   - decisions made
-   - remaining risks
-   - 30-day next action plan
+  - executive summary
+  - deliverables index
+  - decisions made
+  - remaining risks
+  - 30-day next action plan
 2. Verify package against SOW line-by-line.
 3. Redact sensitive non-required content.
 4. Run executive readout.
@@ -179,15 +179,15 @@ Exit gate:
 
 1. Send final milestone invoice same day as acceptance.
 2. Follow-up rhythm:
-   - Day 0 send
-   - Day 3 reminder
-   - Day 7 escalation reminder
-   - Day 10 direct owner call
+  - Day 0 send
+  - Day 3 reminder
+  - Day 7 escalation reminder
+  - Day 10 direct owner call
 3. After payment clears:
-   - release unrestricted final assets
-   - send close memo
-   - archive inactive materials
-   - capture sanitized case proof
+  - release unrestricted final assets
+  - send close memo
+  - archive inactive materials
+  - capture sanitized case proof
 
 Exit gate:
 
@@ -200,25 +200,25 @@ Exit gate:
 Use a simple two-lane payment stack:
 
 1. **Stripe Payment Links / Invoices** (default)
-   - card + ACH
-   - clear invoice status
-   - easy links for deposits/milestones
+  - card + ACH
+  - clear invoice status
+  - easy links for deposits/milestones
 2. **Wire/ACH fallback instructions** for larger engagements
 
 Implementation:
 
 1. Create products in Stripe:
-   - `Clarity Sprint Standard - $3,500`
-   - `Clarity Sprint Fast-track - $5,000`
-   - `Execution OS Build Sprint - custom invoice`
+  - `Clarity Sprint Standard - $3,500`
+  - `Clarity Sprint Fast-track - $5,000`
+  - `Execution OS Build Sprint - custom invoice`
 2. Create invoice templates:
-   - kickoff deposit
-   - midpoint milestone
-   - final milestone
+  - kickoff deposit
+  - midpoint milestone
+  - final milestone
 3. Add policy to SOW:
-   - work starts only after initial payment clears
-   - milestone delivery tied to milestone payment
-   - late fees/escalation clause if applicable
+  - work starts only after initial payment clears
+  - milestone delivery tied to milestone payment
+  - late fees/escalation clause if applicable
 
 ---
 
@@ -249,19 +249,19 @@ Yes, but keep v1 minimal and consultant-operated.
 Portal v1 scope:
 
 1. Client dashboard:
-   - stage
-   - current milestone
-   - next meeting
+  - stage
+  - current milestone
+  - next meeting
 2. Shared status feed:
-   - weekly updates
-   - decisions needed
+  - weekly updates
+  - decisions needed
 3. Deliverables list:
-   - accepted outputs
-   - pending approvals
+  - accepted outputs
+  - pending approvals
 4. Invoices:
-   - issued
-   - paid
-   - outstanding
+  - issued
+  - paid
+  - outstanding
 5. Secure file handoff links (no raw sensitive sprawl)
 
 Portal v1 should NOT include:
@@ -289,9 +289,9 @@ Portal v1 should NOT include:
 ### Days 8-10
 
 1. Launch client portal v1 pages:
-   - status
-   - deliverables
-   - invoices
+  - status
+  - deliverables
+  - invoices
 2. Connect weekly status template into portal update cadence.
 
 ### Days 11-14
@@ -316,4 +316,3 @@ When stuck, ask:
 1. What stage am I in?
 2. What is the stage exit gate?
 3. What single action gets me through that gate today?
-

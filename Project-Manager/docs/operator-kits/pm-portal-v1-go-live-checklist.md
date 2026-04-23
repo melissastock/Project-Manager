@@ -203,9 +203,9 @@ Exit criteria:
 1. Capture friction points from pilot.
 2. Adjust labels/field naming for clarity.
 3. Finalize your weekly operator cadence:
-   - Monday: status update + dashboard refresh
-   - Wednesday: blockers + decisions check
-   - Friday: deliverable/invoice state reconciliation
+  - Monday: status update + dashboard refresh
+  - Wednesday: blockers + decisions check
+  - Friday: deliverable/invoice state reconciliation
 4. Freeze v1 and move new asks to backlog.
 
 Exit criteria:
@@ -238,4 +238,3 @@ V1 is live when:
 3. Deliverable approvals are tracked explicitly.
 4. Invoice states are visible and reconciled weekly.
 5. Sensitive file transfer uses secure-vault signed links only.
-

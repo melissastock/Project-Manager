@@ -57,4 +57,3 @@ At pilot readout, capture:
 4. SKU B continuation decision
 
 This becomes your immediate sales asset for ongoing outreach.
-

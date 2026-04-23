@@ -193,4 +193,3 @@ If yes:
 1. Confirm scope boundary in writing.
 2. Launch SKU B kickoff.
 3. Convert roadmap actions into a tracked implementation queue.
-

@@ -57,11 +57,11 @@ Convert current MJS Financial Dash operating ambiguity into a decision-ready 30-
 2. Confirm data-access boundaries (read-only where possible).
 3. Send kickoff note with timeline and deliverable list.
 4. Open project tracker in PM-portal with these milestone cards:
-   - M1: Intake complete
-   - M2: Workflow map draft
-   - M3: Risk register complete
-   - M4: Decision packet draft
-   - M5: Final readout complete
+  - M1: Intake complete
+  - M2: Workflow map draft
+  - M3: Risk register complete
+  - M4: Decision packet draft
+  - M5: Final readout complete
 
 ## Day 1-2: Intake + inventory
 
@@ -71,6 +71,7 @@ Convert current MJS Financial Dash operating ambiguity into a decision-ready 30-
 4. Register sensitive artifacts using your consulting data SOP.
 
 Output:
+
 - Intake summary + source inventory.
 
 ## Day 3-4: Workflow mapping
@@ -80,19 +81,21 @@ Output:
 3. Mark where decisions stall due to data confidence gaps.
 
 Output:
+
 - Current-state workflow map (finance/legal/ops touchpoints as relevant).
 
 ## Day 5-6: Risk and bottleneck scoring
 
 1. Score each bottleneck (impact x frequency x urgency).
 2. Tag root-cause type:
-   - data quality
-   - process gap
-   - ownership gap
-   - tooling/integration gap
+  - data quality
+  - process gap
+  - ownership gap
+  - tooling/integration gap
 3. Rank top 5 blockers.
 
 Output:
+
 - Risk and bottleneck register (severity-ranked).
 
 ## Day 7-8: Decision packet build
@@ -102,6 +105,7 @@ Output:
 3. Create 30-day roadmap with sequence dependencies.
 
 Output:
+
 - Decision packet draft + roadmap.
 
 ## Day 9-10: Readout + close
@@ -109,10 +113,11 @@ Output:
 1. Finalize packet and executive summary.
 2. Run readout call.
 3. Ask explicit conversion question:
-   - "Do we now operationalize this through the 90-day Execution OS build?"
+  - "Do we now operationalize this through the 90-day Execution OS build?"
 4. Issue follow-up memo with approved next steps.
 
 Output:
+
 - Final decision-ready package and written acceptance.
 
 ---
@@ -140,17 +145,21 @@ Subject: Midpoint update - MJS Financial Dash Clarity Sprint
 Body:
 
 Progress this week:
+
 - Intake and source inventory completed.
 - Current-state workflow mapping in progress/completed.
 
 Current top risks:
+
 - [Risk 1]
 - [Risk 2]
 
 Decisions needed:
+
 - [Decision + owner + due date]
 
 Next:
+
 - Complete severity-ranked bottleneck register and begin decision packet build.
 
 ## Final readout invite
@@ -160,6 +169,7 @@ Subject: Final readout - MJS Financial Dash Clarity Sprint
 Body:
 
 We are ready to review final outputs:
+
 - workflow map
 - risk/bottleneck register
 - prioritized decision packet
@@ -206,8 +216,8 @@ At close:
 1. Capture written acceptance.
 2. Send conversion proposal for SKU B.
 3. Mark project state:
-   - `closed` (if no continuation)
-   - `conversion-active` (if entering SKU B)
+  - `closed` (if no continuation)
+  - `conversion-active` (if entering SKU B)
 
 ---
 
@@ -229,4 +239,3 @@ This gives active proof without overclaiming outcomes.
 4. Create PM-portal milestone cards (M1-M5).
 5. Schedule Day 10 readout now.
 6. Start Day 1 intake tasks immediately after payment confirmation.
-

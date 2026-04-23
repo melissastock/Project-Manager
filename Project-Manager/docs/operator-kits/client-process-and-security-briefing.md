@@ -172,4 +172,3 @@ Use instead:
 - "This is operator-managed by our consulting team."
 - "We control process execution and access boundaries."
 - "You receive structured outputs and guided decisions."
-

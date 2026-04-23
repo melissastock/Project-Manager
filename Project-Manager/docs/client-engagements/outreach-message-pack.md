@@ -224,4 +224,3 @@ Minimum weekly target to maintain momentum:
 - 25-40 targeted outbound touches
 - 3-5 fit calls booked
 - 1-2 scoped proposals sent
-
