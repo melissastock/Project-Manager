@@ -26,6 +26,10 @@
       "CONTRIBUTING.md",
       "apps/client-ui/src/lib/googleOauth.ts",
       "data/",
+      "docs/delivery/backlog.md",
+      "docs/delivery/pr-readiness.md",
+      "docs/delivery/sprint-plan.md",
+      "docs/delivery/test-report.md",
       "docs/README.md",
       "docs/product-truth.md"
     ]

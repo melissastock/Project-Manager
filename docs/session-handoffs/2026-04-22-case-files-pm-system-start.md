@@ -10,7 +10,7 @@ Scope: Project Manager control plane plus Archiavellian-Archive Case Files intak
 
 ## Authoritative Standup Artifact Set
 
-Current PM standup timestamp: **`20260422_020433`**
+Current PM standup timestamp: `**20260422_020433**`
 
 Artifacts:
 

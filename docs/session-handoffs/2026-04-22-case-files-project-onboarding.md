@@ -37,7 +37,7 @@ Passed:
 
 ## Authoritative Standup Artifact Set
 
-Current PM standup timestamp: **`20260422_021045`**
+Current PM standup timestamp: `**20260422_021045**`
 
 - `docs/session-artifacts/standup/STANDUP_SUMMARY-20260422_021045.md`
 - `docs/session-artifacts/standup/READINESS_SCORECARD-20260422_021045.md`

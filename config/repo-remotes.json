@@ -1,0 +1,60 @@
+{
+  "default_host": "github.com",
+  "protocol": "https",
+  "remote_name": "origin",
+  "remote_map": {
+    "os-registry": "melissastock/os-registry",
+    "Divorce": "melissastock/DivorceProject-Manager",
+    "Project Manager": "melissastock/Project-Manager",
+    "bg-legal": "melissastock/bg-legal",
+    "MJS-Financial-Dash": "melissastock/MJS-Financial-Dash",
+    "CIMPT": "melissastock/CIMPT",
+    "mjsds_dashboard": "melissastock/mjsds_dashboard",
+    "home-learning-playbook": "melissastock/home-learning-playbook",
+    "Archiavellian-Archive": "melissastock/Archiavellian-Archive",
+    "MJS-Financial-Dash-backup": "melissastock/MJS-Financial-Dash-backup",
+    "archiavellian": "melissastock/archiavellian",
+    "Behavioral-Analysis-System": "melissastock/Behavioral-Analysis-System",
+    "provider-access-hub": "melissastock/provider-access-hub",
+    "momentum-os": "melissastock/momentum-os",
+    "PLP": "melissastock/PLP",
+    "wayne-strain": "melissastock/wayne-strain",
+    "app-builder": "melissastock/app-builder",
+    "financial_dash": "melissastock/financial_dash"
+  },
+  "bindings": {
+    "Project Manager": "Project Manager",
+    "os-registry": "os-registry",
+    "bg-legal": "bg-legal",
+    "Case Files": "bg-legal",
+    "Divorce": "Divorce",
+    "2024 Taxes": "MJS-Financial-Dash",
+    "Bankruptcy": "MJS-Financial-Dash",
+    "MJS Financial Dash": "MJS-Financial-Dash",
+    "MJS Financial Dash backup 20260310_153810": "MJS-Financial-Dash-backup",
+    "Archiavellian-Archive": "Archiavellian-Archive",
+    "Producer": "archiavellian",
+    "provider-access-hub": "provider-access-hub",
+    "Momentum-OS": "momentum-os",
+    "GitHub/mjsds_dashboard": "mjsds_dashboard",
+    "mjsds-website": "mjsds_dashboard",
+    "App Builder/App Builder": "app-builder",
+    "Resume Builder": "app-builder",
+    "App Builder/Teach/home-learning-playbook": "home-learning-playbook",
+    "App Builder/Teach/zahmeir-learning-system": "home-learning-playbook",
+    "Aneumind and TC Structure": "momentum-os",
+    "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System": "CIMPT",
+    "Wayne Strain": "wayne-strain"
+  },
+  "path_overrides": {
+    "Case Files": "bg-legal"
+  },
+  "retired_paths": [
+    "TuneFab"
+  ],
+  "notes": [
+    "remote_map keys are canonical aliases.",
+    "bindings map local folder paths/names to remote_map keys.",
+    "Add entries as repos are created to avoid manual remote drift."
+  ]
+}

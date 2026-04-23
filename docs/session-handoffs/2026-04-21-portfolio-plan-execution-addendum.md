@@ -37,5 +37,5 @@ Then update this addendum (or a dated successor) with the **new** stamp. Older s
 ## Optional follow-ups
 
 - `**Divorce`**: add private `origin` and `github_repo_url` / `github_repo_slug` in `config/repos.json` when a remote exists.
-- `**config/repos.json**`: canonical **MJS Financial Dash** entry now includes `github_repo_slug` / `github_repo_url` for parity with other managed repos (see git history for this change).
+- `**config/repos.json`**: canonical **MJS Financial Dash** entry now includes `github_repo_slug` / `github_repo_url` for parity with other managed repos (see git history for this change).
 

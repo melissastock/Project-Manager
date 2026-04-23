@@ -24,6 +24,42 @@ This enforces:
 
 If this gate fails, do not continue with multi-repo commit/push until drift is classified and baseline-reviewed.
 
+## Delivery Doc Scaffolding (Template-backed)
+
+Use templates instead of ad hoc file creation for delivery readiness docs:
+
+```bash
+python3 scripts/scaffold_delivery_docs.py --target bg-legal
+```
+
+Options:
+
+- Add `--force` to overwrite existing delivery docs.
+- Target can be any repo path relative to `Project Manager`.
+
+## Weekly Ops Cycle Orchestrator
+
+Run the full weekly reliability cycle with one command:
+
+```bash
+python3 scripts/run_weekly_ops_cycle.py --auto-scaffold-bg-legal
+```
+
+This orchestrator performs:
+
+1. preflight script compile checks,
+2. start-of-day remote/drift gate,
+3. registry target validation,
+4. parallel product hardening checks (PAH, Momentum-OS, bg-legal),
+5. standup generation,
+6. weekly memo generation,
+7. consolidated pass/fail reporting.
+
+Artifacts:
+
+- Consolidated cycle report: `docs/session-artifacts/governance/WEEKLY_OPS_CYCLE-<stamp>.md`
+- Product hardening artifact: `docs/session-artifacts/governance/PRODUCT_OPS_HARDENING-<stamp>.md`
+
 This runs only lightweight checks by default. Use env flags to force specific checks for a small chunk:
 
 ```bash
