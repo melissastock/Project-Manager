@@ -128,7 +128,9 @@ def get_repo_status(entry: dict) -> RepoStatus:
     if entry.get("portfolio_parent"):
         extra_bits.append(f"parent {entry['portfolio_parent']}")
     if entry.get("github_repo_slug"):
-        extra_bits.append(f"GitHub {entry['github_repo_slug']} (private)")
+        vis = entry.get("visibility_tier", "")
+        vis_note = "public" if vis == "public" else "private"
+        extra_bits.append(f"GitHub {entry['github_repo_slug']} ({vis_note})")
     extra_note = "; ".join(extra_bits)
     porcelain = run_git(repo_path, "status", "--porcelain").stdout
     staged_count, unstaged_count, untracked_count = parse_porcelain(porcelain)

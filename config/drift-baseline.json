@@ -1,0 +1,41 @@
+{
+  "allowed_drift_by_repo": {
+    "provider-access-hub": [],
+    "Momentum-OS": [],
+    "bg-legal": [
+      "README.md",
+      "apps/api/server.py",
+      "apps/api/test_server_integration.py",
+      "apps/client-ui/src/App.tsx",
+      "apps/client-ui/src/auth.tsx",
+      "apps/client-ui/src/components/CaseShellLayout.tsx",
+      "apps/client-ui/src/lib/api.ts",
+      "apps/client-ui/src/lib/apiPaths.ts",
+      "apps/client-ui/src/lib/types.ts",
+      "apps/client-ui/src/pages/AddInfoPage.tsx",
+      "apps/client-ui/src/pages/AdminPage.tsx",
+      "apps/client-ui/src/pages/HomePage.tsx",
+      "apps/client-ui/src/pages/SharingPage.tsx",
+      "apps/client-ui/src/pages/UpdatesPage.tsx",
+      "apps/client-ui/src/styles.css",
+      "apps/client-ui/src/vite-env.d.ts",
+      "apps/client-ui/vite.config.ts",
+      "docs/client-ui-runbook.md",
+      "docs/timeline-evidence/motion-builder-template.md",
+      ".github/",
+      "CONTRIBUTING.md",
+      "apps/client-ui/src/lib/googleOauth.ts",
+      "data/",
+      "docs/delivery/backlog.md",
+      "docs/delivery/pr-readiness.md",
+      "docs/delivery/sprint-plan.md",
+      "docs/delivery/test-report.md",
+      "docs/README.md",
+      "docs/product-truth.md"
+    ]
+  },
+  "notes": [
+    "Gate compares target repo drift against this baseline.",
+    "Update intentionally after review when long-lived in-flight work changes."
+  ]
+}

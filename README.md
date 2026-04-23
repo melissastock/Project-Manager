@@ -4,6 +4,8 @@ This repository is the portfolio control plane for the projects inside this work
 
 It keeps a workspace-level view of the portfolio, preserves each child project's independent git history, and provides the intake and onboarding path for new projects.
 
+If Git, CI, Conda, or environment wiring keeps fighting you, skim **`docs/operator-friction-log.md`** first—it lists recurring gotchas and workarounds.
+
 ## What This Repo Does
 
 - Tracks child repositories as independent projects
@@ -44,6 +46,7 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `MJS Financial Dash backup 20260310_153810`
 - `Momentum-OS`
 - `Archiavellian-Archive`
+- `Case Files`
 - `Producer`
 - `Resume Builder`
 - `TuneFab`
@@ -62,8 +65,11 @@ It keeps a workspace-level view of the portfolio, preserves each child project's
 - `2024 Taxes` is not yet tracked as a child gitlink because that repo has no first commit yet.
 - Child repos remain the source of truth for their own code and history.
 - This repo is the source of truth for portfolio visibility, intake, and onboarding.
+- `Case Files` is the governed two-track legal/content workspace for Case Files operating docs and reviewed derivatives. Raw evidence remains in `Archiavellian-Archive` archive intake/index storage.
 - `MJS Financial Dash` is the canonical finance repository. `MJS Financial Dash backup 20260310_153810` is retained only as a deprecated archive-only snapshot until final removal is explicitly approved.
 - `provider-access-hub` is now the active PAH codebase; `TuneFab` is being transitioned toward archive status.
+- Operator friction (Git, CI, Supabase keys, ports, CLI): `docs/operator-friction-log.md`
+- Portfolio execution queue (rules + where live scores live): `docs/portfolio-execution-queue.md`
 - Boundary policy: `docs/project-boundary-policy.md`
 - Investor-book repeatable process: `docs/investor-book-repeatable-workflow.md`
 - Agile production process standard: `docs/agile-production-process.md`

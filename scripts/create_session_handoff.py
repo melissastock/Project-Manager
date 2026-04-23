@@ -115,6 +115,15 @@ Branch(es):
 
 ---
 
+# Cascade Scope
+
+- Scope label: (`all-repos` | `selected-lanes` | `pm-portal-only`)
+- In-scope lanes/repos:
+- Excluded lanes/repos:
+- Reason:
+
+---
+
 # Dependencies
 
 ## Confirmed

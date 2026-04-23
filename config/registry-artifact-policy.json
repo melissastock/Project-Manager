@@ -1,0 +1,40 @@
+{
+  "default_mode": "commit",
+  "required_files": [
+    "data/os_registry_snapshot.json",
+    "data/files_manifest.json",
+    "data/assets/README.md"
+  ],
+  "targets": {
+    "provider-access-hub": {
+      "path": "provider-access-hub",
+      "mode": "commit",
+      "required_files": [
+        "data/os_registry_snapshot.json",
+        "data/files_manifest.json",
+        "data/assets/README.md"
+      ]
+    },
+    "Momentum-OS": {
+      "path": "Momentum-OS",
+      "mode": "commit",
+      "required_files": [
+        "data/os_registry_snapshot.json",
+        "data/files_manifest.json",
+        "data/assets/README.md"
+      ]
+    },
+    "bg-legal": {
+      "path": "bg-legal",
+      "mode": "ignore",
+      "required_files": [
+        "data/os_registry_snapshot.json",
+        "data/files_manifest.json"
+      ]
+    }
+  },
+  "notes": [
+    "commit mode means required files must exist and be tracked in git.",
+    "ignore mode means files should be ignored via .gitignore patterns."
+  ]
+}

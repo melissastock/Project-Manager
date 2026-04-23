@@ -1,3 +1,4 @@
+# Scheduled standup artifact upload. If Actions env or secrets confuse you, see docs/operator-friction-log.md.
 name: PM Standup Loop
 
 on:

@@ -218,6 +218,6 @@
 
 1. Read `pre-handoff-state-snapshot.md`.
 2. Decide commit boundaries and commit order:
-   - Project Manager control-plane changes
-   - CIMPT child-repo changes
+  - Project Manager control-plane changes
+  - CIMPT child-repo changes
 3. Execute push strategy only after branch hygiene and visibility checks.

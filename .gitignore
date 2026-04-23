@@ -28,6 +28,7 @@
 !MJS Financial Dash backup 20260310_153810/
 !Momentum-OS/
 !Archiavellian-Archive/
+!Case Files/
 !Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System/
 !Divorce/
 !Producer/
@@ -36,6 +37,55 @@
 !provider-access-hub/
 !Wayne Strain/
 !mjsds-website/
+!pm-portal/
+!pm-portal/frontend/
+!pm-portal/frontend/src/
+!pm-portal/frontend/src/styles/
+!pm-portal/frontend/src/styles/**
+!pm-portal/backend/
+!pm-portal/backend/config/
+!pm-portal/docs/
+!pm-portal/docs/mobile-compliance-governance.md
+!pm-portal/docs/mobile-privacy-and-disclosures.md
+!pm-portal/backend/config/mobile-compliance-governance.json
+!pm-portal/backend/config/mobile-store-disclosures.json
+!pm-portal/backend/app/
+!pm-portal/backend/app/main.py
+!pm-portal/backend/app/config.py
+!pm-portal/backend/app/db.py
+!pm-portal/backend/app/models.py
+!pm-portal/backend/app/service.py
+!pm-portal/backend/app/agreements.py
+!pm-portal/backend/app/secure_vault.py
+!pm-portal/backend/app/tickets.py
+!pm-portal/backend/app/team_assignments.py
+!pm-portal/frontend/src/components/
+!pm-portal/frontend/src/components/TicketPanel.tsx
+!pm-portal/frontend/src/components/TeamStructurePanel.tsx
+!pm-portal/frontend/src/components/ClientAgreementPanel.tsx
+!pm-portal/frontend/src/components/LaborEstimatePanel.tsx
+!pm-portal/frontend/src/components/SecureVaultPanel.tsx
+!pm-portal/frontend/src/components/CaseProceduralAnalysisPanel.tsx
+!pm-portal/frontend/src/pages/
+!pm-portal/frontend/src/pages/ProjectDetailPage.tsx
+!pm-portal/frontend/src/api.ts
+!pm-portal/frontend/src/types.ts
+!pm-portal/frontend/src/clientAgreementContracts.ts
+!pm-portal/frontend/src/config/
+!pm-portal/frontend/src/config/laborPresetRules.json
+!pm-portal/frontend/src/integrationsContracts.ts
+!pm-portal/frontend/prisma/
+!pm-portal/frontend/prisma/schema.prisma
+!pm-portal/frontend/prisma/migrations/
+!pm-portal/frontend/prisma/migrations/20260422120000_google_oauth_secure_integration/
+!pm-portal/frontend/prisma/migrations/20260422120000_google_oauth_secure_integration/migration.sql
+!pm-portal/frontend/package-lock.json
+!pm-portal/supabase/
+!pm-portal/supabase/migrations/
+!pm-portal/supabase/migrations/20260422103000_project_tickets.sql
+!pm-portal/supabase/migrations/20260422113000_project_team_assignments.sql
+!pm-portal/supabase/migrations/20260422133000_client_agreements_intake_lock.sql
+pm-portal/frontend/.gitignore
 
 # This child repo exists locally but has no first commit yet, so the
 # top-level repo cannot stage it as a gitlink until it is initialized.

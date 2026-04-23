@@ -17,7 +17,12 @@ def compute_base_score(snapshot: SignalSnapshot, project: dict, policy: dict) ->
     penalties = policy["risk_penalties"]
 
     if not snapshot.is_git_repo:
-        score -= int(penalties["missing_git_repo"])
+        # Repo can be fully onboarded in config while this runtime cannot access nested git metadata.
+        # Keep this visible but avoid mislabeling onboarding as failed.
+        missing_penalty = int(penalties["missing_git_repo"])
+        if project.get("intake_stage"):
+            missing_penalty = max(5, missing_penalty // 3)
+        score -= missing_penalty
     score -= snapshot.staged_count * int(penalties["staged"])
     score -= snapshot.unstaged_count * int(penalties["unstaged"])
     score -= min(snapshot.untracked_count * int(penalties["untracked_per_item"]), int(penalties["max_untracked_penalty"]))

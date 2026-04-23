@@ -1,5 +1,8 @@
 # New Project Onboarding Checklist
 
+Portfolio-wide gotchas (Git allowlists, CI on `main`, env files, Supabase, ports) live in **`docs/operator-friction-log.md`**—glance it when onboarding stalls for non-project reasons.
+For recurring session workflow (Draft/Apply mode, commit sequencing, and push order), use **`docs/process/session-playbook.md`**.
+
 ## Create
 
 - Confirm project name, purpose, and owner.
@@ -38,5 +41,76 @@
 - Confirm the top-level Project Manager repo sees the child repo correctly.
 - Use `python3 scripts/sync_child_repo_pointers.py` to inspect child repo commit drift.
 - Run `python3 scripts/check_production_readiness.py --target "path/to/repo"` before opening PRs to enforce backlog, sprint, and testing gates.
+- Run `python3 scripts/validate_downstream_governance.py --target "path/to/repo"` to enforce project-type downstream governance intake gates.
+- Use `python3 scripts/validate_downstream_governance.py --target "path/to/repo" --fix` to auto-fill missing downstream governance intake fields when needed.
+- Run `python3 scripts/validate_launch_readiness.py --target "path/to/repo"` to enforce launch-proximal commercialization, marketing, and SOP gates when applicable.
+- Use `python3 scripts/validate_launch_readiness.py --target "path/to/repo" --fix` to scaffold missing launch artifacts and Path 2 brand mode intake metadata when applicable.
+- Run `python3 scripts/validate_lifecycle_state.py --target "path/to/repo"` to enforce lifecycle state consistency with governance/execution/launch gates.
+- Use `python3 scripts/validate_lifecycle_state.py --target "path/to/repo" --fix` to auto-correct lifecycle state when it exceeds gate-valid readiness.
+- Run `python3 scripts/validate_persona_research_layer.py --target "path/to/repo"` to enforce persona/modular/orientation and user-research evidence quality.
+- Use `python3 scripts/validate_persona_research_layer.py --target "path/to/repo" --fix` to scaffold missing persona-research metadata and evidence notes.
+- Run `python3 scripts/validate_cognitive_profile_alignment.py --target "path/to/repo"` to enforce self-imposed cognitive profile workflow metadata and artifacts.
+- Use `python3 scripts/validate_cognitive_profile_alignment.py --target "path/to/repo" --fix` to scaffold missing profile metadata and creator workflow artifacts.
+- Create or update `docs/architecture-scale-fit.md` and run `python3 scripts/validate_architecture_scale_fit.py --target "path/to/repo"` for local validation before scaling work.
+- Use `python3 scripts/validate_architecture_scale_fit.py` for global changed-repo validation across the portfolio.
 - Commit the Project Manager updates.
 - Push both the child repo and the Project Manager repo.
+
+## Governance Requirements (MANDATORY)
+
+- classification assigned
+- compliance profile assigned
+- governance docs created
+- repo visibility verified
+- lifecycle state assigned using `docs/governance/project-lifecycle-states.md`
+
+### regulated-sensitive
+- privacy boundaries doc exists
+- private collaboration enforced
+
+### family-sensitive
+- minor privacy rules defined
+
+### legal-financial
+- evidence handling defined
+
+### customer-facing projects
+- customer service SLA documented
+- escalation path documented
+- support owner + backup assigned
+- staffing trigger criteria defined
+- CS training plan documented before launch
+
+### KPI profile requirements
+- project type explicitly assigned (`Producer`, `Archiavellian`, `Archive`, or other approved type)
+- KPI profile assigned in `docs/governance/kpi-profile-matrix.md`
+- KPI owner assigned
+- reporting cadence defined
+- financial KPIs selected based on project type
+
+### persona and modular-instance requirements
+- primary user persona assigned (`docs/governance/project-persona-framework.md`)
+- modular instance type documented (`templates/portfolio-modules/modular-instance-template.md`)
+- portfolio orientation declared (`horizontal` or `vertical`)
+- persona validation and research layer documented (`docs/governance/persona-validation-and-user-research-policy.md`)
+- persona research evidence linked and confidence recorded
+
+### cognitive profile requirements
+- creator cognitive profile assigned (`adhd`, `audhd`, `autistic`, or `neurotypical`)
+- creator focus plan documented (`docs/process/creator-focus-plan.md`)
+- creator closeout rhythm documented (`docs/process/creator-closeout-rhythm.md`)
+- cognitive profile governance documented (`docs/governance/cognitive-profile-modules.md`)
+
+### downstream governance requirements
+- downstream governance profile mapped in `docs/governance/project-type-downstream-governance-rules.md`
+- project-type escalation triggers defined
+- review cadence checkpoint created based on project type
+- downstream governance owner assigned
+
+### launch-proximal requirements (when launch window is committed)
+- commercialization plan documented (`templates/monetization/commercialization-plan-template.md`)
+- marketing plan documented (`templates/gtm/marketing-plan-template.md`)
+- operationalization SOP set documented (`templates/operations/operationalization-sop-template.md`)
+- Path 2 white-label identity selected and confirmed in command center admin when applicable
+
+Project is NOT onboarded until complete.

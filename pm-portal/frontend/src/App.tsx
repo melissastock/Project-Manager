@@ -1,18 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { fetchStandup } from "./api";
+import { fetchLatestGovernanceSummary, fetchStandup } from "./api";
 import { ProjectDetailPage } from "./pages/ProjectDetailPage";
-import type { ProjectReadiness, StandupRun } from "./types";
+import type { GovernanceRunSummary, ProjectReadiness, StandupRun } from "./types";
 
 export default function App() {
   const [run, setRun] = useState<StandupRun | null>(null);
   const [selectedName, setSelectedName] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [govSummary, setGovSummary] = useState<GovernanceRunSummary | null>(null);
 
   async function refresh() {
     try {
       setError("");
       const next = await fetchStandup();
+      const nextSummary = await fetchLatestGovernanceSummary();
       setRun(next);
+      setGovSummary(nextSummary);
       if (!selectedName && next.projects.length > 0) {
         setSelectedName(next.projects[0].project.name);
       }
@@ -31,27 +34,48 @@ export default function App() {
   );
 
   return (
-    <main style={{ maxWidth: 1200, margin: "0 auto", padding: 16, fontFamily: "Inter, system-ui, sans-serif" }}>
-      <h1>PM Portal</h1>
-      <p>Project deep-dive readiness dashboard (Phase 1).</p>
-      {error ? <p style={{ color: "crimson" }}>{error}</p> : null}
+    <main className="pm-app">
+      <h1 className="pm-brand-title">Portfolio Command Center</h1>
+      <p className="pm-subtitle">Decision-oriented readiness dashboard aligned to the MJSDS brand system.</p>
+      {error ? <p className="pm-error">{error}</p> : null}
 
-      <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", gap: 16 }}>
-        <aside style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12, maxHeight: "80vh", overflow: "auto" }}>
-          <h3>Projects</h3>
-          <button onClick={refresh}>Refresh</button>
-          <ul style={{ listStyle: "none", padding: 0 }}>
+      <div className="pm-shell">
+        <aside className="pm-card pm-pane pm-scroll-pane">
+          <div className="pm-card-block">
+            <div className="pm-meta-label">Latest Governance Run</div>
+            {govSummary ? (
+              <div>
+                <div className="pm-status-line">Profile: {govSummary.profile}</div>
+                <div className="pm-status-line">Trigger: {govSummary.trigger_reason}</div>
+                <div className="pm-status-line">
+                  Enabled checks: {govSummary.checks.filter((c) => c.status === "enabled").length}/{govSummary.checks.length}
+                </div>
+                <div className="pm-status-line">Updated: {new Date(govSummary.generated_at).toLocaleString()}</div>
+              </div>
+            ) : (
+              <div className="pm-status-line">No governance run summary available yet.</div>
+            )}
+          </div>
+          <div className="pm-sidebar-header">
+            <div>
+              <div className="pm-meta-label">Portfolio Projects</div>
+              <strong>Needs Decision Queue</strong>
+            </div>
+            <button className="pm-action-btn" onClick={refresh}>Refresh</button>
+          </div>
+          <ul className="pm-project-list">
             {run?.projects.map((project) => (
-              <li key={project.project.name} style={{ marginTop: 10 }}>
-                <button style={{ width: "100%", textAlign: "left", padding: 8, borderRadius: 6, border: selectedName === project.project.name ? "2px solid #2255aa" : "1px solid #ccc", background: "#fff" }} onClick={() => setSelectedName(project.project.name)}>
+              <li key={project.project.name}>
+                <button className={`pm-project-btn ${selectedName === project.project.name ? "active" : ""}`} onClick={() => setSelectedName(project.project.name)}>
                   <strong>{project.project.name}</strong>
-                  <div style={{ fontSize: 12, color: "#555" }}>{project.band} ({project.score})</div>
+                  <div className="pm-status-line">{project.band} ({project.score})</div>
+                  <div className="pm-status-line">onboarding: {project.registry_status}, runtime: {project.runtime_status}</div>
                 </button>
               </li>
             ))}
           </ul>
         </aside>
-        <section style={{ border: "1px solid #ddd", borderRadius: 8, padding: 16 }}>
+        <section className="pm-card pm-pane">
           {selected ? <ProjectDetailPage project={selected} onRefresh={refresh} /> : <p>Select a project.</p>}
         </section>
       </div>

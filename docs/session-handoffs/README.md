@@ -30,5 +30,8 @@ Each handoff should:
 
 1. Run the handoff creation script
 2. Fill in commits, files changed, commands run, and next actions
+3. Record cascade scope (`all-repos`, `selected-lanes`, or `pm-portal-only`) and impacted lanes/repos.
 3. Save the file in this folder
 4. Use the PM ingestion pass to extract only the signal needed for portfolio updates
+
+Scope rules live in: `../cascade-applicability-matrix.md`

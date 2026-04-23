@@ -1,0 +1,23 @@
+{
+  "defaultPreset": "standard",
+  "rules": [
+    {
+      "preset": "scale",
+      "matchAny": [
+        "regulated-sensitive",
+        "platform-product",
+        "provider",
+        "public"
+      ]
+    },
+    {
+      "preset": "lean",
+      "matchAny": [
+        "recovery-core",
+        "archive-incubator",
+        "legal",
+        "case"
+      ]
+    }
+  ]
+}

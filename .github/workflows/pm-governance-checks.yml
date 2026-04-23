@@ -1,0 +1,200 @@
+name: PM Governance Checks
+
+on:
+  workflow_dispatch:
+    inputs:
+      profile:
+        description: "Governance profile"
+        required: false
+        default: "fast"
+        type: choice
+        options:
+          - fast
+          - pm-portal
+          - release
+          - full
+      target_repo:
+        description: "Optional target repo path/name"
+        required: false
+        default: ""
+      target_lane:
+        description: "Optional target lane"
+        required: false
+        default: ""
+      run_review_gate:
+        description: "Enable optional publication review gate"
+        required: false
+        default: false
+        type: boolean
+  schedule:
+    - cron: "20 11 * * *"
+  push:
+    paths:
+      - "scripts/**"
+      - "docs/**"
+      - "config/**"
+      - "pm-portal/**"
+      - ".github/workflows/pm-governance-checks.yml"
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "docs/**"
+      - "config/**"
+      - "pm-portal/**"
+      - ".github/workflows/pm-governance-checks.yml"
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      run_scope_check: ${{ steps.flags.outputs.run_scope_check }}
+      run_mobile_governance: ${{ steps.flags.outputs.run_mobile_governance }}
+      run_runtime_drift: ${{ steps.flags.outputs.run_runtime_drift }}
+      run_arch_scale: ${{ steps.flags.outputs.run_arch_scale }}
+      run_remote_collisions: ${{ steps.flags.outputs.run_remote_collisions }}
+      run_portfolio_status: ${{ steps.flags.outputs.run_portfolio_status }}
+      run_portfolio_readiness: ${{ steps.flags.outputs.run_portfolio_readiness }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute selective governance flags
+        id: flags
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          elif [[ "${{ github.event_name }}" == "push" ]]; then
+            BASE_SHA="${{ github.event.before }}"
+          else
+            BASE_SHA=""
+          fi
+
+          if [[ -z "$BASE_SHA" || "$BASE_SHA" == "0000000000000000000000000000000000000000" ]]; then
+            CHANGED="$(git ls-files)"
+          else
+            CHANGED="$(git diff --name-only "$BASE_SHA" "${{ github.sha }}")"
+          fi
+
+          echo "Changed files:"
+          printf '%s\n' "$CHANGED"
+
+          has_match() {
+            local pattern="$1"
+            printf '%s\n' "$CHANGED" | rg -q "$pattern"
+          }
+
+          RUN_SCOPE_CHECK=0
+          RUN_MOBILE_GOV=0
+          RUN_RUNTIME_DRIFT=0
+          RUN_ARCH_SCALE=0
+          RUN_REMOTE_COLLISIONS=0
+          RUN_PORTFOLIO_STATUS=0
+          RUN_PORTFOLIO_READINESS=0
+
+          if has_match '^docs/session-handoffs/.*(handoff|addendum).*\.md$'; then
+            RUN_SCOPE_CHECK=1
+          fi
+          if has_match '^pm-portal/docs/mobile-compliance-governance\.md$|^pm-portal/docs/mobile-privacy-and-disclosures\.md$|^pm-portal/backend/config/mobile-compliance-governance\.json$|^pm-portal/backend/config/mobile-store-disclosures\.json$'; then
+            RUN_MOBILE_GOV=1
+            RUN_RUNTIME_DRIFT=1
+          fi
+          if has_match '^pm-portal/|^docs/new-project-intake-template\.md$|^docs/new-project-onboarding-checklist\.md$|^scripts/validate_architecture_scale_fit\.py$'; then
+            RUN_ARCH_SCALE=1
+          fi
+          if has_match '^config/repos\.json$|^scripts/check_remote_collisions\.py$'; then
+            RUN_REMOTE_COLLISIONS=1
+          fi
+          if has_match '^config/repos\.json$|^scripts/portfolio_status\.py$'; then
+            RUN_PORTFOLIO_STATUS=1
+          fi
+          if has_match '^docs/delivery/|^scripts/run_portfolio_readiness_checks\.py$|^scripts/check_production_readiness\.py$'; then
+            RUN_PORTFOLIO_READINESS=1
+          fi
+
+          {
+            echo "run_scope_check=${RUN_SCOPE_CHECK}"
+            echo "run_mobile_governance=${RUN_MOBILE_GOV}"
+            echo "run_runtime_drift=${RUN_RUNTIME_DRIFT}"
+            echo "run_arch_scale=${RUN_ARCH_SCALE}"
+            echo "run_remote_collisions=${RUN_REMOTE_COLLISIONS}"
+            echo "run_portfolio_status=${RUN_PORTFOLIO_STATUS}"
+            echo "run_portfolio_readiness=${RUN_PORTFOLIO_READINESS}"
+          } >> "$GITHUB_OUTPUT"
+
+  governance-selective:
+    runs-on: ubuntu-latest
+    needs: detect
+    if: github.event_name == 'pull_request' || github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run selective fast profile
+        run: |
+          chmod +x scripts/run_governance_profile.sh scripts/run_pm_governance_sweep.sh
+          PROFILE=fast \
+          GOVERNANCE_TRIGGER_REASON=ci-selective-changed-files \
+          RUN_REVIEW_GATE=0 \
+          RUN_SCOPE_CHECK=${{ needs.detect.outputs.run_scope_check }} \
+          RUN_PORTFOLIO_READINESS_CHECK=${{ needs.detect.outputs.run_portfolio_readiness }} \
+          RUN_MOBILE_GOVERNANCE_CHECK=${{ needs.detect.outputs.run_mobile_governance }} \
+          RUN_RUNTIME_DISCLOSURE_DRIFT_CHECK=${{ needs.detect.outputs.run_runtime_drift }} \
+          RUN_ARCH_SCALE_FIT_CHECK=${{ needs.detect.outputs.run_arch_scale }} \
+          RUN_REMOTE_COLLISIONS=${{ needs.detect.outputs.run_remote_collisions }} \
+          RUN_PORTFOLIO_STATUS=${{ needs.detect.outputs.run_portfolio_status }} \
+          ./scripts/run_governance_profile.sh
+
+      - name: Upload governance summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-summary-selective
+          path: |
+            docs/session-artifacts/governance/last-governance-run.json
+            docs/session-artifacts/governance/last-governance-run.md
+          if-no-files-found: warn
+
+  governance-manual-or-nightly:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run profile (manual/nightly)
+        run: |
+          chmod +x scripts/run_governance_profile.sh scripts/run_pm_governance_sweep.sh
+          PROFILE_INPUT="${{ inputs.profile || '' }}"
+          TRIGGER_REASON="manual-dispatch"
+          if [[ "${{ github.event_name }}" == "schedule" ]]; then
+            PROFILE_INPUT="full"
+            TRIGGER_REASON="nightly-full-schedule"
+          fi
+          PROFILE="${PROFILE_INPUT:-fast}" \
+          TARGET_REPO="${{ inputs.target_repo || '' }}" \
+          TARGET_LANE="${{ inputs.target_lane || '' }}" \
+          GOVERNANCE_TRIGGER_REASON="${TRIGGER_REASON}" \
+          RUN_REVIEW_GATE=${{ inputs.run_review_gate && '1' || '0' }} \
+          ./scripts/run_governance_profile.sh
+
+      - name: Upload governance summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: governance-summary-manual-or-nightly
+          path: |
+            docs/session-artifacts/governance/last-governance-run.json
+            docs/session-artifacts/governance/last-governance-run.md
+          if-no-files-found: warn
