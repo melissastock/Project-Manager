@@ -19,6 +19,8 @@ jobs:
         python-version: "3.10"
         channels: defaults,conda-forge
         channel-priority: flexible
+        activate-environment: base
+        auto-activate-base: true
 
     - name: Install dependencies
       run: |
