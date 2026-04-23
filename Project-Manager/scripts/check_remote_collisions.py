@@ -7,7 +7,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIG_PATH = ROOT / "config" / "repos.json"
+PM_ROOT = Path(__file__).resolve().parents[1]
+CONFIG_PATH = PM_ROOT / "config" / "repos.json"
 
 
 def get_origin_url(repo_path: Path) -> str:

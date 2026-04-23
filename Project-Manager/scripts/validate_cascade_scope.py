@@ -8,7 +8,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-HANDOFF_DIR = ROOT / "docs" / "session-handoffs"
+PM_ROOT = Path(__file__).resolve().parents[1]
+HANDOFF_DIR = PM_ROOT / "docs" / "session-handoffs"
 SCOPE_VALUES = {"all-repos", "selected-lanes", "pm-portal-only"}
 
 

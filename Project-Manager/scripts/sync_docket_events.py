@@ -12,7 +12,8 @@ from typing import Dict, List, Tuple
 
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT_DIR = ROOT / "outputs" / "docket-inputs"
+PM_ROOT = Path(__file__).resolve().parents[1]
+OUT_DIR = PM_ROOT / "outputs" / "docket-inputs"
 TARGET = ROOT / "Case Files" / "docs" / "timeline-evidence" / "docket-events.csv"
 
 TARGET_HEADERS = [

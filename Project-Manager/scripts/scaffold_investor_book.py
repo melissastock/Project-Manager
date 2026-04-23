@@ -5,7 +5,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-TEMPLATE_DIR = ROOT / "templates" / "investor-book"
+PM_ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = PM_ROOT / "templates" / "investor-book"
 
 
 def render(text: str, values: dict[str, str]) -> str:

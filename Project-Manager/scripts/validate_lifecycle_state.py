@@ -19,6 +19,7 @@ from governance_modules import (
 
 
 ROOT = Path(__file__).resolve().parents[2]
+PM_ROOT = Path(__file__).resolve().parents[1]
 INTAKE_PATH = "docs/project-intake.md"
 LIFECYCLE_LABEL = "Lifecycle state (`not-onboarded` / `governed` / `execution-ready` / `launch-ready` / `scaled`)"
 
@@ -31,12 +32,12 @@ VALID_STATES = [
 ]
 STATE_RANK = {state: idx for idx, state in enumerate(VALID_STATES)}
 
-DOWNSTREAM_SCRIPT = ROOT / "scripts" / "validate_downstream_governance.py"
-PRODUCTION_SCRIPT = ROOT / "scripts" / "check_production_readiness.py"
-ARCH_SCRIPT = ROOT / "scripts" / "validate_architecture_scale_fit.py"
-LAUNCH_SCRIPT = ROOT / "scripts" / "validate_launch_readiness.py"
-PERSONA_SCRIPT = ROOT / "scripts" / "validate_persona_research_layer.py"
-COGNITIVE_SCRIPT = ROOT / "scripts" / "validate_cognitive_profile_alignment.py"
+DOWNSTREAM_SCRIPT = PM_ROOT / "scripts" / "validate_downstream_governance.py"
+PRODUCTION_SCRIPT = PM_ROOT / "scripts" / "check_production_readiness.py"
+ARCH_SCRIPT = PM_ROOT / "scripts" / "validate_architecture_scale_fit.py"
+LAUNCH_SCRIPT = PM_ROOT / "scripts" / "validate_launch_readiness.py"
+PERSONA_SCRIPT = PM_ROOT / "scripts" / "validate_persona_research_layer.py"
+COGNITIVE_SCRIPT = PM_ROOT / "scripts" / "validate_cognitive_profile_alignment.py"
 
 
 def _read(path: Path) -> str:

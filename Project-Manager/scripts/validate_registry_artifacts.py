@@ -7,8 +7,9 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-POLICY_PATH = ROOT / "config" / "registry-artifact-policy.json"
-OUT_DIR = ROOT / "docs" / "session-artifacts" / "governance"
+PM_ROOT = Path(__file__).resolve().parents[1]
+POLICY_PATH = PM_ROOT / "config" / "registry-artifact-policy.json"
+OUT_DIR = PM_ROOT / "docs" / "session-artifacts" / "governance"
 
 
 def run_git(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:

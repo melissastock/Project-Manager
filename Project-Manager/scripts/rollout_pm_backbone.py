@@ -7,11 +7,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIG_PATH = ROOT / "config" / "repos.json"
+PM_ROOT = Path(__file__).resolve().parents[1]
+CONFIG_PATH = PM_ROOT / "config" / "repos.json"
 
 
 def run(cmd: list[str]) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+    return subprocess.run(cmd, cwd=PM_ROOT, capture_output=True, text=True)
 
 
 def main() -> int:

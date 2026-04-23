@@ -7,7 +7,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-BOOTSTRAP_SCRIPT = ROOT / "scripts" / "bootstrap_project.py"
+PM_ROOT = Path(__file__).resolve().parents[1]
+BOOTSTRAP_SCRIPT = PM_ROOT / "scripts" / "bootstrap_project.py"
 
 
 def prompt(label: str, default: str = "") -> str:
@@ -121,7 +122,7 @@ def main() -> int:
     if not init_git:
         cmd.append("--skip-git")
 
-    subprocess.run(cmd, cwd=ROOT, check=True)
+    subprocess.run(cmd, cwd=PM_ROOT, check=True)
     print("")
     print("Next step: run `python3 scripts/portfolio_status.py` from Project Manager to refresh the dashboard.")
     return 0

@@ -16,8 +16,9 @@ import portfolio_status as ps
 
 
 ROOT = ps.ROOT
+PM_ROOT = ps.PM_ROOT
 CONFIG_PATH = ps.CONFIG_PATH
-STANDUP_DIR = ROOT / "docs" / "session-artifacts" / "standup"
+STANDUP_DIR = PM_ROOT / "docs" / "session-artifacts" / "standup"
 
 
 def drift_score(repo: ps.RepoStatus) -> int:
@@ -273,10 +274,10 @@ def main() -> int:
     ps.main()
 
     print(f"Standup stamp: {stamp}")
-    print(f"Wrote {summary_path.relative_to(ROOT)}")
-    print(f"Wrote {score_path.relative_to(ROOT)}")
-    print(f"Wrote {next_path.relative_to(ROOT)}")
-    print(f"Wrote {decision_path.relative_to(ROOT)}")
+    print(f"Wrote {summary_path.relative_to(PM_ROOT)}")
+    print(f"Wrote {score_path.relative_to(PM_ROOT)}")
+    print(f"Wrote {next_path.relative_to(PM_ROOT)}")
+    print(f"Wrote {decision_path.relative_to(PM_ROOT)}")
     return 0
 
 

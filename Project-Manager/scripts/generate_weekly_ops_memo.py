@@ -5,8 +5,9 @@ import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-STANDUP_DIR = ROOT / "docs" / "session-artifacts" / "standup"
-GOV_DIR = ROOT / "docs" / "session-artifacts" / "governance"
+PM_ROOT = Path(__file__).resolve().parents[1]
+STANDUP_DIR = PM_ROOT / "docs" / "session-artifacts" / "standup"
+GOV_DIR = PM_ROOT / "docs" / "session-artifacts" / "governance"
 
 
 def _latest(prefix: str, folder: Path) -> Path:

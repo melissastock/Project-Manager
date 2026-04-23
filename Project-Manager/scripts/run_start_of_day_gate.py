@@ -10,8 +10,9 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-GOV_DIR = ROOT / "docs" / "session-artifacts" / "governance"
-BASELINE_FILE = ROOT / "config" / "drift-baseline.json"
+PM_ROOT = Path(__file__).resolve().parents[1]
+GOV_DIR = PM_ROOT / "docs" / "session-artifacts" / "governance"
+BASELINE_FILE = PM_ROOT / "config" / "drift-baseline.json"
 TARGET_REPOS = {
     "provider-access-hub": ROOT / "provider-access-hub",
     "Momentum-OS": ROOT / "Momentum-OS",
@@ -78,10 +79,10 @@ def main() -> int:
     GOV_DIR.mkdir(parents=True, exist_ok=True)
     report_path = GOV_DIR / f"START_OF_DAY_GATE-{stamp}.md"
 
-    remote = _run(["python3", "scripts/sync_repo_remotes.py"], cwd=ROOT)
+    remote = _run(["python3", "scripts/sync_repo_remotes.py"], cwd=PM_ROOT)
     remote_counts = _parse_remote_audit(remote.stdout)
 
-    standup = _run(["python3", "scripts/run_pm_standup.py"], cwd=ROOT)
+    standup = _run(["python3", "scripts/run_pm_standup.py"], cwd=PM_ROOT)
     standup_stamp = "unknown"
     for line in standup.stdout.splitlines():
         m = re.match(r"Standup stamp: (\d{8}_\d{6})", line.strip())

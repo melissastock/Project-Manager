@@ -9,7 +9,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-OUT_DIR = ROOT / "docs" / "session-artifacts" / "governance"
+PM_ROOT = Path(__file__).resolve().parents[1]
+OUT_DIR = PM_ROOT / "docs" / "session-artifacts" / "governance"
 JSON_PATH = OUT_DIR / "last-governance-run.json"
 MD_PATH = OUT_DIR / "last-governance-run.md"
 

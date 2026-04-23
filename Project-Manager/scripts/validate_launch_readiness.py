@@ -6,6 +6,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+PM_ROOT = Path(__file__).resolve().parents[1]
 
 COMMERCIALIZATION_LABEL = "Launch-proximal commercialization plan required"
 MARKETING_LABEL = "Launch-proximal marketing plan required"
@@ -19,9 +20,9 @@ REQUIRED_LAUNCH_FILES = [
     "docs/operationalization-sops.md",
 ]
 TEMPLATE_MAP = {
-    "docs/commercialization-plan.md": ROOT / "templates" / "monetization" / "commercialization-plan-template.md",
-    "docs/marketing-plan.md": ROOT / "templates" / "gtm" / "marketing-plan-template.md",
-    "docs/operationalization-sops.md": ROOT / "templates" / "operations" / "operationalization-sop-template.md",
+    "docs/commercialization-plan.md": PM_ROOT / "templates" / "monetization" / "commercialization-plan-template.md",
+    "docs/marketing-plan.md": PM_ROOT / "templates" / "gtm" / "marketing-plan-template.md",
+    "docs/operationalization-sops.md": PM_ROOT / "templates" / "operations" / "operationalization-sop-template.md",
 }
 
 

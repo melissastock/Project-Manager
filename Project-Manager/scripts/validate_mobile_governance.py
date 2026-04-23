@@ -7,7 +7,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PM_PORTAL = ROOT / "pm-portal"
+PM_ROOT = Path(__file__).resolve().parents[1]
+PM_PORTAL = PM_ROOT / "pm-portal"
 MOBILE_POLICY_DOC = PM_PORTAL / "docs" / "mobile-compliance-governance.md"
 MOBILE_DISCLOSURE_DOC = PM_PORTAL / "docs" / "mobile-privacy-and-disclosures.md"
 MOBILE_GOVERNANCE_JSON = PM_PORTAL / "backend" / "config" / "mobile-compliance-governance.json"

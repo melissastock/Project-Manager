@@ -8,6 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+PM_ROOT = Path(__file__).resolve().parents[1]
 INTAKE_REL = "docs/project-intake.md"
 BLANK = {"", "tbd", "na", "n/a", "none", "not set", "unknown"}
 
@@ -136,7 +137,7 @@ def main() -> int:
         evidence_file = target / "docs/research/persona-validation-notes.md"
         if not evidence_file.exists():
             evidence_file.parent.mkdir(parents=True, exist_ok=True)
-            template = ROOT / "templates/research/persona-validation-notes-template.md"
+            template = PM_ROOT / "templates/research/persona-validation-notes-template.md"
             if template.exists():
                 evidence_file.write_text(template.read_text(encoding="utf-8"), encoding="utf-8")
             else:

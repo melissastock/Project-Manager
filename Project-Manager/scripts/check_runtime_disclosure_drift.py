@@ -7,7 +7,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-DISCLOSURE_PATH = ROOT / "pm-portal" / "backend" / "config" / "mobile-store-disclosures.json"
+PM_ROOT = Path(__file__).resolve().parents[1]
+DISCLOSURE_PATH = PM_ROOT / "pm-portal" / "backend" / "config" / "mobile-store-disclosures.json"
 
 # Source-of-truth classes currently produced/persisted by PM Portal runtime behavior:
 # - project metadata + readiness snapshots (service/ingestion/scoring models)

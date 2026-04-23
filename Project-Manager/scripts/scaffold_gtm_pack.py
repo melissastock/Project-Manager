@@ -5,7 +5,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-TEMPLATE_DIR = ROOT / "templates" / "gtm"
+PM_ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = PM_ROOT / "templates" / "gtm"
 
 FILES = {
     "gtm-hypotheses-and-pilot-plan.md": "docs/gtm-hypotheses-and-pilot-plan.md",

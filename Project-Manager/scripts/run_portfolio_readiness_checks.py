@@ -21,13 +21,14 @@ from governance_modules import (
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIG = ROOT / "config" / "repos.json"
-READINESS_CHECK = ROOT / "scripts" / "check_production_readiness.py"
-DOWNSTREAM_GOVERNANCE_CHECK = ROOT / "scripts" / "validate_downstream_governance.py"
-LAUNCH_READINESS_CHECK = ROOT / "scripts" / "validate_launch_readiness.py"
-LIFECYCLE_STATE_CHECK = ROOT / "scripts" / "validate_lifecycle_state.py"
-PERSONA_RESEARCH_CHECK = ROOT / "scripts" / "validate_persona_research_layer.py"
-COGNITIVE_PROFILE_CHECK = ROOT / "scripts" / "validate_cognitive_profile_alignment.py"
+PM_ROOT = Path(__file__).resolve().parents[1]
+CONFIG = PM_ROOT / "config" / "repos.json"
+READINESS_CHECK = PM_ROOT / "scripts" / "check_production_readiness.py"
+DOWNSTREAM_GOVERNANCE_CHECK = PM_ROOT / "scripts" / "validate_downstream_governance.py"
+LAUNCH_READINESS_CHECK = PM_ROOT / "scripts" / "validate_launch_readiness.py"
+LIFECYCLE_STATE_CHECK = PM_ROOT / "scripts" / "validate_lifecycle_state.py"
+PERSONA_RESEARCH_CHECK = PM_ROOT / "scripts" / "validate_persona_research_layer.py"
+COGNITIVE_PROFILE_CHECK = PM_ROOT / "scripts" / "validate_cognitive_profile_alignment.py"
 
 
 def _run_git(repo_path: Path, *args: str) -> subprocess.CompletedProcess[str]:

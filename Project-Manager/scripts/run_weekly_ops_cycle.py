@@ -10,8 +10,9 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-GOV_DIR = ROOT / "docs" / "session-artifacts" / "governance"
-STANDUP_DIR = ROOT / "docs" / "session-artifacts" / "standup"
+PM_ROOT = Path(__file__).resolve().parents[1]
+GOV_DIR = PM_ROOT / "docs" / "session-artifacts" / "governance"
+STANDUP_DIR = PM_ROOT / "docs" / "session-artifacts" / "standup"
 TARGETS = ["provider-access-hub", "Momentum-OS", "bg-legal"]
 
 
@@ -23,7 +24,7 @@ class StepResult:
     output: str
 
 
-def _run(command: list[str], cwd: Path = ROOT) -> subprocess.CompletedProcess[str]:
+def _run(command: list[str], cwd: Path = PM_ROOT) -> subprocess.CompletedProcess[str]:
     return subprocess.run(command, cwd=cwd, text=True, capture_output=True)
 
 
@@ -51,16 +52,17 @@ def _run_product_hardening() -> tuple[bool, str]:
     tasks = []
     with ThreadPoolExecutor(max_workers=6) as pool:
         for target in TARGETS:
+            target_path = str(ROOT / target)
             tasks.append(
                 pool.submit(
                     _run,
-                    ["python3", "scripts/check_production_readiness.py", "--target", target],
+                    ["python3", "scripts/check_production_readiness.py", "--target", target_path],
                 )
             )
             tasks.append(
                 pool.submit(
                     _run,
-                    ["python3", "scripts/validate_downstream_governance.py", "--target", target],
+                    ["python3", "scripts/validate_downstream_governance.py", "--target", target_path],
                 )
             )
 
@@ -126,6 +128,7 @@ def main() -> int:
             "scripts/generate_weekly_ops_memo.py",
             "scripts/scaffold_delivery_docs.py",
             "scripts/run_weekly_ops_cycle.py",
+            "scripts/run_product_skus.py",
         ]
     )
     steps.append(
@@ -182,7 +185,7 @@ def main() -> int:
             name="product_ops_hardening",
             ok=hardening_ok,
             command="parallel readiness + downstream checks",
-            output=f"Wrote {hardening_path.relative_to(ROOT)}",
+            output=f"Wrote {hardening_path.relative_to(PM_ROOT)}",
         )
     )
 
@@ -251,7 +254,7 @@ def main() -> int:
         )
 
     report_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(f"Wrote {report_path.relative_to(ROOT)}")
+    print(f"Wrote {report_path.relative_to(PM_ROOT)}")
     print(f"Overall result: {'PASS' if overall_ok else 'FAIL'}")
     return 0 if overall_ok else 1
 

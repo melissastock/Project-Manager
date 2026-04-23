@@ -5,7 +5,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-TEMPLATE_DIR = ROOT / "templates" / "production-delivery"
+PM_ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = PM_ROOT / "templates" / "production-delivery"
 
 FILES = {
     "backlog.md": "docs/delivery/backlog.md",

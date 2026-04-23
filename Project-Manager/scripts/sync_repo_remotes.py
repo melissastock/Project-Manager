@@ -7,8 +7,9 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIG = ROOT / 'config' / 'repo-remotes.json'
-PORTFOLIO_CONFIG = ROOT / 'config' / 'repos.json'
+PM_ROOT = Path(__file__).resolve().parents[1]
+CONFIG = PM_ROOT / 'config' / 'repo-remotes.json'
+PORTFOLIO_CONFIG = PM_ROOT / 'config' / 'repos.json'
 
 
 def run_git(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:

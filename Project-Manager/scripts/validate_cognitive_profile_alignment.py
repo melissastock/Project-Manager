@@ -9,8 +9,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+PM_ROOT = Path(__file__).resolve().parents[1]
 INTAKE_REL = "docs/project-intake.md"
-PROFILE_CONFIG = ROOT / "config/cognitive-profiles.json"
+PROFILE_CONFIG = PM_ROOT / "config/cognitive-profiles.json"
 BLANK = {"", "tbd", "na", "n/a", "none", "not set", "unknown"}
 
 PROFILE_LABEL = "Creator cognitive profile (`adhd` / `audhd` / `autistic` / `neurotypical`)"
@@ -120,11 +121,11 @@ def main() -> int:
 
         _ensure_artifact(
             target / "docs/process/creator-focus-plan.md",
-            ROOT / "templates/process/creator-focus-plan-template.md",
+            PM_ROOT / "templates/process/creator-focus-plan-template.md",
         )
         _ensure_artifact(
             target / "docs/process/creator-closeout-rhythm.md",
-            ROOT / "templates/process/creator-closeout-rhythm-template.md",
+            PM_ROOT / "templates/process/creator-closeout-rhythm-template.md",
         )
 
         print("Cognitive profile alignment: FIXED")

@@ -9,7 +9,9 @@ from typing import Optional
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONFIG_PATH = ROOT / "config" / "repos.json"
+PM_ROOT = Path(__file__).resolve().parents[1]
+CONFIG_PATH = PM_ROOT / "config" / "repos.json"
+ARTIFACT_ROOT = PM_ROOT
 
 
 @dataclass
@@ -246,7 +248,7 @@ def build_markdown(statuses: list[RepoStatus]) -> str:
 def main() -> int:
     config = json.loads(CONFIG_PATH.read_text())
     statuses = [get_repo_status(entry) for entry in config["managed_repositories"]]
-    output_path = ROOT / config.get("generated_status_file", "STATUS.md")
+    output_path = ARTIFACT_ROOT / config.get("generated_status_file", "STATUS.md")
     output_path.write_text(build_markdown(statuses))
     print(f"Wrote {output_path}")
     return 0
