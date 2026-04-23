@@ -46,9 +46,6 @@
     "Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System": "CIMPT",
     "Wayne Strain": "wayne-strain"
   },
-  "path_overrides": {
-    "Case Files": "bg-legal"
-  },
   "retired_paths": [
     "TuneFab"
   ],

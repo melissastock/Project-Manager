@@ -1,62 +1,152 @@
-# Portfolio execution queue
+# Portfolio Execution Queue
 
-**If you are stuck on Git, CI, Conda, Supabase keys, `.env` saves, or ports—not the queue itself—open [`docs/operator-friction-log.md`](operator-friction-log.md) first.**
+Canonical owner-approved queue for batch execution. **Current baseline:** 2026-04-21, 14:37 MDT PM standup artifact set.
 
-This document is the **canonical place for execution rules and batch structure**. The **live ordered queue** (scores, drift counts, project order) comes from the **latest PM standup artifacts**; refresh them before treating numbers as current.
+## Operating Rules
 
-## Authoritative timestamp
+- Security work first.
+- Then drift containment.
+- Then planning and packaging gaps.
+- Then readiness and release gates.
+- Maximum active projects in execution: 3.
+- Every action needs owner decision status (`approved`, `rejected`, or `defer`).
+- Drift containment comes before backlog, sprint, or feature work.
+- Do not bulk commit untracked files. Classify first, then decide whether each item is source, generated output, local-only noise, secret or sensitive material, or archive evidence.
+- Treat archive-stage repositories as evidence-preservation workspaces. Prefer holdback notes and manifest-style documentation over broad refactors.
+- Run the focused readiness gate only after drift and planning artifacts have been corrected.
+- Re-run the PM standup after each batch so score changes are based on live repository state.
 
-Use the **latest handoff addendum** under `docs/session-handoffs/` that names the current standup artifact set (time in the filename, e.g. `…143723` = 14:37). Older timestamped files are **historical comparison only**.
+## Source Of Truth
 
-## Source of truth (replace `YYYYMMDD_HHMMSS` with your addendum’s stamp)
+Use these artifacts from the Project Manager workspace root:
 
-From the Project Manager workspace root:
+- `docs/session-artifacts/standup/STANDUP_SUMMARY-20260421_143723.md`
+- `docs/session-artifacts/standup/READINESS_SCORECARD-20260421_143723.md`
+- `docs/session-artifacts/standup/NEXT_STEPS_PROPOSAL-20260421_143723.md`
+- `docs/session-artifacts/standup/DECISION_LOG-20260421_143723.md`
 
-- `docs/session-artifacts/standup/STANDUP_SUMMARY-YYYYMMDD_HHMMSS.md`
-- `docs/session-artifacts/standup/READINESS_SCORECARD-YYYYMMDD_HHMMSS.md`
-- `docs/session-artifacts/standup/NEXT_STEPS_PROPOSAL-YYYYMMDD_HHMMSS.md`
-- `docs/session-artifacts/standup/DECISION_LOG-YYYYMMDD_HHMMSS.md`
+From inside the `docs/` directory, the same files are:
 
-Regenerate a full set when the portfolio has changed materially:
+- `session-artifacts/standup/STANDUP_SUMMARY-20260421_143723.md`
+- `session-artifacts/standup/READINESS_SCORECARD-20260421_143723.md`
+- `session-artifacts/standup/NEXT_STEPS_PROPOSAL-20260421_143723.md`
+- `session-artifacts/standup/DECISION_LOG-20260421_143723.md`
 
-```bash
+Do not execute actions from the 11:47 MDT artifact set except as historical comparison.
+
+## Blocking Owner Decisions
+
+1. Rotate any credentials previously exposed in `token.json` or `credentials.json` history. The git rewrite reduced repository exposure, but it did not invalidate live credentials.
+2. Mark each proposed action in `docs/session-artifacts/standup/DECISION_LOG-20260421_143723.md` as `approved`, `rejected`, or `defer`.
+3. After each standup regeneration, record the authoritative artifact timestamp in the latest handoff addendum.
+
+## Command Templates
+
+Run commands from the Project Manager workspace root unless noted.
+
+Drift classification:
+
+```sh
+git -C "<repo-path>" status --short --untracked-files=all
+git -C "<repo-path>" status --branch --short
+git -C "<repo-path>" log -1 --oneline
+```
+
+Planning gate:
+
+```sh
+python3 scripts/check_production_readiness.py --target "<repo-path>"
+```
+
+Standup regeneration:
+
+```sh
 python3 scripts/run_pm_standup.py
 ```
 
-Then update the handoff addendum to point at the **new** timestamp.
+Expected per-repo exit criteria:
 
-## Operating rules
+- `git status --short --untracked-files=all` is clean, or every remaining item is documented as an explicit holdback.
+- `docs/delivery/backlog.md` exists and includes grooming metadata plus prioritized items.
+- `docs/delivery/sprint-plan.md` exists and includes sprint goal plus committed scope.
+- `docs/delivery/test-report.md` exists and includes pass, fail, and not tested notes.
+- `docs/delivery/pr-readiness.md` exists and its checklist is either complete or has owner-accepted blockers.
+- `python3 scripts/check_production_readiness.py --target "<repo-path>"` passes, or any failure is captured as an explicit deferred decision.
 
-- Security work first, then drift containment, then planning and packaging gaps, then readiness and release gates.
-- Cap concurrent execution at **three** active projects unless the owner explicitly expands capacity.
-- Every proposed action needs owner status: `approved`, `rejected`, or `defer`.
-- Every change set needs a cascade scope tag: `all-repos`, `selected-lanes`, or `pm-portal-only` (see `docs/cascade-applicability-matrix.md`).
-- Drift containment comes before backlog, sprint, or feature work.
-- Do not bulk-commit untracked files from the parent repo; classify each item first.
-- Treat Google Drive `Case Files` as a governed two-track intake program. Use `docs/case-files-track-onboarding-2026-04-22.md` before routing files into legal or content creator repos.
+## Queue
 
-## Batch shape (stable)
+| Order | Project | Repo path | Current band | Score | Drift | Required action | Exit criteria |
+| --- | --- | --- | --- | ---: | --- | --- | --- |
+| 0 | Security rotation | n/a | blocking | n/a | n/a | Rotate exposed credentials from prior `token.json` / `credentials.json` history. | Owner confirms replacement credentials are issued and old credentials are invalidated. |
+| 1 | Archiavellian-Archive | `Archiavellian-Archive` | monitor | 70 | 0/0/341 | Classify extreme untracked drift before lower-score repos because it is recovery-core evidence scope. | Untracked files are committed, ignored, removed with approval, or documented as holdback; archive-sensitive disposition noted. |
+| 2 | Wayne Strain | `Wayne Strain` | at-risk | 50 | 0/0/7 | Classify drift, refresh missing backlog, confirm sprint, then readiness gate. | Drift contained; backlog exists; sprint remains valid; readiness gate result recorded. |
+| 3 | MJS Financial Dash Backup | `MJS Financial Dash backup 20260310_153810` | at-risk | 54 | 0/0/3 | Archive-scoped drift classification plus backlog and sprint docs. | Drift contained; archive-only scope preserved; backlog and sprint docs present; readiness gate result recorded. |
+| 4 | MJSDS Dashboard | `GitHub/mjsds_dashboard` | at-risk | 54 | 0/0/7 | Public repo drift classification, backlog and sprint docs, publication safety check, readiness gate. | Drift contained; no private governance or restricted data in public path; planning docs present; readiness gate result recorded. |
+| 5 | MJSDS Website | `mjsds-website` | at-risk | 54 | 0/0/7 | Onboarding-scoped drift classification plus backlog and sprint docs. | Drift contained; onboarding scope preserved; planning docs present; readiness gate result recorded. |
+| 6 | Teach - Home Learning Playbook | `App Builder/Teach/home-learning-playbook` | at-risk | 57 | 0/0/9 | Family-sensitive drift classification plus backlog and sprint docs. | Drift contained; family-sensitive material handled privately; planning docs present; readiness gate result recorded. |
+| 7 | Resume Builder | `Resume Builder` | at-risk | 61 | 0/0/7 | Onboarding-scoped drift classification plus backlog and sprint docs. | Drift contained; planning docs present; readiness gate result recorded. |
+| 8 | Archiavellian | `Producer` | at-risk | 56 | 0/0/1 | Classify single untracked item, then backlog and sprint docs. | Drift contained; planning docs present; readiness gate result recorded. |
+| 9 | TuneFab | `TuneFab` | at-risk | 56 | 0/0/1 | Archive-scoped single-item drift classification plus backlog and sprint docs. | Drift contained; archive-only scope preserved; planning docs present; readiness gate result recorded. |
+| 10 | Aneumind and TC Structure | `Aneumind and TC Structure` | monitor | 84 | 0/0/1 | Core business-structure drift classification and planning docs. | Drift contained; backlog and sprint docs present or explicitly deferred. |
+| 11 | Teach - Zahmeir Learning System | `App Builder/Teach/zahmeir-learning-system` | at-risk | 66 | 0/0/0 | Create backlog and sprint docs, then readiness gate. | Planning docs present; readiness gate result recorded. |
+| 12 | App Builder | `App Builder/App Builder` | at-risk | 68 | 0/0/0 | Create backlog and sprint docs, then readiness gate. | Planning docs present; readiness gate result recorded. |
+| 13 | Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System | `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System` | at-risk | 68 | 0/0/0 | Create backlog and sprint docs, then readiness gate. | Planning docs present; regulated-sensitive handling confirmed; readiness gate result recorded. |
+| 14 | Momentum-OS | `Momentum-OS` | at-risk | 68 | 0/0/0 | Create backlog and sprint docs, then readiness gate. | Planning docs present; readiness gate result recorded. |
+| 15 | provider-access-hub | `provider-access-hub` | at-risk | 68 | 0/0/0 | Refresh sprint doc; backlog already detected. | Sprint doc present; regulated-sensitive handling confirmed; readiness gate result recorded. |
 
-Use the scorecard and decision log to **assign projects** into these batches for the current cycle:
+## Batch Plan
 
-1. **Batch A — Security and evidence drift** (credentials, governed artifacts, archive-core drift).
-2. **Batch B — Highest-risk product drift** (lowest readiness scores with active drift signals).
-3. **Batch C — Remaining drift** (other drift-bearing repos).
-4. **Batch D — Planning-only at-risk** (backlog/sprint coverage gaps without large untracked piles).
+### Batch A: Security And Evidence Drift
 
-After each batch: re-run the standup script, compare the new scorecard to the prior one, and record the new authoritative timestamp in a handoff addendum.
+- Rotate exposed credentials.
+- Contain `Archiavellian-Archive` drift.
 
-## Final portfolio gate
+Batch A completion: security item no longer blocks operations, current PM artifacts are governed, and recovery-core archive drift is no longer growing unmanaged.
 
-When batches are complete: run `run_pm_standup.py`, verify scorecard movement matches expectations (drift down or documented holdbacks, no accidental public exposure of private material), and write a short addendum naming the new artifact timestamp.
+### Batch B: Highest-Risk Product Drift
 
-## Batch close checklist
+- `Wayne Strain`
+- `MJS Financial Dash Backup`
+- `MJSDS Dashboard`
+- `MJSDS Website`
+
+Batch B completion: the lowest-scoring at-risk repos have drift disposition, planning docs, and readiness gate outcomes.
+
+### Batch C: Remaining Drift
+
+- `Teach - Home Learning Playbook`
+- `Resume Builder`
+- `Archiavellian`
+- `TuneFab`
+- `Aneumind and TC Structure`
+
+Batch C completion: all currently drift-bearing repos have disposition records.
+
+### Batch D: Planning-Only At-Risk Repos
+
+- `Teach - Zahmeir Learning System`
+- `App Builder`
+- `Combat Injury Post-Incident Medical Tracking & VA Claims Documentation System`
+- `Momentum-OS`
+- `provider-access-hub`
+
+Batch D completion: all at-risk repos have backlog/sprint coverage or explicit owner-approved deferrals.
+
+## Final Portfolio Gate
+
+After all approved queue items are complete:
+
+1. Run `python3 scripts/run_pm_standup.py`.
+2. Compare the new readiness scorecard to `docs/session-artifacts/standup/READINESS_SCORECARD-20260421_143723.md`.
+3. Confirm expected movement:
+   - untracked drift decreases or is documented as holdback,
+   - at-risk count decreases as planning docs are added,
+   - no public repo gains private or restricted material.
+4. Write a new handoff addendum naming the new authoritative timestamp.
+
+## Batch Close Checklist
 
 - Re-run `python3 scripts/run_pm_standup.py`.
 - Confirm new standup artifacts are timestamped and reviewed.
 - Mark the authoritative artifact set in a handoff addendum.
-- Capture deferred actions with rationale and due date.
-
----
-
-**Tooling and environment friction (again):** [`docs/operator-friction-log.md`](operator-friction-log.md)
+- Capture any deferred actions with rationale and due date.

@@ -8,12 +8,17 @@ import csv
 import json
 from copy import deepcopy
 from datetime import datetime, timezone
+import sys
 from pathlib import Path
 from typing import Dict, List
 
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
+
+from bg_legal_paths import TIMELINE_EVIDENCE_DIR as TIMELINE_DIR
 
 ROOT = Path(__file__).resolve().parents[2]
-TIMELINE_DIR = ROOT / "Case Files" / "docs" / "timeline-evidence"
 ROUTING_CSV = TIMELINE_DIR / "intake-routing.csv"
 TEMPLATE_JSON = TIMELINE_DIR / "portal-session-template.json"
 

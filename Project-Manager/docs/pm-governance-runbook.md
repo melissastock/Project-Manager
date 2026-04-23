@@ -2,9 +2,10 @@
 
 ## Daily Sweep (MVP fast profile)
 
-Run from `Project Manager` root:
+Run from the **`Project-Manager/`** directory:
 
 ```bash
+cd Project-Manager
 PROFILE=fast ./scripts/run_governance_profile.sh
 ```
 
@@ -13,14 +14,15 @@ PROFILE=fast ./scripts/run_governance_profile.sh
 Run before product execution:
 
 ```bash
-python3 scripts/run_start_of_day_gate.py
+python3 Project-Manager/scripts/run_start_of_day_gate.py
 ```
+(from the portfolio repository root)
 
 This enforces:
 
-- remote audit pass via `scripts/sync_repo_remotes.py` (no missing bindings or remote-key drift),
+- remote audit pass via `Project-Manager/scripts/sync_repo_remotes.py` (no missing bindings or remote-key drift),
 - fresh standup artifact refresh for the current session,
-- drift classification against `config/drift-baseline.json` for `provider-access-hub`, `Momentum-OS`, and `bg-legal`.
+- drift classification against `Project-Manager/config/drift-baseline.json` for `provider-access-hub`, `Momentum-OS`, and `bg-legal`.
 
 If this gate fails, do not continue with multi-repo commit/push until drift is classified and baseline-reviewed.
 
@@ -29,21 +31,23 @@ If this gate fails, do not continue with multi-repo commit/push until drift is c
 Use templates instead of ad hoc file creation for delivery readiness docs:
 
 ```bash
-python3 scripts/scaffold_delivery_docs.py --target bg-legal
+python3 Project-Manager/scripts/scaffold_delivery_docs.py --target bg-legal
 ```
 
 Options:
 
 - Add `--force` to overwrite existing delivery docs.
-- Target can be any repo path relative to `Project Manager`.
+- Target can be any repo path relative to the **portfolio repository root** (next to `Project-Manager/`).
 
 ## Weekly Ops Cycle Orchestrator
 
 Run the full weekly reliability cycle with one command:
 
 ```bash
-python3 scripts/run_weekly_ops_cycle.py --auto-scaffold-bg-legal
+python3 Project-Manager/scripts/run_weekly_ops_cycle.py --auto-scaffold-engagement-repo
 ```
+
+(`--auto-scaffold-bg-legal` remains as a deprecated alias for the same flag.)
 
 This orchestrator performs:
 
@@ -57,7 +61,7 @@ This orchestrator performs:
 
 Artifacts:
 
-- Consolidated cycle report: `docs/session-artifacts/governance/WEEKLY_OPS_CYCLE-<stamp>.md`
+- Consolidated cycle report: `Project-Manager/docs/session-artifacts/governance/WEEKLY_OPS_CYCLE-<stamp>.md`
 - Product hardening artifact: `docs/session-artifacts/governance/PRODUCT_OPS_HARDENING-<stamp>.md`
 
 This runs only lightweight checks by default. Use env flags to force specific checks for a small chunk:

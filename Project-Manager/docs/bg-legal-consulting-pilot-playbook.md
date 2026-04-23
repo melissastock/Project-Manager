@@ -10,8 +10,8 @@ This playbook pilots **both consulting SKUs** from `master-consulting-operator-w
 | --- | --- |
 | **Git remote** | `melissastock/bg-legal` (`Project-Manager/config/repo-remotes.json`) |
 | **Local folder name** | Prefer a clone at **`bg-legal/`** at the **portfolio repository root** (next to `Project-Manager/`, same pattern as `provider-access-hub`, `Momentum-OS`). |
-| **`Case Files` alias** | `Case Files` is bound to the **same** remote as `bg-legal` for sync purposes. Your **working tree** may still be named `Case Files/` until you rename or re-clone; pick **one** canonical folder for engagement work and stay consistent. |
-| **`Project-Manager/config/repos.json`** | Today the managed entry is **`Case Files`** with path `Case Files`. For this pilot, treat **`bg-legal`** as the canonical repo path once it exists locally, or keep `Case Files` as the path but align the remote to `bg-legal` only — avoid two divergent folders for the same engagement. |
+| **Drive intake** | Google Drive folder **Case Files** is **intake-only**; the governed git working copy is **`bg-legal/`** at the portfolio root. See `bg-legal-folder-migration.md`. |
+| **`Project-Manager/config/repos.json`** | Managed entry **`bg-legal`** with path `bg-legal`. Avoid a second working tree for the same remote. |
 
 **Practical rule:** one git repo, one folder name on disk, one SOW. If the remote is `bg-legal`, cloning into `bg-legal/` keeps naming aligned with weekly ops scripts that use `--target bg-legal`.
 

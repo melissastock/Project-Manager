@@ -21,3 +21,5 @@ For friction with Git, CI, Conda, or environment wiring, see **`Project-Manager/
 Consulting-first operator workflow (offers, stage gates, payments, web/portal): **`Project-Manager/docs/master-consulting-operator-workflow.md`**.
 
 Pilot both consulting SKUs on bg-legal (sequencing + repo mapping): **`Project-Manager/docs/bg-legal-consulting-pilot-playbook.md`**.
+
+Single working folder for the engagement git repo (`melissastock/bg-legal`): clone to **`bg-legal/`** at the portfolio root. Migration notes (Drive intake vs governed repo): **`Project-Manager/docs/bg-legal-folder-migration.md`**.

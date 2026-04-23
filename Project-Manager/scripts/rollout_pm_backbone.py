@@ -52,6 +52,7 @@ def main() -> int:
         base_cmds = [
             ["python3", "scripts/scaffold_production_delivery.py", "--target", str(target)],
             ["python3", "scripts/scaffold_gtm_pack.py", "--target", str(target)],
+            ["python3", "scripts/scaffold_monetization_pack.py", "--target", str(target)],
             ["python3", "scripts/scaffold_investor_book.py", "--target", str(target), "--project-name", repo["name"]],
         ]
         if args.force:

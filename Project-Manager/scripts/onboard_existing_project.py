@@ -23,6 +23,17 @@ def run(cmd: list[str], cwd: Path) -> None:
     subprocess.run(cmd, cwd=cwd, check=True)
 
 
+def resolve_project_path(raw_path: str) -> tuple[str, Path]:
+    """Resolve --path to a folder under the portfolio workspace root (parent of Project-Manager/)."""
+    relative_path = raw_path.strip("/")
+    project_path = (ROOT / relative_path).resolve()
+    try:
+        project_path.relative_to(ROOT)
+    except ValueError as exc:
+        raise SystemExit(f"Project path must stay inside the workspace: {raw_path}") from exc
+    return project_path.relative_to(ROOT).as_posix(), project_path
+
+
 def write_if_missing(path: Path, content: str, overwrite: bool = False) -> bool:
     path.parent.mkdir(parents=True, exist_ok=True)
     if overwrite or not path.exists():
@@ -152,17 +163,13 @@ def upsert_manifest_entry(config: dict, args: argparse.Namespace, relative_path:
 
 
 def refresh_status() -> Path:
-    try:
-        from scripts import portfolio_status
-    except ImportError:
-        import portfolio_status  # type: ignore
-
     config = load_config()
-    portfolio_status.ROOT = ROOT
-    statuses = [portfolio_status.get_repo_status(entry) for entry in config["managed_repositories"]]
-    output_path = ROOT / config.get("generated_status_file", "STATUS.md")
-    output_path.write_text(portfolio_status.build_markdown(statuses))
-    return output_path
+    subprocess.run(
+        ["python3", "scripts/portfolio_status.py"],
+        cwd=PM_ROOT,
+        check=True,
+    )
+    return PM_ROOT / config.get("generated_status_file", "STATUS.md")
 
 
 def parse_args() -> argparse.Namespace:
@@ -218,8 +225,7 @@ def main() -> int:
     args.init_git = not args.skip_git
     args.add_to_manifest = not args.skip_portfolio_plan
 
-    relative_path = args.path.strip("/")
-    project_path = ROOT / relative_path
+    relative_path, project_path = resolve_project_path(args.path)
     if not project_path.exists() or not project_path.is_dir():
         raise SystemExit(f"Existing project folder not found: {project_path}")
 

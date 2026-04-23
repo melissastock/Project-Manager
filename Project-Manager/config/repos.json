@@ -209,8 +209,8 @@
       "overdue_ar_usd": 5400.0
     },
     {
-      "name": "Case Files",
-      "path": "Case Files",
+      "name": "bg-legal",
+      "path": "bg-legal",
       "category": "legal-content",
       "role": "two-track legal case and content-creator governance workspace for Case Files operating docs, routing decisions, and reviewed derivatives",
       "intake_stage": "active",

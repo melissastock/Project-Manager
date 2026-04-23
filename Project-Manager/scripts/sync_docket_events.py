@@ -7,14 +7,21 @@ import argparse
 import csv
 import hashlib
 from datetime import datetime, timezone
+import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
-
 
 ROOT = Path(__file__).resolve().parents[2]
 PM_ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = PM_ROOT / "outputs" / "docket-inputs"
-TARGET = ROOT / "Case Files" / "docs" / "timeline-evidence" / "docket-events.csv"
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+if str(_SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS_DIR))
+
+from bg_legal_paths import BG_LEGAL_DIR
+
+TARGET = BG_LEGAL_DIR / "docs" / "timeline-evidence" / "docket-events.csv"
 
 TARGET_HEADERS = [
     "docket_event_id",
