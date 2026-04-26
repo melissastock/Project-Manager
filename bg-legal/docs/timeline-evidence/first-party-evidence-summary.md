@@ -2,6 +2,8 @@
 
 **Purpose:** Single governed narrative that ties **portal/docket text**, the **2026-04-26 court setting** image, and **known discovery gaps** (police/EMS/hospital/Colorado) so operators know what is in-repo versus what must be pulled from archive or counsel.
 
+**Local disk vs. this git workspace:** The cloud copy of the portfolio (used by agents) only sees files that are **checked out under** `/workspace` (or the same paths on a developer machine). If police reports, hospital PDFs, Denver/TCLEOSE prints, and email exports live on **your** hard drive, they are **invisible to automation here** until you **copy, rsync, or mount** that tree into the repo (often under `Archiavellian-Archive/`, per `Project-Manager/docs/bg-legal-folder-migration.md`) or you record absolute paths in a **local-only** `local-paths.md` (not committed; see `local-paths.md.example`). A prior iCloud file index in this repository referenced `BrandonDewayneGarner-InteliusReport.pdf` under an **Archiavellian-Archive/…/Aneumind/** ingest path on a local Mac — that file is **not** present in the current cloud workspace.
+
 **Case:** F24-1036-462 — Denton County, Texas, County Criminal Court No. 5 (sitting as a felony court).  
 **Defendant (records):** Brandon Dewayne Garner / Brandon Garner Sr. (portal shows DOB 06/03/1985; address Aurora, CO on case display).  
 **Charge:** Intoxication manslaughter with vehicle (Penal Code 49.08(b)), second-degree felony.  
@@ -59,4 +61,4 @@ Machine-readable docket lines live in `docket-events.csv` in this directory. New
 
 ---
 
-*Last updated from workspace integration on 2026-04-26. Not legal advice. Verify every date and time against original certified or signed documents.*
+*Last updated 2026-04-26 (added local-disk vs. cloud workspace note and `local-paths.md.example`). Not legal advice. Verify every date and time against original certified or signed documents.*
