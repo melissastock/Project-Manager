@@ -1,0 +1,17 @@
+# Local evidence paths (copy to `local-paths.md` — gitignored)
+
+Use this for **operator-only** notes: absolute paths on your computer to first-party sources (police report, CAD, EMS, hospital returns, Denver/sheriff, TCIC/CCH printouts, email .eml).  
+Do **not** commit `local-paths.md`; keep it in your private working copy or password store.
+
+| Category | Absolute path (example) | Filename / bates (optional) | Notes |
+| --- | --- | --- | --- |
+| **Case Files archive intake (handoff)** | e.g. `…/Project Manager/Archiavellian-Archive/inbox/google-drive/2026-04/case-files/` (see `2026-04-22-case-files-pm-system-start.md`) |  | 71 files in **Evidence & Files** in the 2026-04-22 export; may include discovery/police/EMS — use inventory CSV on your machine. |
+| Police / crash report | e.g. `/Volumes/.../Denton_SO_incident_2021-12-25.pdf` |  |  |
+| CAD / dispatch |  |  | Time of dispatch vs. arrival |
+| EMS / Krum Fire |  |  |  |
+| Medical City Denton |  |  | Subpoena return or DRS |
+| THR Presby Denton |  |  |  |
+| Denver / Colorado arrest or rap sheet |  |  | Not the same as Texas TCIC |
+| Emails re scheduling / "mistake" |  |  | Attach .eml or PDF export path |
+
+When files are **ingested** into the portfolio archive, add a one-line note in this table pointing at the new relative path and remove sensitive absolute paths if you no longer need them.
