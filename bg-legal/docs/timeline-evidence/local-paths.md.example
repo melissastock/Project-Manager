@@ -5,6 +5,7 @@ Do **not** commit `local-paths.md`; keep it in your private working copy or pass
 
 | Category | Absolute path (example) | Filename / bates (optional) | Notes |
 | --- | --- | --- | --- |
+| **Case Files archive intake (handoff)** | e.g. `…/Project Manager/Archiavellian-Archive/inbox/google-drive/2026-04/case-files/` (see `2026-04-22-case-files-pm-system-start.md`) |  | 71 files in **Evidence & Files** in the 2026-04-22 export; may include discovery/police/EMS — use inventory CSV on your machine. |
 | Police / crash report | e.g. `/Volumes/.../Denton_SO_incident_2021-12-25.pdf` |  |  |
 | CAD / dispatch |  |  | Time of dispatch vs. arrival |
 | EMS / Krum Fire |  |  |  |

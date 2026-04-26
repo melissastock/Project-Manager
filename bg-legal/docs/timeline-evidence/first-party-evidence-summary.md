@@ -4,6 +4,14 @@
 
 **Local disk vs. this git workspace:** The cloud copy of the portfolio (used by agents) only sees files that are **checked out under** `/workspace` (or the same paths on a developer machine). If police reports, hospital PDFs, Denver/TCLEOSE prints, and email exports live on **your** hard drive, they are **invisible to automation here** until you **copy, rsync, or mount** that tree into the repo (often under `Archiavellian-Archive/`, per `Project-Manager/docs/bg-legal-folder-migration.md`) or you record absolute paths in a **local-only** `local-paths.md` (not committed; see `local-paths.md.example`). A prior iCloud file index in this repository referenced `BrandonDewayneGarner-InteliusReport.pdf` under an **Archiavellian-Archive/…/Aneumind/** ingest path on a local Mac — that file is **not** present in the current cloud workspace.
 
+**Where the handoffs say the “docs” live (re-checked 2026-04-26):**
+
+| Source | Path / action |
+| --- | --- |
+| **`Project-Manager/docs/session-handoffs/2026-04-23-project-manager-handoff.md`** | Engagement git working copy: clone **`melissastock/bg-legal`** to **`bg-legal/`** at the **portfolio root** (sibling of `Project-Manager/`). If that clone is missing, scripts that target `bg-legal` will fail. Raw bulk evidence is *not* supposed to duplicate there (see `bg-legal-folder-migration.md`). |
+| **`Project-Manager/docs/session-handoffs/2026-04-22-case-files-pm-system-start.md`** and **`2026-04-22-case-files-project-onboarding.md`** | **Google Drive `Case Files` export** was extracted to **ignored** archive intake: `Archiavellian-Archive/inbox/google-drive/2026-04/case-files/`. A checksum inventory is documented on the operator machine as `Archiavellian-Archive/index/case-files-20260422-inventory.csv` (this path is **not** in the cloud worktree; `Archiavellian-Archive/` is empty here). Intake register: `Project-Manager/docs/manifests/case-files-drive-intake-register-2026-04-22.csv` (original zip: `Case Files-20260422T075812Z-3-001.zip`, **Evidence & Files** folder had **71** files). |
+| **Agent re-scan** of `/workspace` | No `Archiavellian-Archive/.../case-files` tree, no `case-files-20260422-inventory.csv`, and **no** PDFs named for Garner except what we already track in `bg-legal/`. The criminal discovery your question targets is expected under the **local** `case-files` archive intake, not in this environment until synced. |
+
 **Case:** F24-1036-462 — Denton County, Texas, County Criminal Court No. 5 (sitting as a felony court).  
 **Defendant (records):** Brandon Dewayne Garner / Brandon Garner Sr. (portal shows DOB 06/03/1985; address Aurora, CO on case display).  
 **Charge:** Intoxication manslaughter with vehicle (Penal Code 49.08(b)), second-degree felony.  
@@ -61,4 +69,4 @@ Machine-readable docket lines live in `docket-events.csv` in this directory. New
 
 ---
 
-*Last updated 2026-04-26 (added local-disk vs. cloud workspace note and `local-paths.md.example`). Not legal advice. Verify every date and time against original certified or signed documents.*
+*Last updated 2026-04-26 (handoff path table: 2026-04-22 Case Files archive intake, 2026-04-23 bg-legal clone; cloud re-scan = no `case-files` tree in workspace). Not legal advice. Verify every date and time against original certified or signed documents.*
